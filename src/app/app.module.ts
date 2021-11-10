@@ -11,6 +11,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { TableComponent } from './partials/table/table.component';
 import { ModelModule } from './model/model.module';
+import { BasePageComponent } from './partials/basepage/basepage.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ModelModule } from './model/model.module';
     LoginComponent,
     RegisterComponent,
     TableComponent,
+    BasePageComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, ModelModule],
   providers: [],

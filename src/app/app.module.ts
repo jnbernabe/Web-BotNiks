@@ -7,13 +7,23 @@ import { HomeComponent } from './pages/home/home.component';
 import { FooterComponent } from './partials/footer/footer.component';
 import { HeaderComponent } from './partials/header/header.component';
 import { FormComponent } from './partials/form/form.component';
-import { LoginComponent } from './partials/login/login.component';
-import { RegisterComponent } from './partials/register/register.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
 import { TableComponent } from './partials/table/table.component';
+import { ModelModule } from './model/model.module';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, FooterComponent, HeaderComponent, FormComponent, LoginComponent, RegisterComponent, TableComponent],
-  imports: [BrowserModule, AppRoutingModule],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    FooterComponent,
+    HeaderComponent,
+    FormComponent,
+    LoginComponent,
+    RegisterComponent,
+    TableComponent,
+  ],
+  imports: [BrowserModule, AppRoutingModule, ModelModule],
   providers: [],
   bootstrap: [AppComponent],
 })

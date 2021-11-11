@@ -1,0 +1,87 @@
+<!-- 
+    Created by: Han Bi
+    Form for creating an incident
+    Will feature the following fields:
+    Ticket number; which is automatically generated
+    Incident Priority; choose from low medium and high
+    Incident Description; for describing the problem
+    Customer Name
+    Customer Number
+    Customer Email
+    Status: New, In-progress, Waiting for customer, Resolved
+    Incident Narrative: for describing any action; needs to be timestamped
+    ****Concerns**** 
+    The Incident Priority choices here are currently not linked to the priority enum model that was created.
+    Customer Information not linked to anything we have on file
+    Enums have not been created for Status
+    Form behaviour has not been set up
+
+-->
+
+<form>
+    <div class="form-group">
+        <label for="recordNumber">Ticket Number:</label>
+        <input type="text" class="form-control" id="recordNumber" placeholder='automatically generated' readonly />
+    </div>
+
+    <div class="form-group">
+        <label for="incidentPriority">Priority</label>
+        <select class="form-control" id="incidentPriority">
+            <option>Lowest</option>
+            <option>Low</option>
+            <option selected>Medium</option>
+            <option>High</option>
+            <option>Highest</option>
+        </select>
+
+        <label for="incidentStatus">Status</label>
+        <select class="form-control" id="incidentStatus">
+            <option selected>New</option>
+            <option>In-Progress/option>
+            <option>Waiting for Customer</option>
+            <option>Resolved</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="customerFName">Last Name</label>
+        <input type="text" class="form-control" id="customerFName" placeholder='First Name' required />
+    </div>
+
+    <div class="form-group">
+        <label for="customerLName">Last Name</label>
+        <input type="text" class="form-control" id="customerLName" placeholder='Last Name' required />
+    </div>
+
+    <div class="form-group">
+        <label for="customerEmail">Email</label>
+        <input type="email" class="form-control" id="customerEmail" value="email@example.com" required>
+    </div>
+
+    <div class="form-group">
+        <label for="customerPhone">Phone Number</label>
+        <input type="text" class="form-control" id="customerPhone" value="Phone Number" required>
+    </div>
+
+    <div class="form-group">
+        <label for="incidentDescription">Description</label>
+        <textarea class="form-control" id="incidentDescription" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="incidentNarrative">Incident Narrative</label>
+        <textarea class="form-control" id="incidentNarrative" rows="4"></textarea>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Create Incident</button>
+    </div>
+    <!-- Needed to add these br elements as the footer was blocking the submit button otherwise -->
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+</form>

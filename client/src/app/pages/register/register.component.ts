@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { BasePageComponent } from 'src/app/partials/basepage/basepage.component';
+import { User } from '../../model/user.model';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -8,7 +8,17 @@ import { BasePageComponent } from 'src/app/partials/basepage/basepage.component'
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  constructor() {}
+  constructor(
+    test: User = {
+      id: '',
+      FirstName: '',
+      LastName: '',
+      Email: '',
+      Type: '',
+      Number: '',
+      UserType: '',
+    }
+  ) {}
 
   ngOnInit(): void {}
 }

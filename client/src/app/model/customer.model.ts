@@ -1,3 +1,5 @@
+import { Guid } from 'guid-typescript';
+
 export class Customer {
   public id: string;
 
@@ -7,7 +9,6 @@ export class Customer {
     public Email: string,
     public Number: string
   ) {
-    const max = 1000000;
-    this.id = Math.floor(Math.random() * (max + 1)).toString();
+    this.id = Guid.create().toString();
   }
 }

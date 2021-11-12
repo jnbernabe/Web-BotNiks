@@ -8,7 +8,6 @@ import { Status } from '../model/status.enum';
   styleUrls: ['./create-incident.component.css'],
 })
 export class CreateIncidentComponent implements OnInit {
-
   priority = Priority;
   priorities(): Array<string> {
     var keys = Object.keys(this.priority);
@@ -21,8 +20,7 @@ export class CreateIncidentComponent implements OnInit {
     return status;
   }
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 }
-

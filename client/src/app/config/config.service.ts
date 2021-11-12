@@ -4,7 +4,10 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
+const PROTOCOL = 'http';
+const PORT = 4200;
 @Injectable()
 export class ConfigService {
+  baseUrl: string;
   constructor(private http: HttpClient) {}
 }

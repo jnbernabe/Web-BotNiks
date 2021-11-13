@@ -5,6 +5,7 @@ import { Incident } from '../model/incident.model';
 import { Customer } from '../model/customer.model';
 import { User } from '../model/user.model';
 import { FormControl, FormGroup } from '@angular/forms';
+import { HttpServiceService } from '../config/http-service.service';
 
 let counter = 1;
 
@@ -13,9 +14,7 @@ let counter = 1;
   templateUrl: './create-incident.component.html',
   styleUrls: ['./create-incident.component.css'],
 })
-
 export class CreateIncidentComponent implements OnInit {
-
   incidentId = this.createTicketNumber();
 
   //for listing all elements of priority enum as an option in the html forms
@@ -41,15 +40,16 @@ export class CreateIncidentComponent implements OnInit {
     customerEmail: new FormControl(''),
     customerPhone: new FormControl(''),
     incidentDescription: new FormControl(''),
-    incidentNarrative: new FormControl('')
-  })
+    incidentNarrative: new FormControl(''),
+  });
 
   createTicketNumber(): string {
     let d = new Date();
     let dateNumber =
       d.getFullYear().toString() +
       d.getMonth().toString() +
-      d.getDate().toString() + "-" +
+      d.getDate().toString() +
+      '-' +
       counter.toString();
     console.log(dateNumber);
     return dateNumber;
@@ -64,18 +64,15 @@ export class CreateIncidentComponent implements OnInit {
     );
 
     let user = new User(
-      "John",
-      "Smith",
-      "js@lmkasdfu@o21u3",
+      'John',
+      'Smith',
+      'js@lmkasdfu@o21u3',
       'type?',
-      "1238798123",
+      '1238798123',
       'UserType?'
     );
 
-
-
     let dateCreated = new Date();
-
 
     let obj = new Incident(
       this.incidentForm.get('incidentNumber')?.value,
@@ -86,18 +83,16 @@ export class CreateIncidentComponent implements OnInit {
       this.incidentForm.get('incidentDescription')?.value,
       this.incidentForm.get('incidentNarrative')?.value,
       customer
-
     );
-    console.log(obj);
+    let jsonobj = JSON.stringify(obj);
+    console.log(jsonobj);
+
     counter++;
 
     return obj;
   }
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-
-
-  }
+  ngOnInit(): void {}
 }

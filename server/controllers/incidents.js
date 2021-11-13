@@ -55,9 +55,9 @@ module.exports.processAddPage = (req, res, next) => {
 };
 
 module.exports.displayEditPage = (req, res, next) => {
-  let id = req.params.incidentID;
+  let id = req.params.id;
 
-  Incident.findById(id, (err, incidentToEdit) => {
+  Incident.findOne({ incidentID: { $eq: id } }, (err, incidentToEdit) => {
     if (err) {
       console.log(err);
       res.end(err);
@@ -68,6 +68,7 @@ module.exports.displayEditPage = (req, res, next) => {
             displayName: req.user ? req.user.displayName : ''});
             */
 
+      console.log(id);
       res.json({
         success: true,
         msg: "Successfully Displayed Incident to Edit",
@@ -78,7 +79,7 @@ module.exports.displayEditPage = (req, res, next) => {
 };
 
 module.exports.processEditPage = (req, res, next) => {
-  let id = req.params.incidentID;
+  let id = req.params.id;
 
   let updatedIncident = Incident({
     incidentID: req.body.incidentID,
@@ -95,7 +96,7 @@ module.exports.processEditPage = (req, res, next) => {
     resolutionField: req.body.resolutionField,
   });
 
-  Incident.updateOne({ incidentID: id }, updatedIncident, (err) => {
+  Incident.updateOne({ incidentID: { $eq: id } }, updatedIncident, (err) => {
     if (err) {
       console.log(err);
       res.end(err);
@@ -113,9 +114,9 @@ module.exports.processEditPage = (req, res, next) => {
 };
 
 module.exports.performDelete = (req, res, next) => {
-  let id = req.params.incidentID;
+  let id = req.params.id;
 
-  Incident.remove({ _id: id }, (err) => {
+  Incident.remove({ incidentID: { $eq: id } }, (err) => {
     if (err) {
       console.log(err);
       res.end(err);

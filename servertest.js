@@ -1,24 +1,55 @@
-const http = require("http");
-var debug = require("debug");
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
 var app = require("./server/config/app");
+var debug = require("debug");
+var http = require("http");
 
-const host = "localhost";
-const port = 3000;
+/**
+ * Get port from environment and store in Express.
+ */
 
+var port = normalizePort(process.env.PORT || "3500");
 app.set("port", port);
 
+/**
+ * Create HTTP server.
+ */
+
 var server = http.createServer(app);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
 server.listen(port, host, () => {
-  console.log(`Server is running on http://${host}:${port}`);
+  console.log(`Server is running on http://localhost:${port}`);
 });
 server.on("error", onError);
 server.on("listening", onListening);
 
-// const requestListener = function (req, res) {
-//   res.setHeader("Content-Type", "application/json");
-//   res.writeHead(200);
-//   res.end(`{"message": "This is a JSON response"}`);
-// };
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
 
 /**
  * Event listener for HTTP server "error" event.
@@ -45,6 +76,10 @@ function onError(error) {
       throw error;
   }
 }
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
 
 function onListening() {
   var addr = server.address();

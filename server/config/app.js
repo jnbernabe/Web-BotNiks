@@ -27,13 +27,14 @@ let incidentsModel = require("../model/incidents");
 let Incident = incidentsModel.reportModel;
 
 //Routers
-let incidentRouter = require("../routes/incident");
+let incidentRouter = require("../routes/incidents");
+let indexRouter = require("../routes/index");
 
 let app = express();
 
 // routing
 
-app.use("/create-incident", incidentRouter);
+app.use("/", incidentRouter);
 
 // point mongoose to the DB URI
 mongoose.connect(DB.URI, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -69,34 +70,34 @@ app.use(
 // initialize flash
 app.use(flash());
 
-// initialize passport
-app.use(passport.initialize());
-app.use(passport.session());
+// // initialize passport
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 // passport user configuration
 
 // implement a User Authentication Strategy
-passport.use(User.createStrategy());
+// passport.use(User.createStrategy());
 
-// serialize and deserialize the User info
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+// // serialize and deserialize the User info
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
 
-let jwtOptions = {};
-jwtOptions.jwtFromRequest = ExtractJWT.fromAuthHeaderAsBearerToken();
-jwtOptions.secretOrKey = DB.Secret;
+// let jwtOptions = {};
+// jwtOptions.jwtFromRequest = ExtractJWT.fromAuthHeaderAsBearerToken();
+// jwtOptions.secretOrKey = DB.Secret;
 
-let strategy = new JWTStrategy(jwtOptions, (jwt_payload, done) => {
-  User.findById(jwt_payload.id)
-    .then((user) => {
-      return done(null, user);
-    })
-    .catch((err) => {
-      return done(err, false);
-    });
-});
+// let strategy = new JWTStrategy(jwtOptions, (jwt_payload, done) => {
+//   User.findById(jwt_payload.id)
+//     .then((user) => {
+//       return done(null, user);
+//     })
+//     .catch((err) => {
+//       return done(err, false);
+//     });
+// });
 
-passport.use(strategy);
+// passport.use(strategy);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

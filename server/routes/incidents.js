@@ -6,7 +6,7 @@ let jwt = require("jsonwebtoken");
 
 let passport = require("passport");
 
-let incidentController = require("../controllers/incident");
+let incidentController = require("../controllers/incidents");
 
 // helper function for guard purposes
 function requireAuth(req, res, next) {
@@ -24,18 +24,15 @@ router.get("/", incidentController.displayIncident);
 router.get("/create-incident", incidentController.displayAddPage);
 
 /* POST Route for processing the Add page - CREATE Operation */
-router.post(
-  "/create-incident",
-  incidentController.processAddPage.processAddPage
-);
+router.post("/create-incident", incidentController.processAddPage);
 
 /* GET Route for displaying the Edit page - UPDATE Operation */
-router.get("/create-incident/:incidentID", incidentController);
+router.get("/create-incident/:id", incidentController.displayEditPage);
 
 /* POST Route for processing the Edit page - UPDATE Operation */
-router.post("/create-incident/:incidentID", incidentController);
+router.post("/create-incident/:id", incidentController.processEditPage);
 
 /* GET to perform  Deletion - DELETE Operation */
-router.get("/delete/:incidentID", incidentController);
+router.get("/delete/:id", incidentController.performDelete);
 
 module.exports = router;

@@ -16,7 +16,6 @@ import { CreateIncidentComponent } from './create-incident/create-incident.compo
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-
 @NgModule({
   declarations: [
     AppComponent,

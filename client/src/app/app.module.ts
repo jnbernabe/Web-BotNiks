@@ -13,22 +13,25 @@ import { TableComponent } from './partials/table/table.component';
 import { ModelModule } from './model/model.module';
 import { BasePageComponent } from './partials/basepage/basepage.component';
 import { CreateIncidentComponent } from './create-incident/create-incident.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpComponent } from './config/http/http.component';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        HomeComponent,
-        FooterComponent,
-        HeaderComponent,
-        FormComponent,
-        LoginComponent,
-        RegisterComponent,
-        TableComponent,
-        CreateIncidentComponent,
-        BasePageComponent,
-    ],
-    imports: [BrowserModule, AppRoutingModule, ModelModule],
-    providers: [],
-    bootstrap: [AppComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    FooterComponent,
+    HeaderComponent,
+    FormComponent,
+    LoginComponent,
+    RegisterComponent,
+    TableComponent,
+    CreateIncidentComponent,
+    BasePageComponent,
+    HttpComponent,
+  ],
+  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, ModelModule],
+  providers: [],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

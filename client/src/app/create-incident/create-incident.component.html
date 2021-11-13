@@ -12,8 +12,8 @@
     Incident Narrative: for describing any action; needs to be timestamped
     ****Concerns****
     Customer Information not linked to anything we have on file
-    Form behaviour has not been set up
     They should not be given the Choice to choose Status when creating new ticket
+    For some Reason, there is no default choice for priority select
 -->
 
 <form [formGroup]="incidentForm" (ngSubmit)="createIncident()">
@@ -23,13 +23,13 @@
       placeholder="{{incidentId}}" readonly />
 
     <label for="incidentPriority">Priority</label>
-    <select formControlName="incidentPriority" class="form-control" id="incidentPriority">
-      <option *ngFor="let p of priorities()" value={{p}}> {{p}} </option>
+    <select formControlName="incidentPriority" class="form-control" id="incidentPriority" required>
+      <option *ngFor="let prioSelect of priorities()" value={{prioSelect}}> {{prioSelect}} </option>
     </select>
 
     <label for="incidentStatus">Status</label>
-    <select formControlName="incidentStatus" class="form-control" id="incidentStatus" aria-readonly="true">
-      <option *ngFor="let s of statuses()" value={{s}}> {{s}} </option>
+    <select formControlName="incidentStatus" class="form-control" id="incidentStatus">
+      <option *ngFor="let statusSelect of statuses()" value={{statusSelect}}> {{statusSelect}} </option>
     </select>
 
     <label for="customerFName">First Name</label>

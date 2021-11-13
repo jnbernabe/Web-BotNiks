@@ -1,5 +1,5 @@
 export enum Priority {
-  Medium = 'Medium',
-  Low = 'Low',
-  High = 'High',
+  Medium = 1,
+  Low = 2,
+  High = 3,
 }

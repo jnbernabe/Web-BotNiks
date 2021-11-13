@@ -14,98 +14,49 @@
     Customer Information not linked to anything we have on file
     Form behaviour has not been set up
     They should not be given the Choice to choose Status when creating new ticket
-
 -->
 
-<form>
+<form [formGroup]="incidentForm" (ngSubmit)="createIncident()">
   <div class="form-group">
     <label for="recordNumber">Ticket Number:</label>
-    <input
-      type="text"
-      class="form-control"
-      id="recordNumber"
-      placeholder="automatically generated"
-      readonly
-    />
-  </div>
+    <input type="text" formControlName="incidentNumber" class="form-control" id="recordNumber" value={{incidentId}}
+      placeholder="{{incidentId}}" readonly />
 
-  <div class="form-group">
     <label for="incidentPriority">Priority</label>
-    <select class="form-control" id="incidentPriority">
-      <option *ngFor="let p of priorities()">{{ p }}</option>
+    <select formControlName="incidentPriority" class="form-control" id="incidentPriority">
+      <option *ngFor="let p of priorities()">{{p}}</option>
     </select>
 
     <label for="incidentStatus">Status</label>
-    <select class="form-control" id="incidentStatus" readonly>
-      <option *ngFor="let s of statuses()">{{ s }}</option>
+    <select formControlName="incidentStatus" class="form-control" id="incidentStatus" readonly>
+      <option *ngFor="let s of statuses()">{{s}}</option>
     </select>
-  </div>
 
-  <div class="form-group">
     <label for="customerFName">First Name</label>
-    <input
-      type="text"
-      class="form-control"
-      id="customerFName"
-      placeholder="First Name"
-      required
-    />
-  </div>
+    <input formControlName="customerFName" type="text" class="form-control" id="customerFName" name="customerFName"
+      placeholder="First Name" required />
 
-  <div class="form-group">
     <label for="customerLName">Last Name</label>
-    <input
-      type="text"
-      class="form-control"
-      id="customerLName"
-      placeholder="Last Name"
-      required
-    />
-  </div>
+    <input formControlName="customerLName" type="text" class="form-control" id="customerLName" name="customerLName"
+      placeholder="Last Name" required />
 
-  <div class="form-group">
     <label for="customerEmail">Email</label>
-    <input
-      type="email"
-      class="form-control"
-      id="customerEmail"
-      value="email@example.com"
-      required
-    />
-  </div>
+    <input formControlName="customerEmail" type="email" class="form-control" id="customerEmail" name="customerEmail"
+      placeholder="email@example.com" required />
 
-  <div class="form-group">
     <label for="customerPhone">Phone Number</label>
-    <input
-      type="text"
-      class="form-control"
-      id="customerPhone"
-      value="Phone Number"
-      required
-    />
-  </div>
+    <input formControlName="customerPhone" type="number" class="form-control" id="customerPhone" name="customerPhone"
+      placeholder="Phone Number" required />
 
-  <div class="form-group">
     <label for="incidentDescription">Description</label>
-    <textarea
-      class="form-control"
-      id="incidentDescription"
-      rows="3"
-      required
-    ></textarea>
-  </div>
+    <textarea formControlName="incidentDescription" class="form-control" id="incidentDescription"
+      name="incidentDescription" rows="3" required></textarea>
 
-  <div class="form-group">
     <label for="incidentNarrative">Incident Narrative</label>
-    <textarea
-      class="form-control"
-      id="incidentNarrative"
-      rows="4"
-      readonly
-    ></textarea>
-  </div>
-  <div class="form-group">
-    <button type="submit" class="btn btn-primary">Create Incident</button>
+    <textarea formControlName="incidentNarrative" class="form-control" id="incidentNarrative" name="incidentNarrative"
+      rows="4" readonly></textarea>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!incidentForm.valid">Create Incident</button>
   </div>
   <!-- Needed to add these br elements as the footer was blocking the submit button -->
 
@@ -114,4 +65,5 @@
   <br />
   <br />
   <br />
+
 </form>

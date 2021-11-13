@@ -1,6 +1,6 @@
 export enum Status {
-    New = "New",
-    InProgress = "In-progress",
-    Dispatched = "Dispatched",
-    Resolved = "Resolved",
+    New = 1,
+    InProgress = 2,
+    Dispatched = 3,
+    Resolved = 4,
 }

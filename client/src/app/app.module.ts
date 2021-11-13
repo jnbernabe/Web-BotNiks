@@ -13,6 +13,8 @@ import { TableComponent } from './partials/table/table.component';
 import { ModelModule } from './model/model.module';
 import { BasePageComponent } from './partials/basepage/basepage.component';
 import { CreateIncidentComponent } from './create-incident/create-incident.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
     declarations: [
@@ -27,7 +29,7 @@ import { CreateIncidentComponent } from './create-incident/create-incident.compo
         CreateIncidentComponent,
         BasePageComponent,
     ],
-    imports: [BrowserModule, AppRoutingModule, ModelModule],
+    imports: [BrowserModule, AppRoutingModule, ModelModule, ReactiveFormsModule],
     providers: [],
     bootstrap: [AppComponent],
 })

@@ -2,12 +2,12 @@ import { Priority } from './priority.enum';
 import { User } from './user.model';
 import { Customer } from './customer.model';
 
-export class Report {
-  public id: string;
+export class Incident {
   public Resolution?: string;
 
   constructor(
-    public Priority: Priority,
+    public id: string,
+    public Priority: string,
     public Status: string,
     public User: User,
     public Date: Date,
@@ -15,6 +15,6 @@ export class Report {
     public Narrative: string,
     public Customer: Customer
   ) {
-    this.id = Date.toDateString();
+
   }
 }

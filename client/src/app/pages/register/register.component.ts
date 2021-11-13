@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { User } from '../../model/user.model';
-import { NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm, NgModel } from '@angular/forms';
+import { HttpServiceService } from 'src/app/config/http-service.service';
 
 @Component({
   selector: 'app-register',
@@ -8,17 +9,44 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  constructor(
-    test: User = {
-      id: '',
-      FirstName: '',
-      LastName: '',
-      Email: '',
-      Type: '',
-      Number: '',
-      UserType: '',
-    }
-  ) {}
+  userForm = new FormGroup({
+    username: new FormControl(),
+    Fname: new FormControl(),
+    Lname: new FormControl(),
+    Email: new FormControl(),
+    Number: new FormControl(),
+    Type: new FormControl(),
+  });
 
-  ngOnInit(): void {}
+  posts: any;
+  userProfile?: User;
+
+  constructor(private http: HttpServiceService) {}
+
+  ngOnInit() {
+    this.http.getPosts().subscribe(
+      (response) => {
+        this.posts = response;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  onSubmit(): void {
+    this.userProfile = new User(
+      this.userForm.value.Fname,
+      this.userForm.value.Lname,
+      this.userForm.value.Email,
+      this.userForm.value.username,
+      this.userForm.value.Number,
+      this.userForm.value.Type
+    );
+    console.log(this.userProfile);
+    let userjson = JSON.stringify(this.userProfile);
+    this.userForm.reset;
+  }
+
+  //model = new User(this.userForm.value);
 }

@@ -22,6 +22,19 @@ let flash = require("connect-flash");
 let mongoose = require("mongoose");
 let DB = require("./db");
 
+// create a Incident Model Instance
+let incidentsModel = require("../model/incidents");
+let Incident = incidentsModel.reportModel;
+
+//Routers
+let incidentRouter = require("../routes/incident");
+
+let app = express();
+
+// routing
+
+app.use("/create-incident", incidentRouter);
+
 // point mongoose to the DB URI
 mongoose.connect(DB.URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -30,13 +43,6 @@ mongoDB.on("error", console.error.bind(console, "Connection Error:"));
 mongoDB.once("open", () => {
   console.log("Connected to MongoDB...");
 });
-
-let indexRouter = require("../routes/index");
-let usersRouter = require("../routes/users");
-let booksRouter = require("../routes/book");
-let ordersRouter = require("../routes/order");
-
-let app = express();
 
 // view engine setup
 app.set("views", path.join(__dirname, "../views"));
@@ -69,10 +75,6 @@ app.use(passport.session());
 
 // passport user configuration
 
-// create a User Model Instance
-let userModel = require("../models/user");
-let User = userModel.User;
-
 // implement a User Authentication Strategy
 passport.use(User.createStrategy());
 
@@ -95,12 +97,6 @@ let strategy = new JWTStrategy(jwtOptions, (jwt_payload, done) => {
 });
 
 passport.use(strategy);
-
-// routing
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
-app.use("/book-list", booksRouter);
-app.use("/orders", ordersRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

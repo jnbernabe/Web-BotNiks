@@ -6,7 +6,7 @@ export class User {
     public FirstName: string,
     public LastName: string,
     public Email: string,
-    public Type: string,
+    public UserName: string,
     public Number: string,
     public UserType: String
   ) {

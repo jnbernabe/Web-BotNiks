@@ -4,86 +4,99 @@
       <h1 class="display-4 mx-auto text-center">Register to our Site</h1>
     </div>
   </div>
-  <form action="" class="form-group col-10 mx-auto bg-gradient p-5 rounded">
+
+  <div>
+    <li *ngFor="let post of posts">
+      <a href="{{ post.path }}">
+        <span style="font-size: 20px; text-align: center"
+          >{{ post.title }}
+        </span>
+      </a>
+    </li>
+  </div>
+
+  <form
+    action=""
+    class="form-group col-lg-12 mx-auto bg-gradient p-5 rounded"
+    [formGroup]="userForm"
+    (ngSubmit)="onSubmit()"
+    validation
+  >
+    <div class="input-group mb-3">
+      <span class="input-group-text">UserName</span>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Username"
+        aria-label="Username"
+        formControlName="username"
+        required
+      />
+    </div>
     <div class="input-group mb-3">
       <span class="input-group-text" id="basic-addon1">First Name</span>
       <input
         type="text"
         class="form-control"
+        formControlName="Fname"
         placeholder="First Name"
         aria-label="First Name"
         aria-describedby="basic-addon1"
+        required
       />
 
       <span class="input-group-text" id="basic-addon2">Last Name</span>
       <input
         type="text"
         class="form-control"
+        formControlName="Lname"
         placeholder="Last Name"
         aria-label="Last Name"
         aria-describedby="basic-addon2"
+        required
       />
     </div>
 
-    <div class="input-group mb-3 col-7">
+    <div class="input-group mb-3">
       <span class="input-group-text" id="basic-addon2">Email</span>
       <input
         type="text"
         class="form-control"
+        formControlName="Email"
         placeholder="Email"
         aria-label="Email"
         aria-describedby="basic-addon2"
+        required
       />
-    </div>
 
-    <label for="basic-url" class="form-label">Your vanity URL</label>
-    <div class="input-group mb-3">
-      <span class="input-group-text" id="basic-addon3"
-        >https://example.com/users/</span
-      >
+      <span class="input-group-text" id="basic-addon3">Phone Number</span>
       <input
-        type="text"
+        type="tel"
         class="form-control"
-        id="basic-url"
+        id="Phone Number"
+        formControlName="Number"
+        placeholder="Phone Number"
         aria-describedby="basic-addon3"
+        required
       />
     </div>
 
     <div class="input-group mb-3">
-      <span class="input-group-text">$</span>
+      <span class="input-group-text">User Type</span>
       <input
         type="text"
         class="form-control"
-        aria-label="Amount (to the nearest dollar)"
+        id="UserType"
+        formControlName="Type"
+        placeholder="Client Helper / Investigator"
+        required
       />
-      <span class="input-group-text">.00</span>
-    </div>
-
-    <div class="input-group mb-3">
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Username"
-        aria-label="Username"
-      />
-      <span class="input-group-text">@</span>
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Server"
-        aria-label="Server"
-      />
-    </div>
-
-    <div class="input-group">
-      <span class="input-group-text">With textarea</span>
-      <textarea class="form-control" aria-label="With textarea"></textarea>
     </div>
 
     <div class="container mx-auto">
-      <button class="btn btn-primary m-3" onclick="Submit">Submit</button>
+      <button class="btn btn-primary m-3" value="Submit">Submit</button>
 
-      <button class="btn btn-primary m-3" onclick="Clear">Clear</button>
+      <button class="btn btn-primary m-3" value="Clear">Clear</button>
     </div>
   </form>
 </main>

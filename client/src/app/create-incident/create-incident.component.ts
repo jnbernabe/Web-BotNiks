@@ -20,14 +20,14 @@ export class CreateIncidentComponent implements OnInit {
   //for listing all elements of priority enum as an option in the html forms
   priority = Priority;
   priorities(): Array<string> {
-    var keys = Object.keys(this.priority);
-    return keys.slice(keys.length / 2);
+    let priority = Object.keys(this.priority);
+    return priority.slice(priority.length / 2);
   }
 
   //for listing all elements of the status enum as an option in the html forms
   status = Status;
   statuses(): Array<string> {
-    var status = Object.keys(this.status);
+    let status = Object.keys(this.status);
     return status.slice(status.length / 2);
   }
   //Form Group
@@ -76,14 +76,17 @@ export class CreateIncidentComponent implements OnInit {
 
     let obj = new Incident(
       this.incidentForm.get('incidentNumber')?.value,
-      Priority[this.incidentForm.get('incidentPriority')?.value],
-      Status[this.incidentForm.get('incidentStatus')?.value],
+      this.incidentForm.get('incidentPriority')?.value,
+      this.incidentForm.get('incidentStatus')?.value,
       user,
       dateCreated,
       this.incidentForm.get('incidentDescription')?.value,
       this.incidentForm.get('incidentNarrative')?.value,
       customer
     );
+    console.log(obj);
+    console.log(obj.Status)
+    console.log(obj.Priority)
     let jsonobj = JSON.stringify(obj);
     console.log(jsonobj);
 

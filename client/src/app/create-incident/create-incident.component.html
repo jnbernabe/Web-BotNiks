@@ -24,12 +24,12 @@
 
     <label for="incidentPriority">Priority</label>
     <select formControlName="incidentPriority" class="form-control" id="incidentPriority">
-      <option *ngFor="let p of priorities()">{{p}}</option>
+      <option *ngFor="let p of priorities()" value={{p}}> {{p}} </option>
     </select>
 
     <label for="incidentStatus">Status</label>
-    <select formControlName="incidentStatus" class="form-control" id="incidentStatus" readonly>
-      <option *ngFor="let s of statuses()">{{s}}</option>
+    <select formControlName="incidentStatus" class="form-control" id="incidentStatus" aria-readonly="true">
+      <option *ngFor="let s of statuses()" value={{s}}> {{s}} </option>
     </select>
 
     <label for="customerFName">First Name</label>
@@ -58,12 +58,5 @@
 
     <button type="submit" class="btn btn-primary" [disabled]="!incidentForm.valid">Create Incident</button>
   </div>
-  <!-- Needed to add these br elements as the footer was blocking the submit button -->
-
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
 
 </form>

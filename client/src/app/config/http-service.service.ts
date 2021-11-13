@@ -1,18 +1,30 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { Incident } from '../model/incident.model';
+import { Customer } from '../model/customer.model';
+import { User } from '../model/user.model';
+
 @Injectable({
   providedIn: 'root',
 })
 export class HttpServiceService {
   constructor(private http: HttpClient) {}
 
-  get() {
-    return this.http.get('htt').pipe(
-      map((response) => {
-        return;
-      })
-    );
+  get(incidentID: string) {
+    const getOptions = {
+      params: {
+        incidentID,
+      },
+    };
+    return this.http
+      .get<JSON>('http://localhost:3000/create-incident/', getOptions)
+      .pipe(
+        map((response) => {
+          console.log(response);
+          return response;
+        })
+      );
   }
 
   // private url =

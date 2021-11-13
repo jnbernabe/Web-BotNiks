@@ -24,9 +24,9 @@ export class RegisterComponent implements OnInit {
   constructor(private http: HttpServiceService) {}
 
   ngOnInit() {
-    this.http.getPosts().subscribe(
+    this.http.get('111121-0001').subscribe(
       (response) => {
-        this.posts = response;
+        console.log(response);
       },
       (error) => {
         console.log(error);

@@ -4,6 +4,17 @@
       <h1 class="display-4 mx-auto text-center">Register to our Site</h1>
     </div>
   </div>
+
+  <div>
+    <li *ngFor="let post of posts">
+      <a href="{{ post.path }}">
+        <span style="font-size: 20px; text-align: center"
+          >{{ post.title }}
+        </span>
+      </a>
+    </li>
+  </div>
+
   <form
     action=""
     class="form-group col-lg-12 mx-auto bg-gradient p-5 rounded"
@@ -19,6 +30,7 @@
         placeholder="Username"
         aria-label="Username"
         formControlName="username"
+        required
       />
     </div>
     <div class="input-group mb-3">
@@ -30,6 +42,7 @@
         placeholder="First Name"
         aria-label="First Name"
         aria-describedby="basic-addon1"
+        required
       />
 
       <span class="input-group-text" id="basic-addon2">Last Name</span>
@@ -40,6 +53,7 @@
         placeholder="Last Name"
         aria-label="Last Name"
         aria-describedby="basic-addon2"
+        required
       />
     </div>
 
@@ -52,6 +66,7 @@
         placeholder="Email"
         aria-label="Email"
         aria-describedby="basic-addon2"
+        required
       />
 
       <span class="input-group-text" id="basic-addon3">Phone Number</span>
@@ -62,6 +77,7 @@
         formControlName="Number"
         placeholder="Phone Number"
         aria-describedby="basic-addon3"
+        required
       />
     </div>
 
@@ -73,6 +89,7 @@
         id="UserType"
         formControlName="Type"
         placeholder="Client Helper / Investigator"
+        required
       />
     </div>
 

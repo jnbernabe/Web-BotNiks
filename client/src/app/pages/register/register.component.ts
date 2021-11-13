@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { User } from '../../model/user.model';
 import { FormControl, FormGroup, NgForm, NgModel } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpServiceService } from 'src/app/config/http-service.service';
 
 @Component({
   selector: 'app-register',
@@ -18,11 +18,21 @@ export class RegisterComponent implements OnInit {
     Type: new FormControl(),
   });
 
+  posts: any;
   userProfile?: User;
 
-  constructor() {}
+  constructor(private http: HttpServiceService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.http.getPosts().subscribe(
+      (response) => {
+        this.posts = response;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 
   onSubmit(): void {
     this.userProfile = new User(

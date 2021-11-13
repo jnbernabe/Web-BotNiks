@@ -14,7 +14,7 @@ import { ModelModule } from './model/model.module';
 import { BasePageComponent } from './partials/basepage/basepage.component';
 import { CreateIncidentComponent } from './create-incident/create-incident.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpComponent } from './config/http/http.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,9 +28,14 @@ import { HttpComponent } from './config/http/http.component';
     TableComponent,
     CreateIncidentComponent,
     BasePageComponent,
-    HttpComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, ModelModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    ModelModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

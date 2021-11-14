@@ -52,9 +52,23 @@
     <textarea formControlName="incidentDescription" class="form-control" id="incidentDescription"
       name="incidentDescription" rows="3" required></textarea>
 
-    <label for="incidentNarrative">Incident Narrative</label>
-    <textarea formControlName="incidentNarrative" class="form-control" id="incidentNarrative" name="incidentNarrative"
-      rows="4" readonly></textarea>
+
+
+    <div *ngIf="editMode; else elseBlock">
+      <label for="incidentNarrative">Incident Narrative</label>
+      <textarea formControlName="incidentNarrative" class="form-control" id="incidentNarrative" name="incidentNarrative"
+        rows="4">
+      </textarea>
+    </div>
+
+    <ng-template #elseBlock>
+      <label for="incidentNarrative">Incident Narrative</label>
+      <textarea formControlName="incidentNarrative" class="form-control" id="incidentNarrative" name="incidentNarrative"
+        rows="4" readonly>
+      </textarea>
+    </ng-template>
+
+    <br>
 
     <button type="submit" class="btn btn-primary" [disabled]="!incidentForm.valid">Create Incident</button>
   </div>

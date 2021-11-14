@@ -32,15 +32,15 @@ mongoDB.once("open", () => {
 });
 
 // create a Incident Model Instance
-let incidentsModel = require("../models/incidents");
+let incidentsModel = require("../model/incidents");
 let Incident = incidentsModel.reportModel;
 
 //create a User Model Instance
-let userModel = require("../models/users");
+let userModel = require("../model/users");
 let User = userModel.User;
 
 //create a User Model Instance
-let customersModel = require("../models/customers");
+let customersModel = require("../model/customers");
 let Customers = customersModel.Customers;
 
 //Routers

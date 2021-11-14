@@ -1,6 +1,4 @@
-/* Hetu Shiroya
-13/11/2021 
-Student ID: 301204148 */
+
 
 let express = require("express");
 let router = express.Router();

@@ -16,6 +16,7 @@ import { CreateIncidentComponent } from './create-incident/create-incident.compo
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { IncidentNumberGenerator } from './model/incident-number-generator.model';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,9 @@ import { IncidentNumberGenerator } from './model/incident-number-generator.model
     ReactiveFormsModule,
     ModelModule,
     HttpClientModule,
+    RouterModule.forRoot([
+      { path: 'incident', component: CreateIncidentComponent },
+    ]),
   ],
   providers: [IncidentNumberGenerator],
   bootstrap: [AppComponent],

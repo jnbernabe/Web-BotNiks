@@ -2,7 +2,6 @@
 13/11/2021 
 Student ID: 301204148 */
 
-
 let express = require("express");
 let router = express.Router();
 let mongoose = require("mongoose");
@@ -26,16 +25,16 @@ function requireAuth(req, res, next) {
 router.get("/", customerController.displayCustomer);
 
 /* GET Route for displaying the Add page - CREATE Operation */
-router.get("/customer", customerController.displayAddCustomer);
+router.get("/add", customerController.displayAddCustomer);
 
 /* POST Route for processing the Add page - CREATE Operation */
-router.post("/customer", customerController.processAddCustomer);
+router.post("/add", customerController.processAddCustomer);
 
 /* GET Route for displaying the Edit page - UPDATE Operation */
-router.get("/customer/:id", customerController.displayEditPage);
+router.get("/edit/:id", customerController.displayEditPage);
 
 /* POST Route for processing the Edit page - UPDATE Operation */
-router.post("/customer/:id", customerController.processEditPage);
+router.post("/edit/:id", customerController.processEditPage);
 
 /* GET to perform  Deletion - DELETE Operation */
 router.get("/delete/:id", customerController.performDelete);

@@ -36,11 +36,11 @@ let incidentsModel = require("../model/incidents");
 let Incident = incidentsModel.reportModel;
 
 //create a User Model Instance
-let userModel = require('../models/user');
+let userModel = require("../model/users");
 let User = userModel.User;
 
 //create a User Model Instance
-let customersModel = require('../models/customers');
+let customersModel = require("../model/customers");
 let Customers = customersModel.Customers;
 
 //Routers
@@ -79,8 +79,8 @@ app.use(
 app.use(flash());
 
 app.use("/", indexRouter);
-app.use('/user', userRouter);
-app.use("/incidents", incidentRouter);
+app.use("/user", userRouter);
+app.use("/incident", incidentRouter);
 app.use("/customer", CustomerRouter);
 
 // // initialize passport

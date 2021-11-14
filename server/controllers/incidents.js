@@ -22,7 +22,7 @@ module.exports.displayAddPage = (req, res, next) => {
     res.render('book/add', {title: 'Add Book', 
     displayName: req.user ? req.user.displayName : ''});
     */
-  res.json({ success: true, msg: "Succesfully Displayed Add Page" });
+  res.send({ success: true, msg: "Succesfully Displayed Add Page" });
 };
 
 module.exports.processAddPage = (req, res, next) => {
@@ -49,7 +49,7 @@ module.exports.processAddPage = (req, res, next) => {
       // refresh the book list
       //res.redirect('/book-list');
 
-      res.json({ success: true, msg: "Successfully Added New Book" });
+      res.send({ success: true, msg: "Successfully Added New Book" });
     }
   });
 };
@@ -69,7 +69,7 @@ module.exports.displayEditPage = (req, res, next) => {
             */
 
       console.log(id);
-      res.json({
+      res.send({
         success: true,
         msg: "Successfully Displayed Incident to Edit",
         incident: incidentToEdit,
@@ -104,7 +104,7 @@ module.exports.processEditPage = (req, res, next) => {
       // refresh the book list
       //res.redirect('/book-list');
 
-      res.json({
+      res.send({
         success: true,
         msg: "Successfully Edited Incident",
         incident: updatedIncident,
@@ -124,7 +124,7 @@ module.exports.performDelete = (req, res, next) => {
       // refresh the book list
       //res.redirect('/book-list');
 
-      res.json({ success: true, msg: "Successfully Deleted Incident" });
+      res.send({ success: true, msg: "Successfully Deleted Incident" });
     }
   });
 };

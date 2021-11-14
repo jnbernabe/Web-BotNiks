@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { User } from '../../model/user.model';
 import { FormControl, FormGroup, NgForm, NgModel } from '@angular/forms';
 import { HttpServiceService } from 'src/app/config/http-service.service';
+import { Customer } from '../../model/customer.model';
 
 @Component({
   selector: 'app-register',
@@ -24,14 +25,7 @@ export class RegisterComponent implements OnInit {
   constructor(private http: HttpServiceService) {}
 
   ngOnInit() {
-    this.http.get('111121-0001').subscribe(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    console.log(this.http.getCustomers());
   }
 
   onSubmit(): void {

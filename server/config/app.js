@@ -32,11 +32,15 @@ mongoDB.once("open", () => {
 });
 
 // create a Incident Model Instance
-let incidentsModel = require("../model/incidents");
+let incidentsModel = require("../models/incidents");
 let Incident = incidentsModel.reportModel;
 
 //create a User Model Instance
+<<<<<<< Updated upstream
 let userModel = require("../model/users");
+=======
+let userModel = require('../models/users');
+>>>>>>> Stashed changes
 let User = userModel.User;
 
 //create a User Model Instance
@@ -46,7 +50,7 @@ let Customers = customersModel.Customers;
 //Routers
 let incidentRouter = require("../routes/incidents");
 let indexRouter = require("../routes/index");
-let userRouter = require("../routes/user");
+let userRouter = require("../routes/users");
 let CustomerRouter = require("../routes/customers");
 
 let app = express();
@@ -79,8 +83,13 @@ app.use(
 app.use(flash());
 
 app.use("/", indexRouter);
+<<<<<<< Updated upstream
 app.use("/user", userRouter);
 app.use("/incident", incidentRouter);
+=======
+app.use('/users', userRouter);
+app.use("/incidents", incidentRouter);
+>>>>>>> Stashed changes
 app.use("/customer", CustomerRouter);
 
 // // initialize passport

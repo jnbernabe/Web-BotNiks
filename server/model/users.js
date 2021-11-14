@@ -16,7 +16,7 @@ let User = mongoose.Schema
             trim: true,
             required: "username is required"
         },
-        
+        /*
         password:
         {
             type: String,
@@ -24,6 +24,7 @@ let User = mongoose.Schema
             trim: true,
             required: "password is required"
         },
+        */
         
        email:
        {
@@ -69,7 +70,7 @@ let User = mongoose.Schema
            trim: true,
            reuired: "User Type is required"
        },
-       /*
+
        created:
        {
            type: Date,
@@ -82,7 +83,7 @@ let User = mongoose.Schema
            default: Date.now,
 
        }
-       */
+       
 
     },
 

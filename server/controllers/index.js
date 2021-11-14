@@ -7,12 +7,15 @@ let passport = require("passport");
 let jwt = require("jsonwebtoken");
 let DB = require("../config/db");
 
+<<<<<<< Updated upstream
 // create the User Model instance
 let userModel = require("../model/users");
 
 let customerModel = require("../model/customers");
 
 let incidentModel = require("../model/incidents");
+=======
+>>>>>>> Stashed changes
 
 module.exports.displayHomePage = (req, res, next) => {
   if (err) {

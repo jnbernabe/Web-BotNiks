@@ -35,9 +35,14 @@ mongoDB.once("open", () => {
 let incidentsModel = require("../model/incidents");
 let Incident = incidentsModel.reportModel;
 
+//create a User Model Instance
+let userModel = require('../models/user');
+let User = userModel.User;
+
 //Routers
 let incidentRouter = require("../routes/incidents");
 let indexRouter = require("../routes/index");
+let userRouter = require("../routes/user");
 
 let app = express();
 
@@ -68,7 +73,9 @@ app.use(
 // initialize flash
 app.use(flash());
 
-app.use("/", incidentRouter);
+app.use("/", indexRouter);
+app.use('/user', userRouter);
+app.use("/incidents", incidentRouter);
 // // initialize passport
 // app.use(passport.initialize());
 // app.use(passport.session());

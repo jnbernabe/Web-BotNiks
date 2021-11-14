@@ -4,7 +4,7 @@
 let mongoose = require ('mongoose');
 
 //Create model class
-let reportsModel = mongoose.Schema({
+let incidentsModel = mongoose.Schema({
 
 incidentID: String,
 priority: String,
@@ -22,8 +22,8 @@ resolutionField: String
 },
 {
 
-    collection: "reports"
+    collection: "incidents"
 
 });
 
-module.exports = mongoose.model('Reports', reportsModel);
+module.exports = mongoose.model('Incidents', incidentsModel);

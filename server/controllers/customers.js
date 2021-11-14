@@ -1,5 +1,3 @@
-
-
 let express = require("express");
 let router = express.Router();
 let mongoose = require("mongoose");
@@ -52,7 +50,7 @@ module.exports.processAddCustomer = (req, res, next) => {
 module.exports.displayEditPage = (req, res, next) => {
   let id = req.params.id;
 
-  Customer.findOne({ customerId: { $eq: id } }, (err, CustomerToEdit) => {
+  Customer.findOne({ _id: { $eq: id } }, (err, CustomerToEdit) => {
     if (err) {
       console.log(err);
       res.end(err);
@@ -84,7 +82,7 @@ module.exports.processEditPage = (req, res, next) => {
     phoneNumber: req.body.phoneNumber,
   });
 
-  Customer.updateOne({ customerId: { $eq: id } }, updatedCustomers, (err) => {
+  Customer.updateOne({ _id: { $eq: id } }, updatedCustomers, (err) => {
     if (err) {
       console.log(err);
       res.end(err);
@@ -104,7 +102,7 @@ module.exports.processEditPage = (req, res, next) => {
 module.exports.performDelete = (req, res, next) => {
   let id = req.params.id;
 
-  Customer.remove({ customerId: { $eq: id } }, (err) => {
+  Customer.remove({ _id: { $eq: id } }, (err) => {
     if (err) {
       console.log(err);
       res.end(err);

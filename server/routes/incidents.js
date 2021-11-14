@@ -17,20 +17,20 @@ function requireAuth(req, res, next) {
   next();
 }
 
-/* GET Route for the Book List page - READ Operation */
+/* GET Route for the Incident page - READ Operation */
 router.get("/", incidentController.displayIncident);
 
 /* GET Route for displaying the Add page - CREATE Operation */
-router.get("/create-incident", incidentController.displayAddPage);
+router.get("/add", incidentController.displayAddPage);
 
 /* POST Route for processing the Add page - CREATE Operation */
-router.post("/create-incident", incidentController.processAddPage);
+router.post("/add", incidentController.processAddPage);
 
 /* GET Route for displaying the Edit page - UPDATE Operation */
-router.get("/create-incident/:id", incidentController.displayEditPage);
+router.get("/edit/:id", incidentController.displayEditPage);
 
 /* POST Route for processing the Edit page - UPDATE Operation */
-router.post("/create-incident/:id", incidentController.processEditPage);
+router.post("/edit/:id", incidentController.processEditPage);
 
 /* GET to perform  Deletion - DELETE Operation */
 router.get("/delete/:id", incidentController.performDelete);

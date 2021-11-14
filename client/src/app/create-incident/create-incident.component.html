@@ -16,7 +16,7 @@
     For some Reason, there is no default choice for priority select
 -->
 
-<form [formGroup]="incidentForm" (ngSubmit)="createIncident()">
+<form [formGroup]="incidentForm" (ngSubmit)="createIncident(); incidentForm.reset()">
   <div class="form-group">
     <label for="recordNumber">Ticket Number:</label>
     <input type="text" formControlName="incidentNumber" class="form-control" id="recordNumber" value={{incidentId}}

@@ -5,6 +5,7 @@ import { Incident } from '../model/incident.model';
 import { Customer } from '../model/customer.model';
 import { User } from '../model/user.model';
 import { FormControl, FormGroup } from '@angular/forms';
+import { IncidentNumberGenerator } from '../model/incident-number-generator.model';
 import { HttpServiceService } from '../config/http-service.service';
 
 let counter = 1;
@@ -61,7 +62,7 @@ export class CreateIncidentComponent implements OnInit {
       d.getMonth().toString() +
       d.getDate().toString() +
       '-' +
-      counter.toString();
+      this.counter.getCounter().toString();
     console.log(dateNumber);
     return dateNumber;
   }
@@ -102,8 +103,6 @@ export class CreateIncidentComponent implements OnInit {
     let jsonobj = JSON.stringify(obj);
     console.log(jsonobj);
 
-    counter++;
-
     return obj;
   }
 
@@ -140,7 +139,7 @@ export class CreateIncidentComponent implements OnInit {
     }
   }
 
-  constructor() {}
+  constructor(public counter: IncidentNumberGenerator) {}
 
   ngOnInit(): void {
     this.initForm();

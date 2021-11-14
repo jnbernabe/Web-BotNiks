@@ -15,6 +15,7 @@ import { BasePageComponent } from './partials/basepage/basepage.component';
 import { CreateIncidentComponent } from './create-incident/create-incident.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { IncidentNumberGenerator } from './model/incident-number-generator.model';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { HttpClientModule } from '@angular/common/http';
     ModelModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [IncidentNumberGenerator],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

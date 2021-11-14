@@ -7,32 +7,22 @@ let passport = require("passport");
 let jwt = require("jsonwebtoken");
 let DB = require("../config/db");
 
-<<<<<<< Updated upstream
 // create the User Model instance
 let userModel = require("../model/users");
 
 let customerModel = require("../model/customers");
 
 let incidentModel = require("../model/incidents");
-=======
->>>>>>> Stashed changes
 
 module.exports.displayHomePage = (req, res, next) => {
-  if (err) {
-    return console.error(err);
-  } else {
-    //console.log(customerList);
-    res.sendStatus(status);
-  }
-
-  // customerModel.find((err, customerList) => {
-  //   if (err) {
-  //     return console.error(err);
-  //   } else {
-  //     //console.log(customerList);
-  //     res.send(customerList);
-  //   }
-  // });
+  customerModel.find((err, customerList) => {
+    if (err) {
+      return console.error(err);
+    } else {
+      //console.log(customerList);
+      res.send(customerList);
+    }
+  });
 
   // incidentModel.find((err, incidentList) => {
   //   if (err) {

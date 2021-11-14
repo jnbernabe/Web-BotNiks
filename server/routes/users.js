@@ -25,16 +25,16 @@ function requireAuth(req, res, next) {
 router.get("/", userController.displayUser);
 
 /* GET Route for displaying the Add page - CREATE Operation */
-router.get("/user", userController.displayAddUser);
+router.get("/user", userController.displayAddPage);
 
 /* POST Route for processing the Add page - CREATE Operation */
-router.post("/user", userController.processAddUser);
+router.post("/user", userController.processAddPage);
 
 /* GET Route for displaying the Edit page - UPDATE Operation */
 router.get("/user/:id", userController.displayEditPage);
 
 /* POST Route for processing the Edit page - UPDATE Operation */
-router.post("/user/:id", userrController.processEditPage);
+router.post("/user/:id", userController.processEditPage);
 
 /* GET to perform  Deletion - DELETE Operation */
 router.get("/delete/:id", userController.performDelete);

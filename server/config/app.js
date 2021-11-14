@@ -36,15 +36,11 @@ let incidentsModel = require("../models/incidents");
 let Incident = incidentsModel.reportModel;
 
 //create a User Model Instance
-<<<<<<< Updated upstream
-let userModel = require("../model/users");
-=======
-let userModel = require('../models/users');
->>>>>>> Stashed changes
+let userModel = require("../models/users");
 let User = userModel.User;
 
 //create a User Model Instance
-let customersModel = require("../model/customers");
+let customersModel = require("../models/customers");
 let Customers = customersModel.Customers;
 
 //Routers
@@ -83,13 +79,8 @@ app.use(
 app.use(flash());
 
 app.use("/", indexRouter);
-<<<<<<< Updated upstream
 app.use("/user", userRouter);
 app.use("/incident", incidentRouter);
-=======
-app.use('/users', userRouter);
-app.use("/incidents", incidentRouter);
->>>>>>> Stashed changes
 app.use("/customer", CustomerRouter);
 
 // // initialize passport

@@ -30,12 +30,7 @@ export class RestDataSource {
     return this.http.get<any[]>(this.baseUrl + 'incident');
   }
 
-  // private loadToken(): void {
-  //   const token = localStorage.getItem('id_token');
-  //   this.authToken = token!;
-  //   this.httpOptions.headers = this.httpOptions.headers.set(
-  //     'Authorization',
-  //     this.authToken
-  //   );
-  // }
+  getIncident(): Observable<any[]> {
+    return this.http.get<any[]>(this.baseUrl + 'incident/:id');
+  }
 }

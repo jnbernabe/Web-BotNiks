@@ -1,3 +1,4 @@
+import { IncidentRepository } from './../model/incident.repository';
 import { Component, OnInit } from '@angular/core';
 import { Priority } from '../model/priority.enum';
 import { Status } from '../model/status.enum';
@@ -7,12 +8,9 @@ import { User } from '../model/user.model';
 import { FormControl, FormGroup } from '@angular/forms';
 import { IncidentNumberGenerator } from '../model/incident-number-generator.model';
 import { HttpServiceService } from '../config/http-service.service';
-import { ActivatedRoute } from '@angular/router';
-import { IncidentRepository } from '../model/incident.repository';
-import { Subscription } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 let counter = 1;
-
 let isEdit = false;
 let id = '';
 let prio = Priority[2];
@@ -23,7 +21,6 @@ let email = '';
 let phone = '';
 let desc = '';
 let narrative = '';
-let obj: any;
 
 @Component({
   selector: 'app-create-incident',
@@ -33,6 +30,23 @@ let obj: any;
 export class CreateIncidentComponent implements OnInit {
   incidentId = this.createTicketNumber();
   editMode = isEdit;
+  incident?: Incident;
+  anotherIncident?: Incident[];
+  test!: IncidentRepository;
+
+  constructor(
+    public counter: IncidentNumberGenerator,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    // this.anotherIncident = this.test.getIncidents();
+    console.log(this.anotherIncident);
+    this.incident = this.test.getIncident(id!);
+    console.log(this.incident);
+    this.initForm();
+  }
 
   //for listing all elements of priority enum as an option in the html forms
   priority = Priority;
@@ -115,24 +129,24 @@ export class CreateIncidentComponent implements OnInit {
   private initForm() {
     if (isEdit == true) {
       //dummy object
-      // let obj = new Incident(
-      //   '121211-01',
-      //   'High',
-      //   'InProgress',
-      //   new User(
-      //     'John',
-      //     'Doe',
-      //     'email@rogers.com',
-      //     'Desursdfauo',
-      //     '5467778248',
-      //     'Admin'
-      //   ),
-      //   new Date(),
-      //   'Short Description',
-      //   'Short Narrative',
-      //   new Customer('Han', 'Bi', 'example@hotmail.com', '4165255677')
-      // );
-      this.incidentForm.get('incidentNumber')?.setValue(obj.incidentID);
+      let obj = new Incident(
+        '121211-01',
+        'High',
+        'InProgress',
+        new User(
+          'John',
+          'Doe',
+          'email@rogers.com',
+          'Desursdfauo',
+          '5467778248',
+          'Admin'
+        ),
+        new Date(),
+        'Short Description',
+        'Short Narrative',
+        new Customer('Han', 'Bi', 'example@hotmail.com', '4165255677')
+      );
+      this.incidentForm.get('incidentNumber')?.setValue(obj.id);
       this.incidentForm.get('incidentPriority')?.setValue(obj.Priority);
       this.incidentForm?.get('incidentStatus')?.setValue(obj.Status);
       this.incidentForm?.get('customerFName')?.setValue(obj.Customer.FName);
@@ -142,26 +156,5 @@ export class CreateIncidentComponent implements OnInit {
       this.incidentForm?.get('incidentDescription')?.setValue(obj.Description);
       this.incidentForm?.get('incidentNarrative')?.setValue(obj.Narrative);
     }
-  }
-  routeSub!: Subscription;
-  constructor(
-    public counter: IncidentNumberGenerator,
-    public data: IncidentRepository,
-    public route: ActivatedRoute
-  ) {}
-
-  ngOnInit(): void {
-    console.log(this.data);
-
-    this.routeSub = this.route.params.subscribe((params) => {
-      console.log(params['id']);
-      obj = this.data.getIncident(params['id'].toString());
-      console.log(obj);
-    });
-    this.initForm();
-  }
-
-  ngOnDestroy() {
-    this.routeSub.unsubscribe();
   }
 }

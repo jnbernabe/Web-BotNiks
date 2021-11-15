@@ -4,7 +4,7 @@ import { Customer } from './customer.model';
 
 export class Incident {
   public Resolution?: string;
-
+  public incidentID?: string;
   constructor(
     public id: string,
     public Priority: string,
@@ -17,7 +17,7 @@ export class Incident {
   ) {}
 
   public toString(): string {
-    return `Incident: 
+    return `Incident:
     ----------------
     ID: ${this.id}
     Priority: ${this.Priority}

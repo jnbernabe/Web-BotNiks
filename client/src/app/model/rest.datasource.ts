@@ -26,8 +26,8 @@ export class RestDataSource {
     this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
   }
 
-  getIncidents(): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl + 'incident');
+  getIncidents(): Observable<Incident[]> {
+    return this.http.get<Incident[]>(this.baseUrl + 'incident');
   }
 
   getIncident(): Observable<any[]> {

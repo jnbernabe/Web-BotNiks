@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { RestDataSource } from './rest.datasource';
 import { Incident } from './incident.model';
+import { TestIncident } from './test-incident.model';
+import { JsonpClientBackend } from '@angular/common/http';
 
 @Injectable()
 export class IncidentRepository {
   private incidents: Incident[] = [];
-  private priorities: string[] = [];
+  private priorities: String[] = [];
 
   constructor(private dataSource: RestDataSource) {
     dataSource.getIncidents().subscribe((data) => {
@@ -22,6 +24,10 @@ export class IncidentRepository {
   }
 
   getIncident(id: string): Incident {
-    return this.incidents.find((i) => i.id === id)!;
+    return this.incidents.find((i) => i['id'] == id)!;
+  }
+
+  addIncident(obj: Incident): void {
+    this.incidents.push(obj);
   }
 }

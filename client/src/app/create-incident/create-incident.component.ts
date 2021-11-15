@@ -7,6 +7,7 @@ import { User } from '../model/user.model';
 import { FormControl, FormGroup } from '@angular/forms';
 import { IncidentNumberGenerator } from '../model/incident-number-generator.model';
 import { HttpServiceService } from '../config/http-service.service';
+import { ActivatedRoute } from '@angular/router';
 
 let counter = 1;
 let isEdit = false;
@@ -139,7 +140,7 @@ export class CreateIncidentComponent implements OnInit {
     }
   }
 
-  constructor(public counter: IncidentNumberGenerator) {}
+  constructor(public counter: IncidentNumberGenerator, route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.initForm();

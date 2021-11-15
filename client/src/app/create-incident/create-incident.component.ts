@@ -10,6 +10,7 @@ import { HttpServiceService } from '../config/http-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { IncidentRepository } from '../model/incident.repository';
 import { Subscription } from 'rxjs';
+import { async, waitForAsync } from '@angular/core/testing';
 
 let counter = 1;
 
@@ -23,7 +24,7 @@ let email = '';
 let phone = '';
 let desc = '';
 let narrative = '';
-let obj: any;
+let editedObj: any;
 
 @Component({
   selector: 'app-create-incident',
@@ -67,12 +68,15 @@ export class CreateIncidentComponent implements OnInit {
       d.getMonth().toString() +
       d.getDate().toString() +
       '-' +
-      this.counter.getCounter().toString();
+      d.getHours().toString() +
+      d.getMinutes().toString() +
+      d.getSeconds().toString() +
+      d.getMilliseconds().toString();
     console.log(dateNumber);
     return dateNumber;
   }
   //creates an incident using values provided in the form
-  createIncident(): Incident {
+  createIncident(): void {
     let customer = new Customer(
       this.incidentForm?.get('customerFName')?.value,
       this.incidentForm?.get('customerLName')?.value,
@@ -101,18 +105,14 @@ export class CreateIncidentComponent implements OnInit {
       this.incidentForm?.get('incidentNarrative')?.value,
       customer
     );
-    console.log(obj);
-    console.log(obj.Status);
-    console.log(obj.Priority);
 
-    let jsonobj = JSON.stringify(obj);
-    console.log(jsonobj);
-
-    return obj;
+    this.data.addIncident(obj);
+    console.log(this.data);
   }
 
   //populates form if object exists
   private initForm() {
+    console.log(this.data['incidents'].length);
     if (isEdit == true) {
       //dummy object
       // let obj = new Incident(
@@ -132,15 +132,27 @@ export class CreateIncidentComponent implements OnInit {
       //   'Short Narrative',
       //   new Customer('Han', 'Bi', 'example@hotmail.com', '4165255677')
       // );
-      this.incidentForm.get('incidentNumber')?.setValue(obj.incidentID);
-      this.incidentForm.get('incidentPriority')?.setValue(obj.Priority);
-      this.incidentForm?.get('incidentStatus')?.setValue(obj.Status);
-      this.incidentForm?.get('customerFName')?.setValue(obj.Customer.FName);
-      this.incidentForm?.get('customerLName')?.setValue(obj.Customer.LName);
-      this.incidentForm?.get('customerEmail')?.setValue(obj.Customer.Email);
-      this.incidentForm?.get('customerPhone')?.setValue(obj.Customer.Number);
-      this.incidentForm?.get('incidentDescription')?.setValue(obj.Description);
-      this.incidentForm?.get('incidentNarrative')?.setValue(obj.Narrative);
+      this.incidentForm.get('incidentNumber')?.setValue(editedObj.incidentID);
+      this.incidentForm.get('incidentPriority')?.setValue(editedObj.Priority);
+      this.incidentForm?.get('incidentStatus')?.setValue(editedObj.Status);
+      this.incidentForm
+        ?.get('customerFName')
+        ?.setValue(editedObj.Customer.FName);
+      this.incidentForm
+        ?.get('customerLName')
+        ?.setValue(editedObj.Customer.LName);
+      this.incidentForm
+        ?.get('customerEmail')
+        ?.setValue(editedObj.Customer.Email);
+      this.incidentForm
+        ?.get('customerPhone')
+        ?.setValue(editedObj.Customer.Number);
+      this.incidentForm
+        ?.get('incidentDescription')
+        ?.setValue(editedObj.Description);
+      this.incidentForm
+        ?.get('incidentNarrative')
+        ?.setValue(editedObj.Narrative);
     }
   }
   routeSub!: Subscription;
@@ -151,12 +163,16 @@ export class CreateIncidentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // console.log(this.data.getIncidents());
     console.log(this.data);
+    console.log(this.data['incidents']);
 
     this.routeSub = this.route.params.subscribe((params) => {
-      console.log(params['id']);
-      obj = this.data.getIncident(params['id'].toString());
-      console.log(obj);
+      if (params['id'] != null) {
+        console.log(params['id']);
+        editedObj = this.data.getIncident(params['id']);
+        console.log('Edited Object:' + editedObj);
+      }
     });
     this.initForm();
   }

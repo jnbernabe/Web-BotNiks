@@ -3,6 +3,7 @@ import { RestDataSource } from './rest.datasource';
 import { Incident } from './incident.model';
 import { TestIncident } from './test-incident.model';
 import { JsonpClientBackend } from '@angular/common/http';
+import { StaticDataSource } from './static.datasource';
 
 @Injectable()
 export class IncidentRepository {

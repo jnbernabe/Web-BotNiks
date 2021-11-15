@@ -19,6 +19,7 @@ import { IncidentNumberGenerator } from './model/incident-number-generator.model
 import { IncidentRepository } from './model/incident.repository';
 import { RestDataSource } from './model/rest.datasource';
 import { Incident } from './model/incident.model';
+import { StaticDataSource } from './model/static.datasource';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,12 @@ import { Incident } from './model/incident.model';
     ModelModule,
     HttpClientModule,
   ],
-  providers: [IncidentNumberGenerator, IncidentRepository, RestDataSource],
+  providers: [
+    IncidentNumberGenerator,
+    IncidentRepository,
+    RestDataSource,
+    StaticDataSource,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

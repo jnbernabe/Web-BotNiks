@@ -1,32 +1,22 @@
-<!-- <div *ngFor='let i of incidents'>
-  <p>{{i.Description}}</p>
-</div> -->
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
+<div class='container'>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Priority</th>
+        <th scope="col">Status</th>
+        <th scope="col">Customer Name</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let i of incidents'>
+        <th scope="row">{{i.id}}</th>
+        <td>{{i.Priority}}</td>
+        <td>{{i.Status}}</td>
+        <td>{{i.Customer.FName}}</td>
+        <td>{{i.Description}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

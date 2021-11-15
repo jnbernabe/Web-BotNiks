@@ -126,4 +126,7 @@ export class StaticDataSource {
       this.Customer1
     ),
   ];
+  getIncidents(): Observable<Incident[]> {
+    return from([this.incidents]);
+  }
 }

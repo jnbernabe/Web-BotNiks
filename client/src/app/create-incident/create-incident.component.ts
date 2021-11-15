@@ -7,11 +7,8 @@ import { Customer } from '../model/customer.model';
 import { User } from '../model/user.model';
 import { FormControl, FormGroup } from '@angular/forms';
 import { IncidentNumberGenerator } from '../model/incident-number-generator.model';
-import { HttpServiceService } from '../config/http-service.service';
 import { ActivatedRoute } from '@angular/router';
-import { IncidentRepository } from '../model/incident.repository';
 import { Subscription } from 'rxjs';
-import { async, waitForAsync } from '@angular/core/testing';
 
 let counter = 1;
 let isEdit = false;
@@ -37,20 +34,6 @@ export class CreateIncidentComponent implements OnInit {
   incident?: Incident;
   anotherIncident?: Incident[];
   test!: IncidentRepository;
-
-  constructor(
-    public counter: IncidentNumberGenerator,
-    private route: ActivatedRoute
-  ) {}
-
-  ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    // this.anotherIncident = this.test.getIncidents();
-    console.log(this.anotherIncident);
-    this.incident = this.test.getIncident(id!);
-    console.log(this.incident);
-    this.initForm();
-  }
 
   //for listing all elements of priority enum as an option in the html forms
   priority = Priority;

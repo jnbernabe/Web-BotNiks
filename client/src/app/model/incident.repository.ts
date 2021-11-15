@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Incident } from './incident.model';
 import { RestDataSource } from './rest.datasource';
-import { Priority } from './priority.enum';
+import { Incident } from './incident.model';
 
 @Injectable()
 export class IncidentRepository {
@@ -11,10 +10,10 @@ export class IncidentRepository {
   constructor(private dataSource: RestDataSource) {
     dataSource.getIncidents().subscribe((data) => {
       this.incidents = data;
-      this.priorities = data
-        .map((i) => i.Priority!)
-        .filter((c, index, array) => array.indexOf(c) === index)
-        .sort();
+      // this.priorities = data
+      //   .map((i) => i.Priority!)
+      //   .filter((c, index, array) => array.indexOf(c) === index)
+      //   .sort();
     });
   }
 

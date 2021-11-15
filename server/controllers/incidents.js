@@ -12,7 +12,7 @@ module.exports.displayIncident = (req, res, next) => {
     if (err) {
       return console.error(err);
     } else {
-      res.json(incidentList);
+      res.send(incidentList);
     }
   });
 };

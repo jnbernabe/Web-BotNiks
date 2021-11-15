@@ -14,7 +14,13 @@ export class Incident {
     public Description: string,
     public Narrative: string,
     public Customer: Customer
-  ) {
+  ) {}
 
+  public toString(): string {
+    return `Incident: 
+    ----------------
+    ID: ${this.id}
+    Priority: ${this.Priority}
+    Description: ${this.Description}`;
   }
 }

@@ -8,8 +8,11 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { IncidentNumberGenerator } from '../model/incident-number-generator.model';
 import { HttpServiceService } from '../config/http-service.service';
 import { ActivatedRoute } from '@angular/router';
+import { IncidentRepository } from '../model/incident.repository';
+import { Subscription } from 'rxjs';
 
 let counter = 1;
+
 let isEdit = false;
 let id = '';
 let prio = Priority[2];
@@ -20,6 +23,7 @@ let email = '';
 let phone = '';
 let desc = '';
 let narrative = '';
+let obj: any;
 
 @Component({
   selector: 'app-create-incident',
@@ -111,24 +115,24 @@ export class CreateIncidentComponent implements OnInit {
   private initForm() {
     if (isEdit == true) {
       //dummy object
-      let obj = new Incident(
-        '121211-01',
-        'High',
-        'InProgress',
-        new User(
-          'John',
-          'Doe',
-          'email@rogers.com',
-          'Desursdfauo',
-          '5467778248',
-          'Admin'
-        ),
-        new Date(),
-        'Short Description',
-        'Short Narrative',
-        new Customer('Han', 'Bi', 'example@hotmail.com', '4165255677')
-      );
-      this.incidentForm.get('incidentNumber')?.setValue(obj.id);
+      // let obj = new Incident(
+      //   '121211-01',
+      //   'High',
+      //   'InProgress',
+      //   new User(
+      //     'John',
+      //     'Doe',
+      //     'email@rogers.com',
+      //     'Desursdfauo',
+      //     '5467778248',
+      //     'Admin'
+      //   ),
+      //   new Date(),
+      //   'Short Description',
+      //   'Short Narrative',
+      //   new Customer('Han', 'Bi', 'example@hotmail.com', '4165255677')
+      // );
+      this.incidentForm.get('incidentNumber')?.setValue(obj.incidentID);
       this.incidentForm.get('incidentPriority')?.setValue(obj.Priority);
       this.incidentForm?.get('incidentStatus')?.setValue(obj.Status);
       this.incidentForm?.get('customerFName')?.setValue(obj.Customer.FName);
@@ -139,10 +143,25 @@ export class CreateIncidentComponent implements OnInit {
       this.incidentForm?.get('incidentNarrative')?.setValue(obj.Narrative);
     }
   }
-
-  constructor(public counter: IncidentNumberGenerator, route: ActivatedRoute) {}
+  routeSub!: Subscription;
+  constructor(
+    public counter: IncidentNumberGenerator,
+    public data: IncidentRepository,
+    public route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
+    console.log(this.data);
+
+    this.routeSub = this.route.params.subscribe((params) => {
+      console.log(params['id']);
+      obj = this.data.getIncident(params['id'].toString());
+      console.log(obj);
+    });
     this.initForm();
+  }
+
+  ngOnDestroy() {
+    this.routeSub.unsubscribe();
   }
 }

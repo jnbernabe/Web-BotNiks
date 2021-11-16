@@ -14,5 +14,7 @@ export class TableComponent implements OnInit {
     return this.data.getIncidents();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.data.getIncidents());
+  }
 }

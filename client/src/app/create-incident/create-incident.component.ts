@@ -107,7 +107,11 @@ export class CreateIncidentComponent implements OnInit {
     );
 
     this.data.addIncident(obj);
-    console.log(this.data);
+    console.log('This is from NgOnInit the data', this.data);
+    console.log(
+      'This is from NgOnInit the array of the data',
+      this.data.getIncidents()
+    );
   }
 
   //populates form if object exists
@@ -164,17 +168,24 @@ export class CreateIncidentComponent implements OnInit {
 
   ngOnInit(): void {
     // console.log(this.data.getIncidents());
-    console.log(this.data);
-    console.log(this.data['incidents']);
-
-    this.routeSub = this.route.params.subscribe((params) => {
-      if (params['id'] != null) {
-        console.log(params['id']);
-        editedObj = this.data.getIncident(params['id']);
-        console.log('Edited Object:' + editedObj);
-      }
+    this.data.waitForData().then((result) => {
+      console.log('This is from NgOnInit the data', this.data);
+      console.log(
+        'This is from NgOnInit the array of data',
+        this.data.getIncidents()
+      );
+      this.routeSub = this.route.params.subscribe((params) => {
+        if (params['id'] != null) {
+          console.log('This is from NgOnInit (the route id)', params['id']);
+          editedObj = this.data.getIncident(params['id']);
+          console.log(editedObj);
+          if (editedObj !== null) {
+            isEdit = true;
+          }
+        }
+        this.initForm();
+      });
     });
-    this.initForm();
   }
 
   ngOnDestroy() {

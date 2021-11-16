@@ -9,11 +9,11 @@ export class Incident {
     public id: string,
     public Priority: string,
     public Status: string,
-    public User: User,
-    public Date: Date,
+    public User: User | undefined,
+    public Date: Date | undefined,
     public Description: string,
     public Narrative: string,
-    public Customer: Customer
+    public Customer: Customer | undefined
   ) {}
 
   public toString(): string {

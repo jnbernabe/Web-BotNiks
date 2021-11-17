@@ -28,8 +28,8 @@ export class RegisterPostService {
     return this.http.get<User[]>(this.baseUrl + 'user');
   }
 
-  getUser(): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl + 'user');
+  getUser(id: string): Observable<User[]> {
+    return this.http.get<User[]>(this.baseUrl + `user/edit/${id}`);
   }
 
   postUser(user: User): Observable<any> {

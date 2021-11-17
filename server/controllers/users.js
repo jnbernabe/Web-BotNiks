@@ -62,17 +62,9 @@ module.exports.displayEditPage = (req, res, next) => {
       res.end(err);
     } else {
       //show the edit view
-      /*
-            res.render('book/edit', {title: 'Edit Book', book: bookToEdit, 
-            displayName: req.user ? req.user.displayName : ''});
-            */
 
       console.log(id);
-      res.json({
-        success: true,
-        msg: "Successfully Displayed User to Edit",
-        user: userToEdit,
-      });
+      res.json(userToEdit);
     }
   });
 };

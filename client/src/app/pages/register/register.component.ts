@@ -2,15 +2,14 @@ import { Component, Input, OnInit } from '@angular/core';
 import { User } from '../../model/user.model';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
-  NgForm,
-  NgModel,
+  FormControl,
+  Validators,
 } from '@angular/forms';
-import { HttpServiceService } from 'src/app/config/http-service.service';
 
-import { Customer } from '../../model/customer.model';
 import { RegisterPostService } from './register.post.service';
+import { ActivatedRoute } from '@angular/router';
+import { Observable, tap } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -18,24 +17,42 @@ import { RegisterPostService } from './register.post.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  userForm = this.registerForm.group({
-    username: '',
-    firstName: '',
-    lastName: '',
-    email: '',
-    displayName: '',
-    userType: '',
-    Password: '',
-  });
-
+  edituser!: User;
+  userForm!: FormGroup;
   userProfile!: User;
 
   constructor(
     private registerForm: FormBuilder,
-    private newUser: RegisterPostService
+    private newUser: RegisterPostService,
+    private route: ActivatedRoute
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.editUser('Jamaal');
+    this.getUser();
+
+    this.userForm = this.registerForm.group({
+      username: '',
+      firstName: '',
+      lastName: '',
+      email: '',
+      displayName: '',
+      userType: '',
+      Password: '',
+    });
+  }
+
+  ngOnDestroy() {}
+
+  editUser(id: string) {
+    this.newUser.getUsers().subscribe((users: User[]) =>
+      users.forEach((user: User) => {
+        if (user.username == id) {
+          this.edituser = user;
+        }
+      })
+    );
+  }
 
   getUser() {
     this.newUser.getUsers().subscribe((users: User[]) => console.log(users));
@@ -59,8 +76,11 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
+    if (!this.userForm.valid) {
+      window.alert('Form in not complete');
+    }
+
     this.createUser();
-    this.getUser();
 
     this.addUser();
 

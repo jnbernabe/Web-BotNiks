@@ -38,8 +38,6 @@ module.exports.processAddPage = (req, res, next) => {
     lastName: req.body.lastName,
     userID: req.body.userID,
     userType: req.body.userType,
-    created: req.body.created,
-    update: req.body.update,
   });
 
   User.create(newUser, (err, User) => {
@@ -49,11 +47,10 @@ module.exports.processAddPage = (req, res, next) => {
     } else {
       // refresh the book list
       //res.redirect('/book-list');
-      res.sendStatus(200);
+
       res.json({ success: true, msg: "Successfully added new User" });
     }
   });
-  next();
 };
 
 module.exports.displayEditPage = (req, res, next) => {

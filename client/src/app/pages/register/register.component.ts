@@ -1,8 +1,16 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { User } from '../../model/user.model';
-import { FormControl, FormGroup, NgForm, NgModel } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  NgForm,
+  NgModel,
+} from '@angular/forms';
 import { HttpServiceService } from 'src/app/config/http-service.service';
+
 import { Customer } from '../../model/customer.model';
+import { RegisterPostService } from './register.post.service';
 
 @Component({
   selector: 'app-register',
@@ -10,36 +18,53 @@ import { Customer } from '../../model/customer.model';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  userForm = new FormGroup({
-    username: new FormControl(),
-    Fname: new FormControl(),
-    Lname: new FormControl(),
-    Email: new FormControl(),
-    Number: new FormControl(),
-    Type: new FormControl(),
+  userForm = this.registerForm.group({
+    username: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    displayName: '',
+    userType: '',
+    Password: '',
   });
 
-  posts: any;
-  userProfile?: User;
+  userProfile!: User;
 
-  constructor(private http: HttpServiceService) {}
+  constructor(
+    private registerForm: FormBuilder,
+    private newUser: RegisterPostService
+  ) {}
 
-  ngOnInit() {
-    console.log(this.http.getCustomers());
+  ngOnInit() {}
+
+  getUser() {
+    this.newUser.getUsers().subscribe((users: User[]) => console.log(users));
+  }
+  addUser() {
+    this.newUser.postUser(this.userProfile).subscribe((data) => {
+      console.log(data);
+      this.getUser();
+    });
+  }
+
+  createUser() {
+    this.userProfile = new User(
+      this.userForm.value.username,
+      this.userForm.value.lastName,
+      this.userForm.value.email,
+      this.userForm.value.firstName,
+      this.userForm.value.displayName,
+      this.userForm.value.userType
+    );
   }
 
   onSubmit(): void {
-    this.userProfile = new User(
-      this.userForm.value.Fname,
-      this.userForm.value.Lname,
-      this.userForm.value.Email,
-      this.userForm.value.username,
-      this.userForm.value.Number,
-      this.userForm.value.Type
-    );
-    console.log(this.userProfile);
-    let userjson = JSON.stringify(this.userProfile);
-    this.userForm.reset;
+    this.createUser();
+    this.getUser();
+
+    this.addUser();
+
+    // this.userForm.reset();
   }
 
   //model = new User(this.userForm.value);

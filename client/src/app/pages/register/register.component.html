@@ -5,22 +5,11 @@
     </div>
   </div>
 
-  <div>
-    <li *ngFor="let post of posts">
-      <a href="{{ post.path }}">
-        <span style="font-size: 20px; text-align: center"
-          >{{ post.title }}
-        </span>
-      </a>
-    </li>
-  </div>
-
   <form
     action=""
     class="form-group col-lg-12 mx-auto bg-gradient p-5 rounded"
     [formGroup]="userForm"
     (ngSubmit)="onSubmit()"
-    validation
   >
     <div class="input-group mb-3">
       <span class="input-group-text">UserName</span>
@@ -33,23 +22,36 @@
         required
       />
     </div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text">Password</span>
+      <input
+        type="password"
+        class="form-control"
+        id="Password"
+        formControlName="Password"
+        placeholder="Password"
+        required
+      />
+    </div>
     <div class="input-group mb-3">
       <span class="input-group-text" id="basic-addon1">First Name</span>
       <input
         type="text"
         class="form-control"
-        formControlName="Fname"
+        formControlName="firstName"
         placeholder="First Name"
         aria-label="First Name"
         aria-describedby="basic-addon1"
         required
       />
-
+    </div>
+    <div class="input-group mb-3">
       <span class="input-group-text" id="basic-addon2">Last Name</span>
       <input
         type="text"
         class="form-control"
-        formControlName="Lname"
+        formControlName="lastName"
         placeholder="Last Name"
         aria-label="Last Name"
         aria-describedby="basic-addon2"
@@ -60,22 +62,23 @@
     <div class="input-group mb-3">
       <span class="input-group-text" id="basic-addon2">Email</span>
       <input
-        type="text"
+        type="email"
         class="form-control"
-        formControlName="Email"
+        formControlName="email"
         placeholder="Email"
         aria-label="Email"
         aria-describedby="basic-addon2"
         required
       />
-
-      <span class="input-group-text" id="basic-addon3">Phone Number</span>
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon3">Display Name</span>
       <input
-        type="tel"
+        type="text"
         class="form-control"
-        id="Phone Number"
-        formControlName="Number"
-        placeholder="Phone Number"
+        id="displayName"
+        formControlName="displayName"
+        placeholder="Display Name"
         aria-describedby="basic-addon3"
         required
       />
@@ -86,17 +89,17 @@
       <input
         type="text"
         class="form-control"
-        id="UserType"
-        formControlName="Type"
+        id="userType"
+        formControlName="userType"
         placeholder="Client Helper / Investigator"
         required
       />
     </div>
 
     <div class="container mx-auto">
-      <button class="btn btn-primary m-3" value="Submit">Submit</button>
+      <button class="button btn btn-primary m-3" type="submit">Submit</button>
 
-      <button class="btn btn-primary m-3" value="Clear">Clear</button>
+      <button class="btn btn-primary m-3" type="reset">Clear</button>
     </div>
   </form>
 </main>

@@ -1,15 +1,16 @@
 import { Guid } from 'guid-typescript';
 export class User {
-  public id: string;
+  public userID: string;
+  public Number?: string;
 
   constructor(
-    public FirstName: string,
-    public LastName: string,
-    public Email: string,
-    public UserName: string,
-    public Number: string,
-    public UserType: String
+    public firstName: string,
+    public lastName: string,
+    public email: string,
+    public username: string,
+    public displayName: string,
+    public userType: String
   ) {
-    this.id = Guid.create().toString();
+    this.userID = Guid.create().toString();
   }
 }

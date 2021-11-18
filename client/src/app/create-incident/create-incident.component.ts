@@ -10,6 +10,11 @@ import { IncidentNumberGenerator } from '../model/incident-number-generator.mode
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
+/*
+By: Han Bi
+Form Component for creating new Incidents and Editing existing ones
+*/
+
 let counter = 1;
 let isEdit = false;
 let id = '';
@@ -107,11 +112,6 @@ export class CreateIncidentComponent implements OnInit {
     );
 
     this.data.addIncident(obj);
-    console.log('This is from NgOnInit the data', this.data);
-    console.log(
-      'This is from NgOnInit the array of the data',
-      this.data.getIncidents()
-    );
   }
 
   //populates form if object exists
@@ -136,27 +136,25 @@ export class CreateIncidentComponent implements OnInit {
       //   'Short Narrative',
       //   new Customer('Han', 'Bi', 'example@hotmail.com', '4165255677')
       // );
-      this.incidentForm.get('incidentNumber')?.setValue(editedObj.incidentID);
-      this.incidentForm.get('incidentPriority')?.setValue(editedObj.Priority);
-      this.incidentForm?.get('incidentStatus')?.setValue(editedObj.Status);
       this.incidentForm
-        ?.get('customerFName')
-        ?.setValue(editedObj.Customer.FName);
+        .get('incidentNumber')
+        ?.setValue(editedObj['incidentID']);
       this.incidentForm
-        ?.get('customerLName')
-        ?.setValue(editedObj.Customer.LName);
-      this.incidentForm
-        ?.get('customerEmail')
-        ?.setValue(editedObj.Customer.Email);
+        .get('incidentPriority')
+        ?.setValue(editedObj['priority']);
+      this.incidentForm?.get('incidentStatus')?.setValue(editedObj['status']);
+      this.incidentForm?.get('customerFName')?.setValue(editedObj['firstName']);
+      this.incidentForm?.get('customerLName')?.setValue(editedObj['lastName']);
+      this.incidentForm?.get('customerEmail')?.setValue(editedObj['email']);
       this.incidentForm
         ?.get('customerPhone')
-        ?.setValue(editedObj.Customer.Number);
+        ?.setValue(editedObj['phoneNumber']);
       this.incidentForm
         ?.get('incidentDescription')
-        ?.setValue(editedObj.Description);
+        ?.setValue(editedObj['description']);
       this.incidentForm
         ?.get('incidentNarrative')
-        ?.setValue(editedObj.Narrative);
+        ?.setValue(editedObj['narrative']);
     }
   }
   routeSub!: Subscription;
@@ -167,7 +165,6 @@ export class CreateIncidentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // console.log(this.data.getIncidents());
     this.data.waitForData().then((result) => {
       console.log('This is from NgOnInit the data', this.data);
       console.log(
@@ -179,6 +176,7 @@ export class CreateIncidentComponent implements OnInit {
           console.log('This is from NgOnInit (the route id)', params['id']);
           editedObj = this.data.getIncident(params['id']);
           console.log(editedObj);
+          console.log(editedObj['incidentID']);
           if (editedObj !== null) {
             isEdit = true;
           }

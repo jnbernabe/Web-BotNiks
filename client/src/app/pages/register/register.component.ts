@@ -5,11 +5,12 @@ import {
   FormGroup,
   FormControl,
   Validators,
+  NgModel,
 } from '@angular/forms';
 
-import { RegisterPostService } from './register.post.service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, tap } from 'rxjs';
+import { RegisterPostService } from 'src/app/config/register.post.service';
 
 @Component({
   selector: 'app-register',
@@ -17,9 +18,10 @@ import { Observable, tap } from 'rxjs';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  edituser!: User;
+  edituser!: User | null;
   userForm!: FormGroup;
   userProfile!: User;
+  @Input() value: string | any;
 
   constructor(
     private registerForm: FormBuilder,

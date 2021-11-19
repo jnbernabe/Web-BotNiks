@@ -1,14 +1,13 @@
 import { Guid } from 'guid-typescript';
 
 export class Customer {
-  public id: string;
-
+  public customerId: String;
   constructor(
-    public FName: string,
-    public LName: string,
-    public Email: string,
-    public Number: string
+    public firstName: String,
+    public lastName: String,
+    public email: String,
+    public phoneNumber: String
   ) {
-    this.id = Guid.create().toString();
+    this.customerId = Guid.create().toString();
   }
 }

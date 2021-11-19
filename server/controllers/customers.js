@@ -26,7 +26,7 @@ module.exports.displayAddCustomer = (req, res, next) => {
 };
 
 module.exports.processAddCustomer = (req, res, next) => {
-  let newCustomers = Customer({
+  let newCustomer = Customer({
     customerId: req.body.customerId,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
@@ -39,9 +39,6 @@ module.exports.processAddCustomer = (req, res, next) => {
       console.log(err);
       res.end(err);
     } else {
-      // refresh the book list
-      //res.redirect('/book-list');
-
       res.json({ success: true, msg: " Successfully Added " });
     }
   });
@@ -50,23 +47,12 @@ module.exports.processAddCustomer = (req, res, next) => {
 module.exports.displayEditPage = (req, res, next) => {
   let id = req.params.id;
 
-  Customer.findOne({ _id: { $eq: id } }, (err, CustomerToEdit) => {
+  Customer.findOne({ customerId: { $eq: id } }, (err, CustomerToEdit) => {
     if (err) {
       console.log(err);
       res.end(err);
     } else {
-      //show the edit view
-      /*
-            res.render('book/edit', {title: 'Edit Book', book: bookToEdit, 
-            displayName: req.user ? req.user.displayName : ''});
-            */
-
-      console.log(id);
-      res.json({
-        success: true,
-        msg: "Successfully Displayed Customers to Edit",
-        customer: CustomerToEdit,
-      });
+      res.json(CustomerToEdit);
     }
   });
 };
@@ -82,19 +68,12 @@ module.exports.processEditPage = (req, res, next) => {
     phoneNumber: req.body.phoneNumber,
   });
 
-  Customer.updateOne({ _id: { $eq: id } }, updatedCustomers, (err) => {
+  Customer.updateOne({ customerId: { $eq: id } }, updatedCustomers, (err) => {
     if (err) {
       console.log(err);
       res.end(err);
     } else {
-      // refresh the book list
-      //res.redirect('/book-list');
-
-      res.json({
-        success: true,
-        msg: "Customer data Successfully Updated ",
-        customer: updatedCustomers,
-      });
+      res.json(updatedCustomers);
     }
   });
 };
@@ -102,14 +81,11 @@ module.exports.processEditPage = (req, res, next) => {
 module.exports.performDelete = (req, res, next) => {
   let id = req.params.id;
 
-  Customer.remove({ _id: { $eq: id } }, (err) => {
+  Customer.remove({ customerId: { $eq: id } }, (err) => {
     if (err) {
       console.log(err);
       res.end(err);
     } else {
-      // refresh the book list
-      //res.redirect('/book-list');
-
       res.json({ success: true, msg: "Customer Successfully Deleted " });
     }
   });

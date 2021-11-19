@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { User } from '../../model/user.model';
+
 import { Observable } from 'rxjs';
+import { User } from '../model/user.model';
 
 const PROTOCOL = 'http';
 const PORT = 3000;
@@ -36,5 +37,15 @@ export class RegisterPostService {
     const body = JSON.stringify(user);
     console.log(body);
     return this.http.post(this.baseUrl + 'user/add', body, this.httpOptions);
+  }
+
+  postEditUser(user: User): Observable<any> {
+    const body = JSON.stringify(user);
+    console.log(body);
+    return this.http.post(
+      this.baseUrl + `user/edit/${user.userID}`,
+      body,
+      this.httpOptions
+    );
   }
 }

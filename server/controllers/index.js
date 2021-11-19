@@ -15,21 +15,5 @@ let customerModel = require("../model/customers");
 let incidentModel = require("../model/incidents");
 
 module.exports.displayHomePage = (req, res, next) => {
-  customerModel.find((err, customerList) => {
-    if (err) {
-      return console.error(err);
-    } else {
-      //console.log(customerList);
-      res.send(customerList);
-    }
-  });
-
-  // incidentModel.find((err, incidentList) => {
-  //   if (err) {
-  //     return console.error(err);
-  //   } else {
-  //     //console.log(incidentList);
-  //     res.send(incidentList);
-  //   }
-  // });
+  res.send({ success: true, message: "Home Page" });
 };

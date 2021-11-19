@@ -61,12 +61,6 @@ module.exports.displayEditPage = (req, res, next) => {
     if (err) {
       console.log(err);
       res.end(err);
-    } else {
-      //show the edit view
-      /*
-            res.render('book/edit', {title: 'Edit Book', book: bookToEdit, 
-            displayName: req.user ? req.user.displayName : ''});
-            */
 
       console.log(id);
       res.send({
@@ -101,9 +95,6 @@ module.exports.processEditPage = (req, res, next) => {
       console.log(err);
       res.end(err);
     } else {
-      // refresh the book list
-      //res.redirect('/book-list');
-
       res.send({
         success: true,
         msg: "Successfully Edited Incident",
@@ -121,9 +112,6 @@ module.exports.performDelete = (req, res, next) => {
       console.log(err);
       res.end(err);
     } else {
-      // refresh the book list
-      //res.redirect('/book-list');
-
       res.send({ success: true, msg: "Successfully Deleted Incident" });
     }
   });

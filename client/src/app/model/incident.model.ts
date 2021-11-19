@@ -3,24 +3,26 @@ import { User } from './user.model';
 import { Customer } from './customer.model';
 
 export class Incident {
-  public Resolution?: string;
-  public incidentID?: string;
+  public resolutionField?: string;
+  public phoneNumber?: string;
+  public dataModified?: string;
+
   constructor(
-    public id: string,
-    public Priority: string,
-    public Status: string,
-    public User: User | undefined,
-    public Date: Date | undefined,
-    public Description: string,
-    public Narrative: string,
+    public incidentID: string,
+    public priority: string,
+    public status: string,
+    public User: User,
+    public dateCreated: Date,
+    public description: string,
+    public narrative: string,
     public Customer: Customer | undefined
   ) {}
 
   public toString(): string {
     return `Incident:
     ----------------
-    ID: ${this.id}
-    Priority: ${this.Priority}
-    Description: ${this.Description}`;
+    ID: ${this.incidentID}
+    Priority: ${this.priority}
+    Description: ${this.description}`;
   }
 }

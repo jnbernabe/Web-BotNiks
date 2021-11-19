@@ -9,6 +9,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { IncidentNumberGenerator } from '../model/incident-number-generator.model';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { IncidentService } from '../config/incident.service';
+import { StaticDataSource } from '../model/static.datasource';
 
 /*
 By: Han Bi
@@ -36,7 +38,7 @@ let editedObj: any;
 export class CreateIncidentComponent implements OnInit {
   incidentId = this.createTicketNumber();
   editMode = isEdit;
-  incident?: Incident;
+  incident!: Incident;
   anotherIncident?: Incident[];
   test!: IncidentRepository;
 
@@ -89,16 +91,9 @@ export class CreateIncidentComponent implements OnInit {
       this.incidentForm?.get('customerPhone')?.value
     );
 
-    let user = new User(
-      'John',
-      'Smith',
-      'js@lmkasdfu@o21u3',
-      'type?',
-      '1238798123',
-      'UserType?'
-    );
+    let user = this.testclass.User1;
 
-    let dateCreated = new Date();
+    let dateCreated = this.testclass.Date1;
 
     let obj = new Incident(
       this.incidentForm?.get('incidentNumber')?.value,
@@ -110,7 +105,7 @@ export class CreateIncidentComponent implements OnInit {
       this.incidentForm?.get('incidentNarrative')?.value,
       customer
     );
-
+    this.incident = obj;
     this.data.addIncident(obj);
   }
 
@@ -118,24 +113,6 @@ export class CreateIncidentComponent implements OnInit {
   private initForm() {
     console.log(this.data['incidents'].length);
     if (isEdit == true) {
-      //dummy object
-      // let obj = new Incident(
-      //   '121211-01',
-      //   'High',
-      //   'InProgress',
-      //   new User(
-      //     'John',
-      //     'Doe',
-      //     'email@rogers.com',
-      //     'Desursdfauo',
-      //     '5467778248',
-      //     'Admin'
-      //   ),
-      //   new Date(),
-      //   'Short Description',
-      //   'Short Narrative',
-      //   new Customer('Han', 'Bi', 'example@hotmail.com', '4165255677')
-      // );
       this.incidentForm
         .get('incidentNumber')
         ?.setValue(editedObj['incidentID']);
@@ -158,10 +135,20 @@ export class CreateIncidentComponent implements OnInit {
     }
   }
   routeSub!: Subscription;
+
+  addIncident2() {
+    this.incidentservice.postIncident(this.incident).subscribe((data) => {
+      console.log(data);
+      this.incidentservice.getIncidents();
+    });
+  }
+
   constructor(
     public counter: IncidentNumberGenerator,
     public data: IncidentRepository,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    public incidentservice: IncidentService,
+    public testclass: StaticDataSource
   ) {}
 
   ngOnInit(): void {

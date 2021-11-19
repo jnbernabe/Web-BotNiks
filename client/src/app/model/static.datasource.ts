@@ -6,25 +6,25 @@ import { Observable, from } from 'rxjs';
 
 @Injectable()
 export class StaticDataSource {
-  private User1 = new User(
+  public User1 = new User(
+    'BKing',
+    'BKelso@gmail.com',
+    'Bob',
     'Bob',
     'Kelso',
-    'BKelso@gmail.com',
-    'BKing',
-    '666-666-123',
     'Doctor'
   );
 
-  private Customer1 = new Customer(
+  public Customer1 = new Customer(
     'Perry',
     'Cox',
     'Bethany@hotmail.com',
     '999-999-321'
   );
 
-  private Date1 = new Date('11-11-11');
+  public Date1 = new Date('11-11-11');
 
-  private incidents: Incident[] = [
+  public incidents: Incident[] = [
     new Incident(
       '1',
       'Medium',

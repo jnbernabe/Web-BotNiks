@@ -11,11 +11,11 @@
     </thead>
     <tbody>
       <tr *ngFor="let i of incidents">
-        <th scope="row">{{ i.id }}</th>
-        <td>{{ i.Priority }}</td>
-        <td>{{ i.Status }}</td>
+        <th scope="row">{{ i.incidentID }}</th>
+        <td>{{ i.priority }}</td>
+        <td>{{ i.status }}</td>
         <td>{{ i.Customer?.firstName }}</td>
-        <td>{{ i.Description }}</td>
+        <td>{{ i.description }}</td>
       </tr>
     </tbody>
   </table>

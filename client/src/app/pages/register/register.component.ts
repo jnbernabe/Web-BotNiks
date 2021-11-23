@@ -34,13 +34,13 @@ export class RegisterComponent implements OnInit {
     this.getUser();
 
     this.userForm = this.registerForm.group({
-      username: '',
-      firstName: '',
-      lastName: '',
-      email: '',
-      displayName: '',
-      userType: '',
-      Password: '',
+      username: [null, [Validators.required]],
+      firstName: [null, [Validators.required]],
+      lastName: [null, [Validators.required]],
+      email: [null, [Validators.required,Validators.email]],
+      displayName: [null, [Validators.required,Validators.minLength(5)]],
+      userType: [null, [Validators.required]],
+      Password: [null, [Validators.required]],
     });
   }
 

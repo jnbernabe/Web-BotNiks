@@ -1,4 +1,4 @@
-import { Guid } from 'guid-typescript';
+/*import { Guid } from 'guid-typescript';
 export class User {
   public userID: string;
   public Number?: string;
@@ -13,4 +13,15 @@ export class User {
   ) {
     this.userID = Guid.create().toString();
   }
+}*/
+
+export class User
+{
+  username: String;
+  password: String;
+  email: string;
+  displayName: string;
 }
+
+
+

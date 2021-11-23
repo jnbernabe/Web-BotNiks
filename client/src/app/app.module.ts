@@ -20,6 +20,7 @@ import { IncidentRepository } from './model/incident.repository';
 import { RestDataSource } from './model/rest.datasource';
 import { Incident } from './model/incident.model';
 import { StaticDataSource } from './model/static.datasource';
+import { AuthComponent } from './admin/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { StaticDataSource } from './model/static.datasource';
     TableComponent,
     CreateIncidentComponent,
     BasePageComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,

@@ -14,17 +14,6 @@ export class User {
     this.userID = Guid.create().toString();
   }
 }
-<<<<<<< HEAD
-
-/*export class User
-{
-  username: String;
-  password: String;
-  email: string;
-  displayName: string;
-}*/
-=======
->>>>>>> 64aa9f1d522ac468c5c2432d5a2d43605efa8ea2
 
 // export class User
 // {

@@ -29,13 +29,13 @@ export class AuthService {
   //  this.router.navigate(['login']);
   }
 
- /* login({ email, password }: any): Observable<any> {
+  login({ email, password }: any): Observable<any> {
     if (email === 'admin@gmail.com' && password === 'admin123') {
       this.setToken('abcdefghijklmnopqrstuvwxyz');
-      return of({ name: 'Tarique Akhtar', email: 'admin@gmail.com' });
+      return of({ name: 'Admin', email: 'admin@gmail.com' });
     }
     return throwError(new Error('Failed to login'));
-  }*/
+  }
 
   /*login(user){
     return this.http.post<any>(this._loginUrl, user)

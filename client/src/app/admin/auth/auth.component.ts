@@ -12,8 +12,8 @@ import { User } from '../../model/user.model';
 })
 export class AuthComponent implements OnInit {
 
-  public user: User;
-  public errorMessage: string;
+  public user!: User;
+  public errorMessage!: string;
 
 
   constructor(private router: Router, private auth: AuthService) { }

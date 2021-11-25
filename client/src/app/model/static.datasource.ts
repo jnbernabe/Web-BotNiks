@@ -12,7 +12,8 @@ export class StaticDataSource {
     'Bob',
     'Bob',
     'Kelso',
-    'Doctor'
+    'Doctor',
+    '12345'
   );
 
   public Customer1 = new Customer(

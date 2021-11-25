@@ -9,7 +9,8 @@ export class User {
     public displayName: string,
     public firstName: string,
     public lastName: string,
-    public userType: String
+    public userType: String,
+    public password: String
   ) {
     this.userID = Guid.create().toString();
   }

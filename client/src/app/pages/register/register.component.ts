@@ -11,6 +11,7 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { RegisterPostService } from 'src/app/config/register.post.service';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -25,14 +26,10 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private registerForm: FormBuilder,
-    private newUser: RegisterPostService,
-    
+    private newUser: RegisterPostService
   ) {}
 
   ngOnInit() {
-
- 
-
     this.editUser('Jamaal');
     this.getUser();
 
@@ -40,8 +37,8 @@ export class RegisterComponent implements OnInit {
       username: [null, [Validators.required]],
       firstName: [null, [Validators.required]],
       lastName: [null, [Validators.required]],
-      email: [null, [Validators.required,Validators.email]],
-      displayName: [null, [Validators.required,Validators.minLength(5)]],
+      email: [null, [Validators.required, Validators.email]],
+      displayName: [null, [Validators.required]],
       userType: [null, [Validators.required]],
       Password: [null, [Validators.required]],
     });
@@ -76,7 +73,8 @@ export class RegisterComponent implements OnInit {
       this.userForm.value.email,
       this.userForm.value.firstName,
       this.userForm.value.displayName,
-      this.userForm.value.userType
+      this.userForm.value.userType,
+      this.userForm.value.Password
     );
   }
 
@@ -91,10 +89,4 @@ export class RegisterComponent implements OnInit {
 
     // this.userForm.reset();
   }
-
-  
-
-  //model = new User(this.userForm.value);
-
- 
 }

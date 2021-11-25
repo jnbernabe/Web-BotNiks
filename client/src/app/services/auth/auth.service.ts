@@ -19,6 +19,7 @@ export class AuthService {
   }
 
   isLoggedIn() {
+    //console.log(this.getToken());
     return this.getToken() !== null;
   }
 

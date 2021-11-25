@@ -20,7 +20,6 @@ import { IncidentRepository } from './model/incident.repository';
 import { RestDataSource } from './model/rest.datasource';
 import { Incident } from './model/incident.model';
 import { StaticDataSource } from './model/static.datasource';
-import { AuthComponent } from './admin/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +33,6 @@ import { AuthComponent } from './admin/auth/auth.component';
     TableComponent,
     CreateIncidentComponent,
     BasePageComponent,
-    AuthComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +40,7 @@ import { AuthComponent } from './admin/auth/auth.component';
     ReactiveFormsModule,
     ModelModule,
     HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [
     IncidentNumberGenerator,

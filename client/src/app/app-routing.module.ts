@@ -5,6 +5,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { TableComponent } from './partials/table/table.component';
 import { CreateIncidentComponent } from './create-incident/create-incident.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, data: { title: 'Home' } },
@@ -23,8 +24,10 @@ const routes: Routes = [
   },
   {
     path: 'create-incident',
+    canActivate:[AuthGuard],
     component: CreateIncidentComponent,
     data: { title: 'Create Incident' },
+   
   },
   {
     path: 'create-incident/:id',

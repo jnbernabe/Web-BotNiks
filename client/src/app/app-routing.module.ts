@@ -5,12 +5,13 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { TableComponent } from './partials/table/table.component';
 import { CreateIncidentComponent } from './create-incident/create-incident.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, data: { title: 'Home' } },
   { path: 'login', component: LoginComponent, data: { title: 'Login' } },
   //{ path:'',redirectTo:'/login', pathMatch:'full'},
-  { path: 'login/id', component: LoginComponent, data: { title: 'Login' } },
+
   {
     path: 'register',
     component: RegisterComponent,
@@ -20,16 +21,19 @@ const routes: Routes = [
     path: 'table',
     component: TableComponent,
     data: { title: 'Incidents' },
+    //canActivate: [AuthGuard],
   },
   {
     path: 'create-incident',
     component: CreateIncidentComponent,
     data: { title: 'Create Incident' },
+    //canActivate: [AuthGuard],
   },
   {
     path: 'create-incident/:id',
     component: CreateIncidentComponent,
     data: { title: 'Create Incident' },
+    //canActivate: [AuthGuard],
   },
 
   { path: '', redirectTo: '/home', pathMatch: 'full' },

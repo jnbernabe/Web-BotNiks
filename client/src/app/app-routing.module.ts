@@ -9,6 +9,7 @@ import { CreateIncidentComponent } from './create-incident/create-incident.compo
 const routes: Routes = [
   { path: 'home', component: HomeComponent, data: { title: 'Home' } },
   { path: 'login', component: LoginComponent, data: { title: 'Login' } },
+  //{ path:'',redirectTo:'/login', pathMatch:'full'},
   { path: 'login/id', component: LoginComponent, data: { title: 'Login' } },
   {
     path: 'register',

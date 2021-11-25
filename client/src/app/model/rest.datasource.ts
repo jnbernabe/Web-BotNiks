@@ -12,9 +12,9 @@ const PORT = 3000;
 
 @Injectable()
 export class RestDataSource {
-  user?: User;
+  //user?: User;
   baseUrl: string;
-  authToken: any;
+  //authToken: any;
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -25,14 +25,14 @@ export class RestDataSource {
     }),
   };
 
-  constructor(private http: HttpClient, private jwtService: JwtHelperService) {
+  /*constructor(private http: HttpClient, private jwtService: JwtHelperService) {
     this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
     //this.baseUrl = `https://comp229-f2020-week10.herokuapp.com/api/`;
-  }
-
-  /*constructor(private http: HttpClient) {
-    this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
   }*/
+
+  constructor(private http: HttpClient) {
+    this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
+  }
 
   getIncidents(): Observable<Incident[]> {
     return this.http.get<Incident[]>(this.baseUrl + 'incident');
@@ -42,7 +42,7 @@ export class RestDataSource {
     return this.http.get<any[]>(this.baseUrl + 'incident/:id');
   }
 
-  authenticate(user: User): Observable<any> {
+ /* authenticate(user: User): Observable<any> {
     return this.http.post<any>(this.baseUrl + 'login', user, this.httpOptions);
   }
 
@@ -70,5 +70,5 @@ export class RestDataSource {
 
   loggedIn(): boolean {
     return !this.jwtService.isTokenExpired(this.authToken);
-  }
+  }*/
 }

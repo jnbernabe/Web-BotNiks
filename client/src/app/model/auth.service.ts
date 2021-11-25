@@ -9,9 +9,9 @@ import { User } from './user.model';
 export class AuthService {
   user?: User;
 
-  constructor(private datasource: RestDataSource) {}
+  constructor() {}
 
-  authenticate(user: User): Observable<any> {
+  /*authenticate(user: User): Observable<any> {
     return this.datasource.authenticate(user);
   }
 
@@ -25,5 +25,5 @@ export class AuthService {
 
   logout(): Observable<any> {
     return this.datasource.logout();
-  }
+  }*/
 }

@@ -1,16 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  loginUserData={};
-
-  constructor(http: HttpClient) { }
+  constructor( private router: Router) { }
 
   setToken(token: string): void {
     localStorage.setItem('token', token);
@@ -26,7 +24,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
-  //  this.router.navigate(['login']);
+    this.router.navigate(['login']);
   }
 
   login({ email, password }: any): Observable<any> {
@@ -36,8 +34,4 @@ export class AuthService {
     }
     return throwError(new Error('Failed to login'));
   }
-
-  /*login(user){
-    return this.http.post<any>(this._loginUrl, user)
-  }*/
 }

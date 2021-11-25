@@ -26,10 +26,13 @@ export class RegisterComponent implements OnInit {
   constructor(
     private registerForm: FormBuilder,
     private newUser: RegisterPostService,
-    private route: ActivatedRoute
+    
   ) {}
 
   ngOnInit() {
+
+ 
+
     this.editUser('Jamaal');
     this.getUser();
 
@@ -89,5 +92,9 @@ export class RegisterComponent implements OnInit {
     // this.userForm.reset();
   }
 
+  
+
   //model = new User(this.userForm.value);
+
+ 
 }

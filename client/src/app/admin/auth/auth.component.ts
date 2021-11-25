@@ -16,13 +16,13 @@ export class AuthComponent implements OnInit {
   public errorMessage!: string;
 
 
-  constructor(private router: Router, private auth: AuthService) { }
+  constructor() { }
 
 
   ngOnInit(): void {
   }
 
-  authenticate(form: NgForm): void
+  /*authenticate(form: NgForm): void
   {
     if (form.valid)
     {
@@ -39,7 +39,7 @@ export class AuthComponent implements OnInit {
     {
       this.errorMessage = 'Form Data Invalid';
     }
-  }
+  }*/
 
 
 }

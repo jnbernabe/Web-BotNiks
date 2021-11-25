@@ -28,11 +28,7 @@ const routes: Routes = [
     canActivate:[AuthGuard],
     component: CreateIncidentComponent,
     data: { title: 'Create Incident' },
-<<<<<<< HEAD
-   
-=======
     //canActivate: [AuthGuard],
->>>>>>> 6c814051201453c8c5b363027e73434510afeae6
   },
   {
     path: 'create-incident/:id',

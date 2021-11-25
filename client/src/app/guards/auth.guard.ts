@@ -13,7 +13,7 @@ import { CreateIncidentComponent } from '../create-incident/create-incident.comp
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-<<<<<<< HEAD
+
   
   constructor(private auth: AuthService, private router:Router){}
   canActivate(
@@ -27,17 +27,6 @@ export class AuthGuard implements CanActivate {
         return false;
       }
       return this.auth.isLoggedIn();
-=======
-  constructor(private auth: AuthService, private router: Router) {}
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): boolean {
-    if (!this.auth.isLoggedIn()) {
-      this.router.navigate(['login']);
-      return false;
->>>>>>> 6c814051201453c8c5b363027e73434510afeae6
+
     }
-    return this.auth.isLoggedIn();
-  }
 }

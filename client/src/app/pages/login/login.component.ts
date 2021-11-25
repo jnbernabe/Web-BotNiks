@@ -22,7 +22,7 @@ export class LoginComponent extends BasePageComponent implements OnInit {
     route: ActivatedRoute,
     private auth: AuthService,
     private router: Router,
-    help: JwtHelperService
+    
   ) {
     super(route);
   }

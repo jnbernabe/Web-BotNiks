@@ -14,9 +14,9 @@ const PORT = 3000;
   providedIn: 'root',
 })
 export class AuthService {
-  user: User;
+  user?: User;
   baseUrl: string;
-  authToken: string;
+  authToken?: string;
 
   private httpOptions = {
     headers: new HttpHeaders({
@@ -30,7 +30,6 @@ export class AuthService {
   constructor(
     private router: Router,
     private http: HttpClient,
-    private jwtService: JwtHelperService
   ) {
     this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
   }

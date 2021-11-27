@@ -20,6 +20,8 @@ import { IncidentRepository } from './model/incident.repository';
 import { RestDataSource } from './model/rest.datasource';
 import { Incident } from './model/incident.model';
 import { StaticDataSource } from './model/static.datasource';
+import { AuthGuard } from './guards/auth.guard';
+import { AdminMainComponent } from './admin/admin-main/admin-main.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import { StaticDataSource } from './model/static.datasource';
     TableComponent,
     CreateIncidentComponent,
     BasePageComponent,
+    AdminMainComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +50,7 @@ import { StaticDataSource } from './model/static.datasource';
     IncidentRepository,
     RestDataSource,
     StaticDataSource,
+    AuthGuard,
   ],
   bootstrap: [AppComponent],
 })

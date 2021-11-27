@@ -43,8 +43,8 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    //console.log(this.getToken());
-    return this.getToken() !== null;
+    return !!localStorage.getItem('token');
+    //return this.getToken() !== null;
   }
 
   logout() {
@@ -54,8 +54,11 @@ export class AuthService {
 
   login({ email, password }: any): Observable<any> {
     if (email === 'admin@gmail.com' && password === 'admin123') {
+      alert("login successful");
       this.setToken('abcdefghijklmnopqrstuvwxyz');
+      console.log(this.getToken());
       return of({ name: 'Admin', email: 'admin@gmail.com' });
+
     }
     return throwError(new Error('Failed to login'));
   }
@@ -65,4 +68,10 @@ export class AuthService {
     // this is just the HTTP call,
     // we still need to handle the reception of the token
   }
+  
+
+    /* login1(data): Observable<any>{
+       console.log('SERVER SIDE');
+       return this.http.post("http://localhost:3000/user",data);
+     }*/
 }

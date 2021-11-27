@@ -14,19 +14,13 @@ import { CreateIncidentComponent } from '../create-incident/create-incident.comp
 })
 export class AuthGuard implements CanActivate {
 
-  
   constructor(private auth: AuthService, private router:Router){}
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): 
- 
-   boolean {
-      
-      if(!this.auth.isLoggedIn()){
-       // this.router.navigate(['Login']);
-        return false;
+  canActivate():  boolean {   
+      if(this.auth.isLoggedIn()){
+      return true;
       }
-      return this.auth.isLoggedIn();
-
+      else {
+      return false;
+      }
     }
 }

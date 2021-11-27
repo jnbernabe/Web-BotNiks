@@ -52,6 +52,17 @@ export class RestDataSource {
     );
   }
 
+  deleteIncident(id: string): Observable<Incident> {
+    //this.loadToken();
+
+    console.log(id);
+
+    return this.http.get<Incident>(
+      `${this.baseUrl}incident/delete/${id}`,
+      this.httpOptions
+    );
+  }
+
   /* authenticate(user: User): Observable<any> {
   deleteIncident(id: string): Observable<Incident>
   {

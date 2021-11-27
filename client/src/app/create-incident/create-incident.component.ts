@@ -119,14 +119,8 @@ export class CreateIncidentComponent implements OnInit {
         ?.setValue(editedObj['priority']);
       this.incidentForm?.get('incidentStatus')?.setValue(editedObj['status']);
       this.incidentForm
-        .get('incidentCustomerName')
+        .get('customerName')
         ?.setValue(editedObj['customerName']);
-      // this.incidentForm?.get('customerFName')?.setValue(editedObj['firstName']);
-      // this.incidentForm?.get('customerLName')?.setValue(editedObj['lastName']);
-      // this.incidentForm?.get('customerEmail')?.setValue(editedObj['email']);
-      // this.incidentForm
-      //   ?.get('customerPhone')
-      //   ?.setValue(editedObj['phoneNumber']);
       this.incidentForm
         ?.get('incidentDescription')
         ?.setValue(editedObj['description']);
@@ -138,10 +132,6 @@ export class CreateIncidentComponent implements OnInit {
       this.incidentForm.get('incidentPriority')?.setValue(prio);
       this.incidentForm.get('incidentStatus')?.setValue(stat);
       this.incidentForm.get('incidentCustomerName')?.setValue(customerName);
-      // this.incidentForm?.get('customerFName')?.setValue(fName);
-      // this.incidentForm?.get('customerLName')?.setValue(lName);
-      // this.incidentForm?.get('customerEmail')?.setValue(email);
-      // this.incidentForm?.get('customerPhone')?.setValue(phone);
       this.incidentForm?.get('incidentDescription')?.setValue(desc);
       this.incidentForm?.get('incidentNarrative')?.setValue(narrative);
     }

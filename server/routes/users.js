@@ -39,4 +39,12 @@ router.post("/edit/:id", userController.processEditPage);
 /* GET to perform  Deletion - DELETE Operation */
 router.get("/user/delete/:id", userController.performDelete);
 
+router.post("/login", userController.processLoginPage);
+
+/* POST Route for processing the Register page */
+router.post("/register", userController.processRegisterPage);
+
+/* GET to perform UserLogout */
+router.get("/logout", userController.performLogout);
+
 module.exports = router;

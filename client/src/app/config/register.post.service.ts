@@ -39,6 +39,12 @@ export class RegisterPostService {
     return this.http.post(this.baseUrl + 'user/add', body, this.httpOptions);
   }
 
+  registerUser(user: User): Observable<any> {
+    const body = JSON.stringify(user);
+    console.log(body);
+    return this.http.post(this.baseUrl + 'register', body, this.httpOptions);
+  }
+
   postEditUser(user: User): Observable<any> {
     const body = JSON.stringify(user);
     console.log(body);

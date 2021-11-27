@@ -5,7 +5,6 @@ import { Validator, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { BasePageComponent } from 'src/app/partials/basepage/basepage.component';
 import { HttpClient } from '@angular/common/http';
-import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-login',
@@ -21,8 +20,7 @@ export class LoginComponent extends BasePageComponent implements OnInit {
   constructor(
     route: ActivatedRoute,
     private auth: AuthService,
-    private router: Router,
-    
+    private router: Router
   ) {
     super(route);
   }

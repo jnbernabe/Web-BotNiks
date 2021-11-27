@@ -30,9 +30,6 @@ export class RegisterComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.editUser('Jamaal');
-    this.getUser();
-
     this.userForm = this.registerForm.group({
       username: [null, [Validators.required]],
       firstName: [null, [Validators.required]],
@@ -60,7 +57,7 @@ export class RegisterComponent implements OnInit {
     this.newUser.getUsers().subscribe((users: User[]) => console.log(users));
   }
   addUser() {
-    this.newUser.postUser(this.userProfile).subscribe((data) => {
+    this.newUser.registerUser(this.userProfile).subscribe((data) => {
       console.log(data);
       this.getUser();
     });

@@ -1,4 +1,9 @@
 <div class="container">
+  <div class="col-3 p-2">
+    <a href = "/create-incident" class="btn btn-primary" role="button">
+      <i class="fas fa-plus-circle"></i> Add a Incident</a>
+      <br>
+  </div>
   <table class="table">
     <thead>
       <tr>
@@ -16,6 +21,16 @@
         <td>{{ i.status }}</td>
         <td>{{ i.Customer?.firstName }}</td>
         <td>{{ i.description }}</td>
+        <td>
+          <a href="/create-incident/{{ i.incidentID }}" class="btn btn-primary btn-sm">
+            <i class="fas fa-pencil-alt"></i> Edit</a>
+          </td>
+        
+        <td>
+          <button class="btn btn-sm btn-danger m-1" (click)='deleteIncident(i.incidentID)'>
+            <i class="fas fa-trash-alt"></i> Delete
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>

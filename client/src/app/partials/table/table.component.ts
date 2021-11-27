@@ -3,6 +3,7 @@ import { TableService } from 'src/app/config/table.service';
 import { Incident } from 'src/app/model/incident.model';
 import { IncidentRepository } from 'src/app/model/incident.repository';
 import { RegisterPostService } from '../../config/register.post.service';
+import { Router } from '@angular/router';
 TableService;
 
 @Component({
@@ -14,7 +15,8 @@ export class TableComponent implements OnInit {
   constructor(
     private data: IncidentRepository,
     private customer: TableService,
-    private user: RegisterPostService
+    private user: RegisterPostService,
+    private router: Router
   ) {}
 
   get incidents(): Incident[] {
@@ -24,4 +26,18 @@ export class TableComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.data.getIncidents());
   }
+
+  deleteIncident(id: string): void
+  {
+    if (confirm('Are you sure?') && (id !== undefined))
+    {
+      this.data.deleteIncident(id);
+    }
+    else
+    {
+      window.location.reload(); // refresh fix
+      //this.router.navigateByUrl('/admin/main/books');
+    }
+  }
+
 }

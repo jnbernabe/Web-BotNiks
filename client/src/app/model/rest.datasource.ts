@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 import { User } from './user.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
-const PROTOCOL = 'https';
+const PROTOCOL = 'http';
 const PORT = 3000;
 
 @Injectable()
@@ -41,6 +41,16 @@ export class RestDataSource {
   getIncident(): Observable<any[]> {
     return this.http.get<any[]>(this.baseUrl + 'incident/:id');
   }
+
+  deleteIncident(id: string): Observable<Incident>
+  {
+    //this.loadToken();
+
+    console.log(id);
+
+    return this.http.get<Incident>(`${this.baseUrl}incident/delete/${id}`, this.httpOptions);
+  }
+
 
  /* authenticate(user: User): Observable<any> {
     return this.http.post<any>(this.baseUrl + 'login', user, this.httpOptions);

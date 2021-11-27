@@ -42,6 +42,13 @@ export class IncidentRepository {
     this.incidents.push(obj);
   }
 
+  deleteIncident(deletedIncidentID: string): void
+  {
+    this.dataSource.deleteIncident(deletedIncidentID).subscribe(incident => {
+      this.incidents.splice(this.incidents.findIndex(i => i.incidentID == deletedIncidentID), 1);
+    });
+  }
+
   waitForData(): Promise<Incident[]> {
     return new Promise((resolve, reject) => {
       if (this.incidents.length == 0) {
@@ -62,3 +69,5 @@ export class IncidentRepository {
     });
   }
 }
+
+

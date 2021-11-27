@@ -1,10 +1,6 @@
 //Nandini Hariprasad
 //22/12/2021
-//Report Model
-let UserModel = require("./users");
-let UserIn = UserModel.User;
-let CustomerModel = require("./customers");
-let CustomerIn = CustomerModel.Customer;
+//Incident Model
 let mongoose = require("mongoose");
 
 //Create model class
@@ -13,17 +9,12 @@ let incidentsModel = mongoose.Schema(
     incidentID: String,
     priority: String,
     status: String,
-    firstName: String,
-    lastName: String,
-    email: String,
-    phoneNumber: String,
+    userName: String,
     description: String,
     narrative: String,
-    dateCreated: Date,
-    dateModified: Date,
+    dateCreated: String,
     resolutionField: String,
-    User: { type: Object, ref: UserModel },
-    Customer: { type: Object, ref: CustomerModel },
+    customerName: String,
   },
   {
     collection: "incidents",

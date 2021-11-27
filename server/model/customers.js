@@ -1,22 +1,20 @@
 //Nandini Hariprasad
 //22/12/2021
 //Customer Model
-let mongoose = require ('mongoose');
+let mongoose = require("mongoose");
 
 //Create model class
-let customersModel = mongoose.Schema({
-    
-customerId: String,
-firstName: String,
-lastName: String,
-email: String,
-phoneNumber: String
+let customersModel = mongoose.Schema(
+  {
+    customerId: String,
+    firstName: String,
+    lastName: String,
+    email: String,
+    phoneNumber: String,
+  },
+  {
+    collection: "customers",
+  }
+);
 
-},
-{
-
-    collection: "customers"
-
-});
-
-module.exports = mongoose.model('Customers', customersModel);
+module.exports = mongoose.model("Customers", customersModel);

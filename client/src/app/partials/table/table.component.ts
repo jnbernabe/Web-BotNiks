@@ -24,7 +24,9 @@ export class TableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.data.getIncidents());
+    this.data.waitForData().then((result) => {
+      console.log(JSON.stringify(this.data['incidents']));
+    });
   }
 
   deleteIncident(id: string): void

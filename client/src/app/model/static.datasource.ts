@@ -23,108 +23,108 @@ export class StaticDataSource {
     '999-999-321'
   );
 
-  public Date1 = new Date('11-11-11');
+  public Date1 = new Date('11-11-2021');
 
   public incidents: Incident[] = [
     new Incident(
       '1',
       'Medium',
       'New',
-      this.User1,
-      this.Date1,
+      'BKing',
+      '11-11-2021',
       'Short Description 1',
       'Narrative 1',
-      this.Customer1
+      'Perry Cox'
     ),
     new Incident(
       '2',
       'Medium',
       'New',
-      this.User1,
-      this.Date1,
+      'BKing',
+      '11-11-2021',
       'Short Description 2',
       'Narrative 2',
-      this.Customer1
+      'Perry Cox'
     ),
     new Incident(
       '3',
       'High',
       'New',
-      this.User1,
-      this.Date1,
+      'BKing',
+      '11-11-2021',
       'Short Description 3',
       'Narrative 3',
-      this.Customer1
+      'Perry Cox'
     ),
     new Incident(
       '4',
       'Medium',
       'New',
-      this.User1,
-      this.Date1,
+      'BKing',
+      '11-11-2021',
       'Short Description 4',
       'Narrative 4',
-      this.Customer1
+      'Perry Cox'
     ),
     new Incident(
       '5',
       'Medium',
       'New',
-      this.User1,
-      this.Date1,
+      'BKing',
+      '11-11-2021',
       'Short Description 5',
       'Narrative 5',
-      this.Customer1
+      'Perry Cox'
     ),
     new Incident(
       '6',
       'Low',
       'New',
-      this.User1,
-      this.Date1,
+      'BKing',
+      '11-11-2021',
       'Short Description 6',
       'Narrative 6',
-      this.Customer1
+      'Perry Cox'
     ),
     new Incident(
       '7',
       'High',
       'New',
-      this.User1,
-      this.Date1,
+      'BKing',
+      '11-11-2021',
       'Short Description 7',
       'Narrative 7',
-      this.Customer1
+      'Perry Cox'
     ),
     new Incident(
       '8',
       'Medium',
       'New',
-      this.User1,
-      this.Date1,
+      'BKing',
+      '11-11-2021',
       'Short Description 8',
       'Narrative 8',
-      this.Customer1
+      'Perry Cox'
     ),
     new Incident(
       '9',
       'Low',
       'New',
-      this.User1,
-      this.Date1,
+      'BKing',
+      '11-11-2021',
       'Short Description 9',
       'Narrative 9',
-      this.Customer1
+      'Perry Cox'
     ),
     new Incident(
       '10',
       'Medium',
       'New',
-      this.User1,
-      this.Date1,
+      'BKing',
+      '11-11-2021',
       'Short Description 10',
       'Narrative 10',
-      this.Customer1
+      'Perry Cox'
     ),
   ];
   getIncidents(): Observable<Incident[]> {

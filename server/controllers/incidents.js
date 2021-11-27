@@ -30,15 +30,13 @@ module.exports.processAddPage = (req, res, next) => {
     incidentID: req.body.incidentID,
     priority: req.body.priority,
     status: req.body.status,
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    email: req.body.email,
-    phoneNumber: req.body.phoneNumber,
+    userName: req.body.userName,
     description: req.body.description,
     narrative: req.body.narrative,
     dateCreated: req.body.Date,
-    dateModified: req.body.Datenow,
+    //dateModified: req.body.Datenow,
     resolutionField: req.body.resolutionField,
+    customerName: req.body.customerName,
   });
 
   Incident.create(newIncident, (err, Incident) => {
@@ -49,7 +47,7 @@ module.exports.processAddPage = (req, res, next) => {
       // refresh the book list
       //res.redirect('/book-list');
 
-      res.send({ success: true, msg: "Successfully Added New Book" });
+      res.json({ success: true, msg: "Successfully Added New Incident" });
     }
   });
 };

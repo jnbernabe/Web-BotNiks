@@ -3,6 +3,7 @@ import { RestDataSource } from './rest.datasource';
 import { Incident } from './incident.model';
 import { TestIncident } from './test-incident.model';
 import { StaticDataSource } from './static.datasource';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class IncidentRepository {
@@ -38,8 +39,8 @@ export class IncidentRepository {
     return this.incidents.find((i) => i.incidentID === id)!;
   }
 
-  addIncident(obj: Incident): void {
-    this.incidents.push(obj);
+  saveIncident(incident: Incident): Observable<Incident> {
+    return this.dataSource.saveIncident(incident);
   }
 
   deleteIncident(deletedIncidentID: string): void

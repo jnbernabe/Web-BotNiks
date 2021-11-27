@@ -23,10 +23,11 @@ let isEdit = false;
 let id = '';
 let prio = Priority[2];
 let stat = Status[1];
-let fName = '';
-let lName = '';
-let email = '';
-let phone = '';
+let customerName = '';
+// let fName = '';
+// let lName = '';
+// let email = '';
+// let phone = '';
 let desc = '';
 let narrative = '';
 let editedObj: any;
@@ -61,10 +62,7 @@ export class CreateIncidentComponent implements OnInit {
     incidentNumber: new FormControl(id),
     incidentPriority: new FormControl(prio),
     incidentStatus: new FormControl(stat),
-    customerFName: new FormControl(fName),
-    customerLName: new FormControl(lName),
-    customerEmail: new FormControl(email),
-    customerPhone: new FormControl(phone),
+    customerName: new FormControl(customerName),
     incidentDescription: new FormControl(desc),
     incidentNarrative: new FormControl(narrative),
   });
@@ -79,32 +77,32 @@ export class CreateIncidentComponent implements OnInit {
       d.getHours().toString() +
       d.getMinutes().toString() +
       d.getSeconds().toString();
-    console.log(dateNumber);
     return dateNumber;
   }
   //creates an incident using values provided in the form
   createIncident(): void {
-    let customer = new Customer(
-      this.incidentForm?.get('customerFName')?.value,
-      this.incidentForm?.get('customerLName')?.value,
-      this.incidentForm?.get('customerEmail')?.value,
-      this.incidentForm?.get('customerPhone')?.value
-    );
-
-    let user = this.testclass.User1;
-
-    let dateCreated = this.testclass.Date1;
+    let date = new Date();
+    let currentDate =
+      date.getMonth().toString() +
+      '-' +
+      date.getUTCDay().toString() +
+      '-' +
+      date.getFullYear().toString();
 
     let obj = new Incident(
-      this.incidentForm?.get('incidentNumber')?.value,
+      this.incidentId,
       this.incidentForm?.get('incidentPriority')?.value,
       this.incidentForm?.get('incidentStatus')?.value,
-      user,
-      dateCreated,
+      'User',
+      currentDate,
       this.incidentForm?.get('incidentDescription')?.value,
       this.incidentForm?.get('incidentNarrative')?.value,
-      customer
+      this.incidentForm?.get('customerName')?.value
     );
+
+    this.data.saveIncident(obj).subscribe((obj) => {
+      //reset form;
+    });
     this.incident = obj;
   }
 
@@ -120,12 +118,15 @@ export class CreateIncidentComponent implements OnInit {
         .get('incidentPriority')
         ?.setValue(editedObj['priority']);
       this.incidentForm?.get('incidentStatus')?.setValue(editedObj['status']);
-      this.incidentForm?.get('customerFName')?.setValue(editedObj['firstName']);
-      this.incidentForm?.get('customerLName')?.setValue(editedObj['lastName']);
-      this.incidentForm?.get('customerEmail')?.setValue(editedObj['email']);
       this.incidentForm
-        ?.get('customerPhone')
-        ?.setValue(editedObj['phoneNumber']);
+        .get('incidentCustomerName')
+        ?.setValue(editedObj['customerName']);
+      // this.incidentForm?.get('customerFName')?.setValue(editedObj['firstName']);
+      // this.incidentForm?.get('customerLName')?.setValue(editedObj['lastName']);
+      // this.incidentForm?.get('customerEmail')?.setValue(editedObj['email']);
+      // this.incidentForm
+      //   ?.get('customerPhone')
+      //   ?.setValue(editedObj['phoneNumber']);
       this.incidentForm
         ?.get('incidentDescription')
         ?.setValue(editedObj['description']);
@@ -135,23 +136,24 @@ export class CreateIncidentComponent implements OnInit {
     } else {
       this.incidentForm.get('incidentNumber')?.setValue(id);
       this.incidentForm.get('incidentPriority')?.setValue(prio);
-      this.incidentForm?.get('incidentStatus')?.setValue(stat);
-      this.incidentForm?.get('customerFName')?.setValue(fName);
-      this.incidentForm?.get('customerLName')?.setValue(lName);
-      this.incidentForm?.get('customerEmail')?.setValue(email);
-      this.incidentForm?.get('customerPhone')?.setValue(phone);
+      this.incidentForm.get('incidentStatus')?.setValue(stat);
+      this.incidentForm.get('incidentCustomerName')?.setValue(customerName);
+      // this.incidentForm?.get('customerFName')?.setValue(fName);
+      // this.incidentForm?.get('customerLName')?.setValue(lName);
+      // this.incidentForm?.get('customerEmail')?.setValue(email);
+      // this.incidentForm?.get('customerPhone')?.setValue(phone);
       this.incidentForm?.get('incidentDescription')?.setValue(desc);
       this.incidentForm?.get('incidentNarrative')?.setValue(narrative);
     }
   }
   routeSub!: Subscription;
 
-  addIncident2() {
-    this.incidentservice.postIncident(this.incident).subscribe((data) => {
-      console.log(data);
-      this.incidentservice.getIncidents();
-    });
-  }
+  // addIncident2() {
+  //   this.incidentservice.postIncident(this.incident).subscribe((data) => {
+  //     console.log(data);
+  //     this.incidentservice.getIncidents();
+  //   });
+  // }
 
   constructor(
     public counter: IncidentNumberGenerator,
@@ -164,6 +166,7 @@ export class CreateIncidentComponent implements OnInit {
   ngOnInit(): void {
     this.data.waitForData().then((result) => {
       this.routeSub = this.route.params.subscribe((params) => {
+        console.log(this.data);
         if (params['id'] != null) {
           console.log('This is from NgOnInit (the route id)', params['id']);
           editedObj = this.data.getIncident(params['id']);

@@ -42,6 +42,17 @@ export class RestDataSource {
     return this.http.get<any[]>(this.baseUrl + 'incident/:id');
   }
 
+  saveIncident(incident: Incident): Observable<Incident> {
+    const obj = JSON.stringify(incident);
+    console.log(obj);
+    return this.http.post<Incident>(
+      this.baseUrl + 'incident/add',
+      obj,
+      this.httpOptions
+    );
+  }
+
+  /* authenticate(user: User): Observable<any> {
   deleteIncident(id: string): Observable<Incident>
   {
     //this.loadToken();

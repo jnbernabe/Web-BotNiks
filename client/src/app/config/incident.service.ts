@@ -22,6 +22,7 @@ export class IncidentService {
         'Origin, X-Requested-With, Content-Type, Accept',
     }),
   };
+
   constructor(private http: HttpClient) {
     this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
   }

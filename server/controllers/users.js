@@ -122,6 +122,38 @@ module.exports.performDelete = (req, res, next) => {
 };
 
 module.exports.processLoginPage = async (req, res, next) => {
+  // passport.authenticate("local", (err, user, info) => {
+  //   // server err?
+  //   if (err) {
+  //     console.log(err);
+  //     return next(err);
+  //   }
+  //   // is there a user login error?
+  //   if (!user) {
+  //     console.log("empty user");
+  //     return;
+  //   }
+  //   req.login(user, (err) => {
+  //     // server error?
+  //     if (err) {
+  //       return next(err);
+  //     }
+
+  //     const payload = {
+  //       email: user.email,
+  //       displayName: user.displayName,
+  //       userID: user.userID,
+  //     };
+
+  //     const authToken = jwt.sign(payload, DB.Secret, {
+  //       expiresIn: 604800, // 1 week
+  //     });
+  //     console.log(authToken);
+  //     return res.json(authToken);
+
+  //     //return res.redirect('/book-list');
+  //   });
+  // })(req, res, next);
   const { email, password } = req.body;
   console.log(email, password);
   const user = await User.findOne({ email: email });
@@ -156,7 +188,7 @@ module.exports.processRegisterPage = async (req, res, next) => {
     userID: req.body.userID,
     userType: req.body.userType,
   });
-  // User.create(newUser, req.body.password, (err) => {
+  // User.register(newUser, req.body.password, (err) => {
   //   if (err) {
   //     console.log("Error: Inserting New User");
   //     if (err.name == "UserExistsError") {

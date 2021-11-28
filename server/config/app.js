@@ -1,3 +1,6 @@
+//Jamaal Bernabe
+//11/11/2021
+
 // installed 3rd party packages
 let createError = require("http-errors");
 let express = require("express");
@@ -89,6 +92,24 @@ app.use(passport.session());
 
 // implement a User Authentication Strategy
 passport.use(User.createStrategy());
+
+let local = passport.use(
+  new localStrategy(function (email, password, done) {
+    console.log(email);
+    User.findOne({ email: email }, function (err, user) {
+      if (err) {
+        return done(err);
+      }
+      if (!user) {
+        return done(null, false, { message: "Incorrect Email." });
+      }
+      if (!user.validPassword(password)) {
+        return done(null, false, { message: "Incorrect password." });
+      }
+      return done(null, user);
+    });
+  })
+);
 
 // // serialize and deserialize the User info
 passport.serializeUser(User.serializeUser());

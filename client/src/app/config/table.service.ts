@@ -21,7 +21,8 @@ export class TableService {
     }),
   };
   constructor(private http: HttpClient) {
-    this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
+    //this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
+    this.baseUrl = `https://web-botniks-incident.herokuapp.com/`;
   }
 
   getCustomers(): Observable<Customer[]> {

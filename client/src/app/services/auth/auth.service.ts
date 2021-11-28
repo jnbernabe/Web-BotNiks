@@ -35,7 +35,8 @@ export class AuthService {
   };
 
   constructor(private router: Router, private http: HttpClient) {
-    this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
+    //this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
+    this.baseUrl = `https://web-botniks-incident.herokuapp.com/`;
   }
 
   setToken(token: string): void {
@@ -64,11 +65,14 @@ export class AuthService {
 
   login(email: any, password: any) {
     return this.http
-      .post<User>(this.baseUrl + 'user/login', { email, password })
+      .post<User>(this.baseUrl + 'user/login', {
+        email: email,
+        password: password,
+      })
       .subscribe((res) => {
         console.log(res);
         this.setLocalStorage(res);
-        this.router.navigateByUrl('table');
+        //this.router.navigateByUrl('table');
       });
   }
 

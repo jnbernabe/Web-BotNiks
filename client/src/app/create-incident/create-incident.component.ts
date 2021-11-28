@@ -24,10 +24,6 @@ let id = '';
 let prio = Priority[2];
 let stat = Status[1];
 let customerName = '';
-// let fName = '';
-// let lName = '';
-// let email = '';
-// let phone = '';
 let desc = '';
 let narrative = '';
 let editedObj: any;
@@ -39,7 +35,7 @@ let editedObj: any;
 })
 export class CreateIncidentComponent implements OnInit {
   incidentId = this.createTicketNumber();
-  editMode = isEdit;
+  editMode!: Boolean;
   incident!: Incident;
   anotherIncident?: Incident[];
   test!: IncidentRepository;
@@ -97,20 +93,60 @@ export class CreateIncidentComponent implements OnInit {
       currentDate,
       this.incidentForm?.get('incidentDescription')?.value,
       this.incidentForm?.get('incidentNarrative')?.value,
+      'Placeholder Resolution',
       this.incidentForm?.get('customerName')?.value
     );
 
-    this.data.saveIncident(obj).subscribe((obj) => {
-      //reset form;
-    });
-    this.incident = obj;
+    if (this.editMode) {
+      // let date = new Date();
+      // let currentDate =
+      //   date.getMonth().toString() +
+      //   '-' +
+      //   date.getUTCDay().toString() +
+      //   '-' +
+      //   date.getFullYear().toString();
+
+      // let obj = new Incident(
+      //   this.incidentId,
+      //   this.incidentForm?.get('incidentPriority')?.value,
+      //   this.incidentForm?.get('incidentStatus')?.value,
+      //   'User',
+      //   currentDate,
+      //   this.incidentForm?.get('incidentDescription')?.value,
+      //   this.incidentForm?.get('incidentNarrative')?.value,
+      //   this.incidentForm?.get('customerName')?.value
+      // );
+      console.log('Sending for update' + JSON.stringify(obj));
+      this.data.updateIncident(obj);
+    } else {
+      // let date = new Date();
+      // let currentDate =
+      //   date.getMonth().toString() +
+      //   '-' +
+      //   date.getUTCDay().toString() +
+      //   '-' +
+      //   date.getFullYear().toString();
+
+      // let obj = new Incident(
+      //   this.incidentId,
+      //   this.incidentForm?.get('incidentPriority')?.value,
+      //   this.incidentForm?.get('incidentStatus')?.value,
+      //   'User',
+      //   currentDate,
+      //   this.incidentForm?.get('incidentDescription')?.value,
+      //   this.incidentForm?.get('incidentNarrative')?.value,
+      //   this.incidentForm?.get('customerName')?.value
+      //);
+
+      this.data.saveIncident(obj).subscribe((obj) => {
+        //reset form;
+      });
+    }
   }
 
   //populates form if object exists
   public initForm() {
-    console.log('initForm is being called');
-    console.log(this.data['incidents'].length);
-    if (isEdit == true) {
+    if (this.editMode == true) {
       this.incidentForm
         .get('incidentNumber')
         ?.setValue(editedObj['incidentID']);
@@ -163,7 +199,10 @@ export class CreateIncidentComponent implements OnInit {
           console.log(editedObj);
           console.log(editedObj['incidentID']);
           if (editedObj !== null) {
-            isEdit = true;
+            this.editMode = true;
+            this.incidentId = params['id'];
+          } else {
+            this.editMode = false;
           }
         }
         this.initForm();

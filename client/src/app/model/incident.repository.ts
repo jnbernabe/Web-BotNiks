@@ -43,10 +43,22 @@ export class IncidentRepository {
     return this.dataSource.saveIncident(incident);
   }
 
-  deleteIncident(deletedIncidentID: string): void
-  {
-    this.dataSource.deleteIncident(deletedIncidentID).subscribe(incident => {
-      this.incidents.splice(this.incidents.findIndex(i => i.incidentID == deletedIncidentID), 1);
+  updateIncident(updatedIncident: Incident): void {
+    this.dataSource.updateIncident(updatedIncident).subscribe((incident) => {
+      this.incidents.splice(
+        this.incidents.findIndex((i) => i.incidentID === incident.incidentID),
+        1,
+        updatedIncident
+      );
+    });
+  }
+
+  deleteIncident(deletedIncidentID: string): void {
+    this.dataSource.deleteIncident(deletedIncidentID).subscribe((incident) => {
+      this.incidents.splice(
+        this.incidents.findIndex((i) => i.incidentID == deletedIncidentID),
+        1
+      );
     });
   }
 
@@ -70,5 +82,3 @@ export class IncidentRepository {
     });
   }
 }
-
-

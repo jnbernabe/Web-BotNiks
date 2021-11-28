@@ -34,6 +34,7 @@ export class StaticDataSource {
       '11-11-2021',
       'Short Description 1',
       'Narrative 1',
+      'Default Resolution',
       'Perry Cox'
     ),
     new Incident(
@@ -44,6 +45,7 @@ export class StaticDataSource {
       '11-11-2021',
       'Short Description 2',
       'Narrative 2',
+      'Default Resolution',
       'Perry Cox'
     ),
     new Incident(
@@ -54,6 +56,7 @@ export class StaticDataSource {
       '11-11-2021',
       'Short Description 3',
       'Narrative 3',
+      'Default Resolution',
       'Perry Cox'
     ),
     new Incident(
@@ -64,6 +67,7 @@ export class StaticDataSource {
       '11-11-2021',
       'Short Description 4',
       'Narrative 4',
+      'Default Resolution',
       'Perry Cox'
     ),
     new Incident(
@@ -74,6 +78,7 @@ export class StaticDataSource {
       '11-11-2021',
       'Short Description 5',
       'Narrative 5',
+      'Default Resolution',
       'Perry Cox'
     ),
     new Incident(
@@ -84,6 +89,7 @@ export class StaticDataSource {
       '11-11-2021',
       'Short Description 6',
       'Narrative 6',
+      'Default Resolution',
       'Perry Cox'
     ),
     new Incident(
@@ -94,6 +100,7 @@ export class StaticDataSource {
       '11-11-2021',
       'Short Description 7',
       'Narrative 7',
+      'Default Resolution',
       'Perry Cox'
     ),
     new Incident(
@@ -104,6 +111,7 @@ export class StaticDataSource {
       '11-11-2021',
       'Short Description 8',
       'Narrative 8',
+      'Default Resolution',
       'Perry Cox'
     ),
     new Incident(
@@ -114,6 +122,7 @@ export class StaticDataSource {
       '11-11-2021',
       'Short Description 9',
       'Narrative 9',
+      'Default Resolution',
       'Perry Cox'
     ),
     new Incident(
@@ -124,6 +133,7 @@ export class StaticDataSource {
       '11-11-2021',
       'Short Description 10',
       'Narrative 10',
+      'Default Resolution',
       'Perry Cox'
     ),
   ];

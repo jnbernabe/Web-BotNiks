@@ -52,6 +52,16 @@ export class RestDataSource {
     );
   }
 
+  updateIncident(incident: Incident): Observable<Incident> {
+    //const obj = JSON.stringify(incident);
+    console.log(incident);
+    return this.http.post<Incident>(
+      `${this.baseUrl}incident/edit/${incident.incidentID}`,
+      incident,
+      this.httpOptions
+    );
+  }
+
   deleteIncident(id: string): Observable<Incident> {
     //this.loadToken();
 

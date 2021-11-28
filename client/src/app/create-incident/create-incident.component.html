@@ -16,31 +16,60 @@
     For some Reason, there is no default choice for priority select
 -->
 
-<form [formGroup]="incidentForm" (ngSubmit)="createIncident(); incidentForm.reset()">
+<form
+  [formGroup]="incidentForm"
+  (ngSubmit)="createIncident(); incidentForm.reset()"
+>
   <div class="form-group">
     <label for="recordNumber">Ticket Number:</label>
-    <input type="text" formControlName="incidentNumber" class="form-control" id="recordNumber" value="{{ incidentId }}"
-      placeholder="{{ incidentId }}" readonly />
+    <input
+      type="text"
+      formControlName="incidentNumber"
+      class="form-control"
+      id="recordNumber"
+      value="{{ incidentId }}"
+      placeholder="{{ incidentId }}"
+      readonly
+    />
 
     <label for="incidentPriority">Priority</label>
-    <select formControlName="incidentPriority" class="form-control" id="incidentPriority" required>
+    <select
+      formControlName="incidentPriority"
+      class="form-control"
+      id="incidentPriority"
+      required
+    >
       <option *ngFor="let prioSelect of priorities()" value="{{ prioSelect }}">
         {{ prioSelect }}
       </option>
     </select>
 
     <label for="incidentStatus">Status</label>
-    <select formControlName="incidentStatus" class="form-control" id="incidentStatus">
-      <option *ngFor="let statusSelect of statuses()" value="{{ statusSelect }}">
+    <select
+      formControlName="incidentStatus"
+      class="form-control"
+      id="incidentStatus"
+    >
+      <option
+        *ngFor="let statusSelect of statuses()"
+        value="{{ statusSelect }}"
+      >
         {{ statusSelect }}
       </option>
     </select>
 
     <label for="customerName">Customer Name</label>
-    <input formControlName="customerName" type="text" class="form-control" id="customerName" name="customerName"
-      placeholder="Customer Name" required />
+    <input
+      formControlName="customerName"
+      type="text"
+      class="form-control"
+      id="customerName"
+      name="customerName"
+      placeholder="Customer Name"
+      required
+    />
 
-    <!-- 
+    <!--
     <label for="customerLName">Last Name</label>
     <input formControlName="customerLName" type="text" class="form-control" id="customerLName" name="customerLName"
       placeholder="Last Name" required /> -->
@@ -54,31 +83,51 @@
       placeholder="Phone Number" required /> -->
 
     <label for="incidentDescription">Description</label>
-    <textarea formControlName="incidentDescription" class="form-control" id="incidentDescription"
-      name="incidentDescription" rows="3" required></textarea>
+    <textarea
+      formControlName="incidentDescription"
+      class="form-control"
+      id="incidentDescription"
+      name="incidentDescription"
+      rows="3"
+      required
+    ></textarea>
 
     <div *ngIf="editMode; else elseBlock">
       <label for="incidentNarrative">Incident Narrative</label>
-      <textarea formControlName="incidentNarrative" class="form-control" id="incidentNarrative" name="incidentNarrative"
-        rows="4">
+      <textarea
+        formControlName="incidentNarrative"
+        class="form-control"
+        id="incidentNarrative"
+        name="incidentNarrative"
+        rows="4"
+      >
       </textarea>
     </div>
 
     <ng-template #elseBlock>
       <label for="incidentNarrative">Incident Narrative</label>
-      <textarea formControlName="incidentNarrative" class="form-control" id="incidentNarrative" name="incidentNarrative"
-        rows="4" readonly>
+      <textarea
+        formControlName="incidentNarrative"
+        class="form-control"
+        id="incidentNarrative"
+        name="incidentNarrative"
+        rows="4"
+        readonly
+      >
       </textarea>
     </ng-template>
 
-    <button type="submit" class="btn btn-primary" [disabled]="!incidentForm.valid">
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="!incidentForm.valid"
+    >
       Create Incident
     </button>
-    <br>
-    <br>
+    <br />
+    <br />
     <button type="button" (click)="this.initForm()">Reset</button>
 
     <button type="button" routerLink="/">Cancel</button>
-
   </div>
 </form>

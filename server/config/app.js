@@ -102,6 +102,7 @@ let strategy = new JWTStrategy(jwtOptions, (jwt_payload, done) => {
   User.findOne({
     email: { $eq: jwt_payload.email }
       .then((user) => {
+        console.log(user);
         return done(null, user);
       })
       .catch((err) => {

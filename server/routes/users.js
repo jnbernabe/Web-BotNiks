@@ -54,7 +54,7 @@ router.post(
 
 /* GET to perform  Deletion - DELETE Operation */
 router.get(
-  "/user/delete/:id",
+  "/delete/:id",
   passport.authenticate("jwt", { session: false }),
   userController.performDelete
 );

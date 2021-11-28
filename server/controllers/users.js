@@ -122,21 +122,14 @@ module.exports.performDelete = (req, res, next) => {
 };
 
 module.exports.processLoginPage = async (req, res, next) => {
-  // const errorsAfterValidation = validationResult(req);
-  // if (!errorsAfterValidation.isEmpty()) {
-  //   return res.status(400).json({
-  //     code: 400,
-  //     errors: errorsAfterValidation.mapped(),
-  //   });
-  // }
   const { email, password } = req.body;
   console.log(email, password);
   const user = await User.findOne({ email: email });
   if (email == user.email) {
     console.log(user);
-    if (password !== user.password) {
+    if (password == user.password) {
       // Sign token
-      const token = jwt.sign({ email }, DB.Secret, {
+      const token = jwt.sign({ email, password }, DB.Secret, {
         expiresIn: 1000000,
       });
       res.status(200);
@@ -154,7 +147,7 @@ module.exports.processLoginPage = async (req, res, next) => {
 module.exports.processRegisterPage = async (req, res, next) => {
   // instantiate a user object
   let newUser = new User({
-    //password: req.body.password
+    password: req.body.password,
     username: req.body.username,
     email: req.body.email,
     displayName: req.body.displayName,
@@ -163,10 +156,33 @@ module.exports.processRegisterPage = async (req, res, next) => {
     userID: req.body.userID,
     userType: req.body.userType,
   });
+  // User.create(newUser, req.body.password, (err) => {
+  //   if (err) {
+  //     console.log("Error: Inserting New User");
+  //     if (err.name == "UserExistsError") {
+  //       req.flash(
+  //         "registerMessage",
+  //         "Registration Error: User Already Exists!"
+  //       );
+  //       console.log("Error: User Already Exists!");
+  //     }
+  //     return res.render("auth/register", {
+  //       title: "Register",
+  //       messages: req.flash("registerMessage"),
+  //       username: req.user ? req.user.username : "",
+  //     });
+  //   } else {
+  //     return passport.authenticate("local")(req, res, () => {
+  //       res.redirect("/");
+  //     });
+  //   }
+  // });
 
   let user = await User.findOne({ email: req.body.email });
   if (user) {
-    return res.status(400).send("That user already exisits!");
+    console.log(user);
+    console.log("That user already exisits!");
+    return res.status(400);
   }
   //Insert the new user if they do not exist yet
   await newUser.save();

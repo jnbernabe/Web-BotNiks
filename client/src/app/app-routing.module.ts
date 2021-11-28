@@ -11,7 +11,10 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, data: { title: 'Home' } },
   { path: 'login', component: LoginComponent, data: { title: 'Login' } },
   //{ path:'',redirectTo:'/login', pathMatch:'full'},
-  { path: 'admin', loadChildren:()=> import('./modules/admin/admin.module').then((m) =>m.AdminModule)
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import('./modules/admin/admin.module').then((m) => m.AdminModule),
   },
   {
     path: 'register',
@@ -26,16 +29,15 @@ const routes: Routes = [
   },
   {
     path: 'create-incident',
-    canActivate:[AuthGuard],
+    //canActivate: [AuthGuard],
     component: CreateIncidentComponent,
     data: { title: 'Create Incident' },
-   
   },
   {
     path: 'create-incident/:id',
     component: CreateIncidentComponent,
     data: { title: 'Create Incident' },
-    canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
   },
 
   { path: '', redirectTo: '/home', pathMatch: 'full' },

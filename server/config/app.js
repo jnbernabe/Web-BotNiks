@@ -1,3 +1,6 @@
+//Jamaal Bernabe
+//11/11/2021
+
 // installed 3rd party packages
 let createError = require("http-errors");
 let express = require("express");
@@ -76,10 +79,13 @@ app.use(
 // initialize flash
 app.use(flash());
 
-app.use("/", indexRouter);
-app.use("/user", userRouter);
-app.use("/incident", incidentRouter);
-app.use("/customer", CustomerRouter);
+app.use("/api", indexRouter);
+app.use("/api/user", userRouter);
+app.use("/api/incident", incidentRouter);
+app.use("/api/customer", CustomerRouter);
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../../public/index.html"));
+});
 
 // // initialize passport
 app.use(passport.initialize());
@@ -89,6 +95,24 @@ app.use(passport.session());
 
 // implement a User Authentication Strategy
 passport.use(User.createStrategy());
+
+let local = passport.use(
+  new localStrategy(function (email, password, done) {
+    console.log(email);
+    User.findOne({ email: email }, function (err, user) {
+      if (err) {
+        return done(err);
+      }
+      if (!user) {
+        return done(null, false, { message: "Incorrect Email." });
+      }
+      if (!user.validPassword(password)) {
+        return done(null, false, { message: "Incorrect password." });
+      }
+      return done(null, user);
+    });
+  })
+);
 
 // // serialize and deserialize the User info
 passport.serializeUser(User.serializeUser());
@@ -102,6 +126,7 @@ let strategy = new JWTStrategy(jwtOptions, (jwt_payload, done) => {
   User.findOne({
     email: { $eq: jwt_payload.email }
       .then((user) => {
+        console.log(user);
         return done(null, user);
       })
       .catch((err) => {

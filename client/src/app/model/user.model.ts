@@ -1,3 +1,8 @@
+/*
+Created by: Jamaal
+User Model for authentication
+
+ */
 import { Guid } from 'guid-typescript';
 export class User {
   public userID: string;

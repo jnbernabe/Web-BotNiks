@@ -1,3 +1,5 @@
+//Created by: Jamal
+//Customer Model
 import { Guid } from 'guid-typescript';
 
 export class Customer {

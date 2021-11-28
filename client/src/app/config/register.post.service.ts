@@ -23,7 +23,8 @@ export class RegisterPostService {
   };
 
   constructor(private http: HttpClient, auth: AuthService) {
-    this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
+    //this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
+    this.baseUrl = `https://web-botniks-incident.herokuapp.com/`;
   }
 
   getUsers(): Observable<User[]> {

@@ -1,7 +1,11 @@
+/*
+Created by: Han
+Incident Repository
+
+ */
 import { Injectable } from '@angular/core';
 import { RestDataSource } from './rest.datasource';
 import { Incident } from './incident.model';
-import { TestIncident } from './test-incident.model';
 import { StaticDataSource } from './static.datasource';
 import { Observable } from 'rxjs';
 

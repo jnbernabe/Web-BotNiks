@@ -1,8 +1,12 @@
+/*
+Created by: Jamaal / Han
+Restdatasource to communicate with server side
+
+ */
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Incident } from './incident.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { TestIncident } from './test-incident.model';
 import { map } from 'rxjs/operators';
 import { User } from './user.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -31,7 +35,8 @@ export class RestDataSource {
   }*/
 
   constructor(private http: HttpClient) {
-    this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
+    //this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
+    this.baseUrl = `https://web-botniks-incident.herokuapp.com/`;
   }
 
   getIncidents(): Observable<Incident[]> {

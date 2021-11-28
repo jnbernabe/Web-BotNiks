@@ -1,3 +1,8 @@
+/*
+Created by: Jamaal
+Static Datasource for testing
+
+ */
 import { Injectable } from '@angular/core';
 import { Incident } from './incident.model';
 import { Customer } from './customer.model';

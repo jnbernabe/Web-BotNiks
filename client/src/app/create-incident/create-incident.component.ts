@@ -1,6 +1,5 @@
 /*
 By: Han Bi
-
 Form Component for creating new Incidents and Editing existing ones
 */
 
@@ -98,46 +97,8 @@ export class CreateIncidentComponent implements OnInit {
     );
 
     if (this.editMode) {
-      // let date = new Date();
-      // let currentDate =
-      //   date.getMonth().toString() +
-      //   '-' +
-      //   date.getUTCDay().toString() +
-      //   '-' +
-      //   date.getFullYear().toString();
-
-      // let obj = new Incident(
-      //   this.incidentId,
-      //   this.incidentForm?.get('incidentPriority')?.value,
-      //   this.incidentForm?.get('incidentStatus')?.value,
-      //   'User',
-      //   currentDate,
-      //   this.incidentForm?.get('incidentDescription')?.value,
-      //   this.incidentForm?.get('incidentNarrative')?.value,
-      //   this.incidentForm?.get('customerName')?.value
-      // );
-      //console.log('Sending for update' + JSON.stringify(obj));
       this.data.updateIncident(obj);
     } else {
-      // let date = new Date();
-      // let currentDate =
-      //   date.getMonth().toString() +
-      //   '-' +
-      //   date.getUTCDay().toString() +
-      //   '-' +
-      //   date.getFullYear().toString();
-
-      // let obj = new Incident(
-      //   this.incidentId,
-      //   this.incidentForm?.get('incidentPriority')?.value,
-      //   this.incidentForm?.get('incidentStatus')?.value,
-      //   'User',
-      //   currentDate,
-      //   this.incidentForm?.get('incidentDescription')?.value,
-      //   this.incidentForm?.get('incidentNarrative')?.value,
-      //   this.incidentForm?.get('customerName')?.value
-      //);
-
       this.data.saveIncident(obj).subscribe((obj) => {
         //reset form;
       });

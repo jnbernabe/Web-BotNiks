@@ -1,19 +1,6 @@
 <!--
     Created by: Han Bi
     Form for creating an incident
-    Will feature the following fields:
-    Ticket number; which is automatically generated
-    Incident Priority; choose from low medium and high
-    Incident Description; for describing the problem
-    Customer Name
-    Customer Number
-    Customer Email
-    Status: New, In-progress, Waiting for customer, Resolved
-    Incident Narrative: for describing any action; needs to be timestamped
-    ****Concerns****
-    Customer Information not linked to anything we have on file
-    They should not be given the Choice to choose Status when creating new ticket
-    For some Reason, there is no default choice for priority select
 -->
 <br>
 <div class="form_backdrop">
@@ -37,6 +24,7 @@
     <input formControlName="customerFName" type="text" class="form-control" id="customerFName" name="customerFName"
       placeholder="First Name" required />
 
+<<<<<<< Updated upstream
     <label for="customerLName">Last Name</label>
     <input formControlName="customerLName" type="text" class="form-control" id="customerLName" name="customerLName"
       placeholder="Last Name" required />
@@ -49,6 +37,8 @@
     <input formControlName="customerPhone" type="number" class="form-control" id="customerPhone" name="customerPhone"
       placeholder="Phone Number" required />
 
+=======
+>>>>>>> Stashed changes
     <label for="incidentDescription">Description</label>
     <textarea formControlName="incidentDescription" class="form-control" id="incidentDescription"
       name="incidentDescription" rows="3" required></textarea>

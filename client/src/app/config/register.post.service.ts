@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { User } from '../model/user.model';
+import { AuthService } from '../services/auth/auth.service';
 
 const PROTOCOL = 'http';
 const PORT = 3000;
@@ -21,7 +22,7 @@ export class RegisterPostService {
     }),
   };
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, auth: AuthService) {
     this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
   }
 

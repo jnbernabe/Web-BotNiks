@@ -29,8 +29,8 @@ export class LoginComponent extends BasePageComponent implements OnInit {
   override ngOnInit(): void {}
 
   onSubmit() {
-    const { email } = this.loginForm.value.email.toString();
-    const { password } = this.loginForm.value.password.toString();
+    const email = this.loginForm.value.email.toString();
+    const password = this.loginForm.value.password.toString();
 
     this.auth.login(email, password);
   }

@@ -26,7 +26,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private registerForm: FormBuilder,
-    private newUser: RegisterPostService
+    private newUser: RegisterPostService,
+    private auth: AuthService
   ) {}
 
   ngOnInit() {
@@ -58,8 +59,7 @@ export class RegisterComponent implements OnInit {
   }
   addUser() {
     this.newUser.registerUser(this.userProfile).subscribe((data) => {
-      console.log(data);
-      this.getUser();
+      this.auth.setLocalStorage(data);
     });
   }
 

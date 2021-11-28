@@ -66,10 +66,11 @@ export class RegisterComponent implements OnInit {
   createUser() {
     this.userProfile = new User(
       this.userForm.value.username,
-      this.userForm.value.lastName,
       this.userForm.value.email,
-      this.userForm.value.firstName,
       this.userForm.value.displayName,
+      this.userForm.value.firstName,
+      this.userForm.value.lastName,
+
       this.userForm.value.userType,
       this.userForm.value.Password
     );

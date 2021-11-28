@@ -25,7 +25,7 @@ const routes: Routes = [
     path: 'table',
     component: TableComponent,
     data: { title: 'Incidents' },
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'create-incident',

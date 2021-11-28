@@ -78,8 +78,8 @@ let User = mongoose.Schema(
 
 //configure options for users
 
-// let options = { missingPasswordError: "Wrong / Missing Password" };
+let options = { missingPasswordError: "Wrong / Missing Password" };
 
-// User.plugin(passportLocalMongoose, options);
+User.plugin(passportLocalMongoose, options);
 
-module.exports = mongoose.model("User", User);
+module.exports.User = mongoose.model("User", User);

@@ -22,9 +22,9 @@
           <a class="nav-link active" aria-current="page" href="/home">Home</a>
         </li>
 
-        <li *ngIf="isLoggedIn()" class="nav-item">
+        <!-- <li *ngIf="isLoggedIn()" class="nav-item">
           <a class="nav-link" href="/home">Admin</a>
-        </li>
+        </li> -->
 
         <li class="nav-item">
           <a class="nav-link" href="/create-incident" tabindex="-1"
@@ -36,11 +36,7 @@
         </li>
 
         <li *ngIf="isLoggedIn()" class="nav-item">
-          <a
-            (click)="logout()"
-            routerlink="/logout"
-            class="nav-link"
-            tabindex="-1"
+          <a (click)="logout()" href="/home" class="nav-link" tabindex="-1"
             >Logout</a
           >
         </li>

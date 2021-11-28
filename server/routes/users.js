@@ -25,19 +25,39 @@ function requireAuth(req, res, next) {
 router.get("/", userController.displayUser);
 
 /* GET Route for displaying the Add page - CREATE Operation */
-router.get("/add", userController.displayAddPage);
+router.get(
+  "/add",
+  passport.authenticate("jwt", { session: false }),
+  userController.displayAddPage
+);
 
 /* POST Route for processing the Add page - CREATE Operation */
-router.post("/add", userController.processAddPage);
+router.post(
+  "/add",
+  passport.authenticate("jwt", { session: false }),
+  userController.processAddPage
+);
 
 /* GET Route for displaying the Edit page - UPDATE Operation */
-router.get("/edit/:id", userController.displayEditPage);
+router.get(
+  "/edit/:id",
+  passport.authenticate("jwt", { session: false }),
+  userController.displayEditPage
+);
 
 /* POST Route for processing the Edit page - UPDATE Operation */
-router.post("/edit/:id", userController.processEditPage);
+router.post(
+  "/edit/:id",
+  passport.authenticate("jwt", { session: false }),
+  userController.processEditPage
+);
 
 /* GET to perform  Deletion - DELETE Operation */
-router.get("/user/delete/:id", userController.performDelete);
+router.get(
+  "/user/delete/:id",
+  passport.authenticate("jwt", { session: false }),
+  userController.performDelete
+);
 
 router.post("/login", userController.processLoginPage);
 
@@ -45,6 +65,10 @@ router.post("/login", userController.processLoginPage);
 router.post("/register", userController.processRegisterPage);
 
 /* GET to perform UserLogout */
-router.get("/logout", userController.performLogout);
+router.get(
+  "/logout",
+  passport.authenticate("jwt", { session: false }),
+  userController.performLogout
+);
 
 module.exports = router;

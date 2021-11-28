@@ -1,5 +1,8 @@
 /*Nandini Hariprasad
 11/14/2021
+
+Jamaal Bernabe
+11/28/2021
 */
 
 let express = require("express");
@@ -7,40 +10,17 @@ let router = express.Router();
 let mongoose = require("mongoose");
 let passport = require("passport");
 let jwt = require("jsonwebtoken");
+let DB = require("../config/db");
 
 // create a reference to the model
-let User = require("../model/users");
+let Model = require("../model/users");
+let User = Model.User;
 
 module.exports.displayUser = (req, res, next) => {
   User.find((err, userList) => {
     if (err) {
       return console.error(err);
     } else {
-      // passport.authenticate("local", (err, user, info) => {
-      //   // server err?
-      //   if (err) {
-      //     return next(err);
-      //   }
-      //   // is there a user login error?
-      //   if (!user) {
-      //     req.flash("loginMessage", "Authentication Error");
-      //     return res.redirect("/login");
-      //   }
-      //   req.login(user, (err) => {
-      //     // server error?
-      //     if (err) {
-      //       return next(err);
-      //     }
-
-      //     const payload = {
-      //       email: user.email,
-      //       password: user.password,
-      //     };
-
-      //     const authToken = jwt.sign(payload, DB.Secret, {
-      //       expiresIn: 604800, // 1 week
-      //     });
-
       res.json(userList);
     }
   });
@@ -141,48 +121,37 @@ module.exports.performDelete = (req, res, next) => {
   });
 };
 
-module.exports.processLoginPage = (req, res, next) => {
-  passport.authenticate("local", (err, user, info) => {
-    // server err?
-    if (err) {
-      return next(err);
-    }
-    // is there a user login error?
-    if (!user) {
-      req.flash("loginMessage", "Authentication Error");
-      return res.redirect("/login");
-    }
-    req.login(user, (err) => {
-      // server error?
-      if (err) {
-        return next(err);
-      }
-
-      const payload = {
-        email: req.body.email,
-        password: req.body.password,
-      };
-
-      const authToken = jwt.sign(payload, DB.Secret, {
-        expiresIn: 604800, // 1 week
+module.exports.processLoginPage = async (req, res, next) => {
+  // const errorsAfterValidation = validationResult(req);
+  // if (!errorsAfterValidation.isEmpty()) {
+  //   return res.status(400).json({
+  //     code: 400,
+  //     errors: errorsAfterValidation.mapped(),
+  //   });
+  // }
+  const { email, password } = req.body;
+  console.log(email, password);
+  const user = await User.findOne({ email: email });
+  if (email == user.email) {
+    console.log(user);
+    if (password !== user.password) {
+      // Sign token
+      const token = jwt.sign({ email }, DB.Secret, {
+        expiresIn: 1000000,
       });
-
-      return res.json({
-        success: true,
-        msg: "User Logged in Successfully!",
-        user: {
-          id: user.userID,
-          displayName: user.displayName,
-          username: user.username,
-          email: user.email,
-        },
-        token: authToken,
-      });
-    });
-  })(req, res, next);
+      res.status(200);
+      return res.json(token);
+    } else {
+      console.log("Wrong Password");
+      res.status(403);
+    }
+  } else {
+    console.log("No User Found");
+    res.status(403);
+  }
 };
 
-module.exports.processRegisterPage = (req, res, next) => {
+module.exports.processRegisterPage = async (req, res, next) => {
   // instantiate a user object
   let newUser = new User({
     //password: req.body.password
@@ -195,38 +164,22 @@ module.exports.processRegisterPage = (req, res, next) => {
     userType: req.body.userType,
   });
 
-  User.register(newUser, req.body.password, (err) => {
-    if (err) {
-      console.log("Error: Inserting New User");
-      if (err.name == "UserExistsError") {
-        req.flash(
-          "registerMessage",
-          "Registration Error: User Already Exists!"
-        );
-        console.log("Error: User Already Exists!");
-      }
-      return res.render("auth/register", {
-        title: "Register",
-        messages: req.flash("registerMessage"),
-        displayName: req.user ? req.user.displayName : "",
-      });
-    } else {
-      // if no error exists, then registration is successful
-
-      // redirect the user and authenticate them
-
-      return res.json({
-        success: true,
-        msg: "User Registered Successfully!",
-      });
-
-      /*
-            return passport.authenticate('local')(req, res, () => {
-                res.redirect('/book-list')
-            });
-            */
-    }
+  let user = await User.findOne({ email: req.body.email });
+  if (user) {
+    return res.status(400).send("That user already exisits!");
+  }
+  //Insert the new user if they do not exist yet
+  await newUser.save();
+  const payload = {
+    email: req.body.email,
+    username: req.body.username,
+    userID: req.body.userID,
+  };
+  const authToken = jwt.sign(payload, DB.Secret, {
+    expiresIn: 604800, // 1 week
   });
+
+  res.json(authToken);
 };
 
 module.exports.performLogout = (req, res, next) => {

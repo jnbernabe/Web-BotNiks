@@ -1,6 +1,5 @@
 /*
 By: Han Bi
-
 Form Component for creating new Incidents and Editing existing ones
 */
 

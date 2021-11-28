@@ -1,3 +1,9 @@
+/*
+Created by: Jaamaal 
+Register Screen
+Last Edited: November 28, 2021
+
+ */
 import { Component, Input, OnInit } from '@angular/core';
 import { User } from '../../model/user.model';
 import {

@@ -1,3 +1,9 @@
+/*
+Created by: Hetu & Jamaal 
+Auth Service
+Last Edited: November 28, 2021
+
+ */
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';

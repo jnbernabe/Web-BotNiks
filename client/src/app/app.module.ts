@@ -1,3 +1,9 @@
+/*
+Created by: Jamaal
+Base App Module
+Last Edited: November 28, 2021
+
+ */
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 

@@ -6,8 +6,9 @@ import { User } from 'src/app/model/user.model';
 import { RegisterPostService } from '../../config/register.post.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import * as moment from 'moment';
 
-const PROTOCOL = 'https';
+const PROTOCOL = 'http';
 const PORT = 3000;
 
 @Injectable({
@@ -27,10 +28,7 @@ export class AuthService {
     }),
   };
 
-  constructor(
-    private router: Router,
-    private http: HttpClient,
-  ) {
+  constructor(private router: Router, private http: HttpClient) {
     this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
   }
 
@@ -43,35 +41,43 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    return !!localStorage.getItem('token');
+    return localStorage['id_token'];
+    //localStorage.getItem('token');
     //return this.getToken() !== null;
   }
 
+  isLoggedOut() {
+    return !this.isLoggedIn();
+  }
+
   logout() {
-    localStorage.removeItem('token');
-    this.router.navigate(['login']);
+    localStorage.removeItem('id_token');
+    localStorage.removeItem('expires_at');
+    this.router.navigate(['home']);
   }
 
-  login({ email, password }: any): Observable<any> {
-    if (email === 'admin@gmail.com' && password === 'admin123') {
-      alert("login successful");
-      this.setToken('abcdefghijklmnopqrstuvwxyz');
-      console.log(this.getToken());
-      return of({ name: 'Admin', email: 'admin@gmail.com' });
-
-    }
-    return throwError(new Error('Failed to login'));
+  login(email: any, password: any) {
+    return this.http
+      .post<User>(this.baseUrl + 'user/login', { email, password })
+      .subscribe((res) => {
+        console.log(res);
+        this.setLocalStorage(res);
+      });
   }
 
-  login2(email: string, password: string) {
-    return this.http.post<User>('/user', { email, password });
-    // this is just the HTTP call,
-    // we still need to handle the reception of the token
-  }
-  
+  setLocalStorage(authResult: any) {
+    // Takes the JWT expiresIn value and add that number of seconds
+    // to the current "moment" in time to get an expiry date
+    const expiresAt = moment().add(authResult.expiresIn, 'second');
 
-    /* login1(data): Observable<any>{
-       console.log('SERVER SIDE');
-       return this.http.post("http://localhost:3000/user",data);
-     }*/
+    // Stores our JWT token and its expiry date in localStorage
+    localStorage.setItem('id_token', authResult.idToken);
+    localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+  }
+
+  // getExpiration() {
+  //   const expiration = localStorage.getItem('expires_at');
+  //   const expiresAt = JSON.parse(expiration);
+  //   return moment(expiresAt);
+  // }
 }

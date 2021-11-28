@@ -5,7 +5,6 @@ import { Validator, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { BasePageComponent } from 'src/app/partials/basepage/basepage.component';
 import { HttpClient } from '@angular/common/http';
-import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-login',
@@ -22,28 +21,18 @@ export class LoginComponent extends BasePageComponent implements OnInit {
     route: ActivatedRoute,
     private auth: AuthService,
     private router: Router,
-    private http:HttpClient,
-    
+    private http: HttpClient
   ) {
     super(route);
   }
 
   override ngOnInit(): void {}
 
- /* onSubmit(): void {
-    if (this.loginForm.valid) {
-      this.auth.login(this.loginForm.value).subscribe(
-        (result) => {
-          console.log(result);
-          this.router.navigate(['/table']);
-        },
-        (err: Error) => {
-          alert(err.message);
-        }
-      );
-    }
-  }*/
+  onSubmit() {
+    const email = this.loginForm.value.email.toString();
+    const password = this.loginForm.value.password.toString();
 
+<<<<<<< HEAD
   onSubmit(){
       this.http.get<any>("http://localhost:3000/user").subscribe(res => {
         const user = res.find((a: any) => {
@@ -62,4 +51,8 @@ export class LoginComponent extends BasePageComponent implements OnInit {
         alert("Something Went Wrong");
       })
     }
+=======
+    this.auth.login(email, password);
+  }
+>>>>>>> 67c00af8dd438cc629bf8eeb33f9230c94354208
 }

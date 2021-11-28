@@ -26,13 +26,11 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private registerForm: FormBuilder,
-    private newUser: RegisterPostService
+    private newUser: RegisterPostService,
+    private auth: AuthService
   ) {}
 
   ngOnInit() {
-    this.editUser('Jamaal');
-    this.getUser();
-
     this.userForm = this.registerForm.group({
       username: [null, [Validators.required]],
       firstName: [null, [Validators.required]],
@@ -60,19 +58,19 @@ export class RegisterComponent implements OnInit {
     this.newUser.getUsers().subscribe((users: User[]) => console.log(users));
   }
   addUser() {
-    this.newUser.postUser(this.userProfile).subscribe((data) => {
-      console.log(data);
-      this.getUser();
+    this.newUser.registerUser(this.userProfile).subscribe((data) => {
+      this.auth.setLocalStorage(data);
     });
   }
 
   createUser() {
     this.userProfile = new User(
       this.userForm.value.username,
-      this.userForm.value.lastName,
       this.userForm.value.email,
-      this.userForm.value.firstName,
       this.userForm.value.displayName,
+      this.userForm.value.firstName,
+      this.userForm.value.lastName,
+
       this.userForm.value.userType,
       this.userForm.value.Password
     );

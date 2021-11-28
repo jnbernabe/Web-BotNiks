@@ -4,17 +4,23 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
+  constructor(private auth: AuthService) {}
 
-  constructor( private  auth: AuthService){ }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
-
-  logout():void{
+  logout(): void {
     this.auth.logout();
   }
-  isLoggedIn():void{}
+  isLoggedIn(): boolean {
+    return localStorage['id_token'];
+  }
+
+  isLoggedOut(): boolean {
+    return localStorage['id_token'];
+  }
+
+  // isLoggedOut():void{}
 }

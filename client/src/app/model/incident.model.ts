@@ -1,12 +1,4 @@
-import { Priority } from './priority.enum';
-import { User } from './user.model';
-import { Customer } from './customer.model';
-
 export class Incident {
-  public resolutionField?: string;
-  public phoneNumber?: string;
-  public dataModified?: string;
-
   constructor(
     public incidentID: string,
     public priority: string,
@@ -15,6 +7,7 @@ export class Incident {
     public dateCreated: string,
     public description: string,
     public narrative: string,
+    public resolutionField: string,
     public customerName: string
   ) {}
 

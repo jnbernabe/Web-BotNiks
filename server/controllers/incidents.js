@@ -33,7 +33,7 @@ module.exports.processAddPage = (req, res, next) => {
     userName: req.body.userName,
     description: req.body.description,
     narrative: req.body.narrative,
-    dateCreated: req.body.Date,
+    dateCreated: req.body.dateCreated,
     //dateModified: req.body.Datenow,
     resolutionField: req.body.resolutionField,
     customerName: req.body.customerName,
@@ -73,20 +73,18 @@ module.exports.displayEditPage = (req, res, next) => {
 module.exports.processEditPage = (req, res, next) => {
   let id = req.params.id;
 
-  let updatedIncident = Incident({
-    incidentID: req.body.incidentID,
+  let updatedIncident = {
+    incidentID: id,
     priority: req.body.priority,
     status: req.body.status,
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    email: req.body.email,
-    phoneNumber: req.body.phoneNumber,
+    userName: req.body.userName,
     description: req.body.description,
     narrative: req.body.narrative,
-    dateCreated: req.body.Date,
-    dateModified: req.body.Datenow,
+    dateCreated: req.body.dateCreated,
+    //dateModified: req.body.Datenow,
     resolutionField: req.body.resolutionField,
-  });
+    customerName: req.body.customerName,
+  };
 
   Incident.updateOne({ incidentID: { $eq: id } }, updatedIncident, (err) => {
     if (err) {
@@ -101,6 +99,20 @@ module.exports.processEditPage = (req, res, next) => {
     }
   });
 };
+
+//   Incident.updateOne({ incidentID: { $eq: id } }, updatedIncident, (err) => {
+//     if (err) {
+//       console.log(err);
+//       res.end(err);
+//     } else {
+//       res.send({
+//         success: true,
+//         msg: "Successfully Edited Incident",
+//         incident: updatedIncident,
+//       });
+//     }
+//   });
+// };
 
 module.exports.performDelete = (req, res, next) => {
   let id = req.params.id;

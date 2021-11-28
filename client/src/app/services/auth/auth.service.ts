@@ -42,8 +42,6 @@ export class AuthService {
 
   isLoggedIn() {
     return localStorage['id_token'];
-    //localStorage.getItem('token');
-    //return this.getToken() !== null;
   }
 
   isLoggedOut() {

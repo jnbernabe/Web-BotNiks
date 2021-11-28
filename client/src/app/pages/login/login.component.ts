@@ -28,31 +28,12 @@ export class LoginComponent extends BasePageComponent implements OnInit {
 
   override ngOnInit(): void {}
 
-  onSubmit() {
-    const email = this.loginForm.value.email.toString();
-    const password = this.loginForm.value.password.toString();
-
-<<<<<<< HEAD
-  onSubmit(){
-      this.http.get<any>("http://localhost:3000/user").subscribe(res => {
-        const user = res.find((a: any) => {
-          return a.email === this.loginForm.value.email &&
-            a.password === this.loginForm.value.password
-        });
-        if (user) {
-          alert("login Successful");
-          console.log(res);
-          this.loginForm.reset();
-          this.router.navigate(['/table']);
-        }else {
-          alert('user not found!');
-        }
-      }, err => {
-        alert("Something Went Wrong");
-      })
+  
+    onSubmit() {
+      const email = this.loginForm.value.email.toString();
+      const password = this.loginForm.value.password.toString();
+  
+      this.auth.login(email, password);
     }
-=======
-    this.auth.login(email, password);
   }
->>>>>>> 67c00af8dd438cc629bf8eeb33f9230c94354208
-}
+ 

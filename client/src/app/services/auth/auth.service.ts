@@ -59,7 +59,10 @@ export class AuthService {
   login(email: any, password: any) {
     return this.http
       .post<User>(this.baseUrl + 'user/login', { email, password })
-      .subscribe((res) => this.setLocalStorage);
+      .subscribe((res) => {
+        console.log(res);
+        this.setLocalStorage(res);
+      });
   }
 
   setLocalStorage(authResult: any) {

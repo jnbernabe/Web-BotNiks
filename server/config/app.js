@@ -79,10 +79,13 @@ app.use(
 // initialize flash
 app.use(flash());
 
-app.use("/", indexRouter);
-app.use("/user", userRouter);
-app.use("/incident", incidentRouter);
-app.use("/customer", CustomerRouter);
+app.use("/api", indexRouter);
+app.use("/api/user", userRouter);
+app.use("/api/incident", incidentRouter);
+app.use("/api/customer", CustomerRouter);
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../../public/index.html"));
+});
 
 // // initialize passport
 app.use(passport.initialize());

@@ -116,7 +116,7 @@ export class CreateIncidentComponent implements OnInit {
       //   this.incidentForm?.get('incidentNarrative')?.value,
       //   this.incidentForm?.get('customerName')?.value
       // );
-      console.log('Sending for update' + JSON.stringify(obj));
+      //console.log('Sending for update' + JSON.stringify(obj));
       this.data.updateIncident(obj);
     } else {
       // let date = new Date();
@@ -192,12 +192,12 @@ export class CreateIncidentComponent implements OnInit {
   ngOnInit(): void {
     this.data.waitForData().then((result) => {
       this.routeSub = this.route.params.subscribe((params) => {
-        console.log(this.data);
+        //console.log(this.data);
         if (params['id'] != null) {
-          console.log('This is from NgOnInit (the route id)', params['id']);
+          //console.log('This is from NgOnInit (the route id)', params['id']);
           editedObj = this.data.getIncident(params['id']);
-          console.log(editedObj);
-          console.log(editedObj['incidentID']);
+          //console.log(editedObj);
+          //console.log(editedObj['incidentID']);
           if (editedObj !== null) {
             this.editMode = true;
             this.incidentId = params['id'];

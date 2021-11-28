@@ -29,7 +29,7 @@ const routes: Routes = [
   },
   {
     path: 'create-incident',
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     component: CreateIncidentComponent,
     data: { title: 'Create Incident' },
   },
@@ -37,7 +37,7 @@ const routes: Routes = [
     path: 'create-incident/:id',
     component: CreateIncidentComponent,
     data: { title: 'Create Incident' },
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
 
   { path: '', redirectTo: '/home', pathMatch: 'full' },

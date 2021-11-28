@@ -25,21 +25,16 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
     this.data.waitForData().then((result) => {
-      console.log(JSON.stringify(this.data['incidents']));
+      //console.log(JSON.stringify(this.data['incidents']));
     });
   }
 
-  deleteIncident(id: string): void
-  {
-    if (confirm('Are you sure?') && (id !== undefined))
-    {
+  deleteIncident(id: string): void {
+    if (confirm('Are you sure?') && id !== undefined) {
       this.data.deleteIncident(id);
-    }
-    else
-    {
+    } else {
       window.location.reload(); // refresh fix
       //this.router.navigateByUrl('/admin/main/books');
     }
   }
-
 }

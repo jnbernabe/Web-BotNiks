@@ -62,6 +62,7 @@ export class AuthService {
       .subscribe((res) => {
         console.log(res);
         this.setLocalStorage(res);
+        this.router.navigateByUrl('table');
       });
   }
 

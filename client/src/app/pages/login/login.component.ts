@@ -51,10 +51,10 @@ export class LoginComponent extends BasePageComponent implements OnInit {
             a.password === this.loginForm.value.password
         });
         if (user) {
-          alert("login Succeful");
+          alert("login Successful");
           console.log(res);
           this.loginForm.reset();
-          this.router.navigate(['/admin']);
+          this.router.navigate(['/table']);
         }else {
           alert('user not found!');
         }

@@ -20,20 +20,15 @@ export class LoginComponent extends BasePageComponent implements OnInit {
   constructor(
     route: ActivatedRoute,
     private auth: AuthService,
-<<<<<<< HEAD
-    private router: Router
-=======
     private router: Router,
-    private http:HttpClient,
-    
->>>>>>> main
+    private http: HttpClient
   ) {
     super(route);
   }
 
   override ngOnInit(): void {}
 
- /* onSubmit(): void {
+  /* onSubmit(): void {
     if (this.loginForm.valid) {
       this.auth.login(this.loginForm.value).subscribe(
         (result) => {
@@ -47,22 +42,27 @@ export class LoginComponent extends BasePageComponent implements OnInit {
     }
   }*/
 
-  onSubmit(){
-      this.http.get<any>("http://localhost:3000/user").subscribe(res => {
+  onSubmit() {
+    this.http.get<any>('http://localhost:3000/user').subscribe(
+      (res) => {
         const user = res.find((a: any) => {
-          return a.email === this.loginForm.value.email &&
+          return (
+            a.email === this.loginForm.value.email &&
             a.password === this.loginForm.value.password
+          );
         });
         if (user) {
-          alert("login Succeful");
+          alert('login Succeful');
           console.log(res);
           this.loginForm.reset();
           this.router.navigate(['/admin']);
-        }else {
+        } else {
           alert('user not found!');
         }
-      }, err => {
-        alert("Something Went Wrong");
-      })
-    }
+      },
+      (err) => {
+        alert('Something Went Wrong');
+      }
+    );
+  }
 }

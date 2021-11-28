@@ -5,7 +5,7 @@
 let express = require("express");
 let router = express.Router();
 let mongoose = require("mongoose");
-
+let passport = require("passport");
 let jwt = require("jsonwebtoken");
 
 // create a reference to the model
@@ -16,47 +16,35 @@ module.exports.displayUser = (req, res, next) => {
     if (err) {
       return console.error(err);
     } else {
-      passport.authenticate("local", (err, user, info) => {
-    // server err?
-    if (err) {
-      return next(err);
-    }
-    // is there a user login error?
-    if (!user) {
-      req.flash("loginMessage", "Authentication Error");
-      return res.redirect("/login");
-    }
-    req.login(user, (err) => {
-      // server error?
-      if (err) {
-        return next(err);
-      }
+      // passport.authenticate("local", (err, user, info) => {
+      //   // server err?
+      //   if (err) {
+      //     return next(err);
+      //   }
+      //   // is there a user login error?
+      //   if (!user) {
+      //     req.flash("loginMessage", "Authentication Error");
+      //     return res.redirect("/login");
+      //   }
+      //   req.login(user, (err) => {
+      //     // server error?
+      //     if (err) {
+      //       return next(err);
+      //     }
 
-      const payload = {
-        email: user.email,
-        password: user.password,
-      };
+      //     const payload = {
+      //       email: user.email,
+      //       password: user.password,
+      //     };
 
-      const authToken = jwt.sign(payload, DB.Secret, {
-        expiresIn: 604800, // 1 week
-      });
+      //     const authToken = jwt.sign(payload, DB.Secret, {
+      //       expiresIn: 604800, // 1 week
+      //     });
 
-      return res.json({
-        success: true,
-        msg: "User Logged in Successfully!",
-        user: {
-          id: user.userID,
-          displayName: user.displayName,
-          username: user.username,
-          email: user.email,
-        },
-        token: authToken,
-      });
-      res.json(userList, authToken);
+      res.json(userList);
     }
   });
 };
-
 module.exports.displayAddPage = (req, res, next) => {
   /*
     res.render('book/add', {title: 'Add Book', 
@@ -227,7 +215,10 @@ module.exports.processRegisterPage = (req, res, next) => {
 
       // redirect the user and authenticate them
 
-      return res.json({ success: true, msg: "User Registered Successfully!" });
+      return res.json({
+        success: true,
+        msg: "User Registered Successfully!",
+      });
 
       /*
             return passport.authenticate('local')(req, res, () => {
@@ -236,4 +227,10 @@ module.exports.processRegisterPage = (req, res, next) => {
             */
     }
   });
+};
+
+module.exports.performLogout = (req, res, next) => {
+  req.logout();
+  //res.redirect('/');
+  res.json({ success: true, msg: "User Successfully Logged out!" });
 };

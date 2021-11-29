@@ -8,9 +8,9 @@ var app = require("./server/config/app");
 // const host = "localhost";
 // const port = 3000;
 
-var port = normalizePort(process.env.PORT || "3000");
+var port = process.env.PORT || "3000";
 app.set("port", port);
-
+app.listen(port);
 var server = http.createServer(app);
 
 server.listen(port);

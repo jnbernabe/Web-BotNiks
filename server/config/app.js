@@ -83,9 +83,9 @@ app.use("/api", indexRouter);
 app.use("/api/user", userRouter);
 app.use("/api/incident", incidentRouter);
 app.use("/api/customer", CustomerRouter);
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "../../public/index.html"));
-// });
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../../public/index.html"));
+});
 
 // // initialize passport
 app.use(passport.initialize());

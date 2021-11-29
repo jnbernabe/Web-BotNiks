@@ -1,5 +1,5 @@
 /*
-Created by: Hetu & Jamaal 
+Created by: Hetu & Jamaal
 Auth Service
 Last Edited: November 28, 2021
 
@@ -36,7 +36,7 @@ export class AuthService {
 
   constructor(private router: Router, private http: HttpClient) {
     //this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
-    this.baseUrl = `https://web-botniks-incident.herokuapp.com/`;
+    this.baseUrl = `https://web-botniks-incident.herokuapp.com/api/`;
   }
 
   setToken(token: string): void {

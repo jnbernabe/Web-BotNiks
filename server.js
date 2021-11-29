@@ -8,7 +8,7 @@ var app = require("./server/config/app");
 // const host = "localhost";
 // const port = 3000;
 
-var port = process.env.PORT || "3000";
+var port = normalizePort(process.env.PORT || "3000");
 app.set("port", port);
 
 //app.listen(process.env.PORT || "3000");
@@ -40,12 +40,12 @@ app.all("/", function (req, res, next) {
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   next();
 });
-app.get("/", function (req, res, next) {
-  // Handle the get for this route
-});
-app.post("/", function (req, res, next) {
-  // Handle the post for this route
-});
+// app.get("/", function (req, res, next) {
+//   // Handle the get for this route
+// });
+// app.post("/", function (req, res, next) {
+//   // Handle the post for this route
+// });
 
 // server.listen(port, host, () => {
 //   console.log(`Server is running on http://${host}:${port}`);

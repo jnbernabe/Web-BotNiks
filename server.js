@@ -7,11 +7,11 @@ var app = require("./server/config/app");
 
 // const host = "localhost";
 // const port = 3000;
-
-var port = normalizePort(process.env.PORT || "3500");
-app.set("port", port);
-app.listen(port);
 var server = http.createServer(app);
+var port = process.env.PORT || "3500";
+app.set("port", port);
+
+app.listen(process.env.PORT || "3500");
 
 server.listen(port);
 server.on("error", onError);

@@ -35,8 +35,8 @@ export class AuthService {
   };
 
   constructor(private router: Router, private http: HttpClient) {
-    this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/api/`;
-    //this.baseUrl = `https://web-botniks-incident.herokuapp.com/api/`;
+    //this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/api/`;
+    this.baseUrl = `https://web-botniks-incident.herokuapp.com/api/`;
   }
 
   setToken(token: string): void {

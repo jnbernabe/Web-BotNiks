@@ -35,8 +35,8 @@ export class RestDataSource {
   }*/
 
   constructor(private http: HttpClient) {
-    this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/api/`;
-    //this.baseUrl = `https://web-botniks-incident.herokuapp.com/api/`;
+    //this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/api/`;
+    this.baseUrl = `https://web-botniks-incident.herokuapp.com/api/`;
   }
 
   getIncidents(): Observable<Incident[]> {

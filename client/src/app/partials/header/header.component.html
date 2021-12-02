@@ -40,6 +40,11 @@
             >Logout</a
           >
         </li>
+        <li class="nav-item" *ngIf="isLoggedIn()">
+          <a href="/home" class="nav-link" tabindex="-1">{{
+            this.getDisplayName()
+          }}</a>
+        </li>
 
         <li *ngIf="!isLoggedOut()" class="nav-item">
           <a

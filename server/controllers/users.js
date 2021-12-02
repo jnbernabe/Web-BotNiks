@@ -171,7 +171,7 @@ module.exports.processLoginPage = async (req, res, next) => {
         expiresIn: 1000000,
       });
       res.status(200);
-      return res.json({ success: true, token: token });
+      return res.json({ success: true, token: token, user: user });
     } else {
       console.log("Wrong Password");
       res.status(404).send("Something broke!");

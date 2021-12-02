@@ -7,9 +7,13 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
+  displayName: string | null = this.getDisplayName();
+
   constructor(private auth: AuthService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getDisplayName();
+  }
 
   logout(): void {
     this.auth.logout();
@@ -20,6 +24,13 @@ export class HeaderComponent implements OnInit {
 
   isLoggedOut(): boolean {
     return localStorage['id_token'];
+  }
+
+  getDisplayName(): string | null {
+    //console.log(localStorage['displayName']);
+    this.displayName = localStorage['displayName'];
+    //console.log(localStorage);
+    return this.displayName;
   }
 
   // isLoggedOut():void{}

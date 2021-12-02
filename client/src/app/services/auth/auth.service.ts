@@ -60,6 +60,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
+    localStorage.removeItem('displayName');
     this.router.navigate(['home']);
   }
 
@@ -71,13 +72,13 @@ export class AuthService {
       })
       .subscribe(
         (res) => {
-          console.log(res);
+          //console.log(res);
           this.setLocalStorage(res);
           this.router.navigateByUrl('/table');
         },
         (err) => {
           console.log('Bad response');
-          window.alert('No');
+          window.alert(err);
         }
       );
   }
@@ -88,7 +89,13 @@ export class AuthService {
     const expiresAt = moment().add(authResult.expiresIn, 'second');
 
     // Stores our JWT token and its expiry date in localStorage
-    localStorage.setItem('id_token', authResult.idToken);
+    localStorage.setItem('id_token', authResult['token']);
+    //console.log(authResult['user']['displayName']);
+    localStorage.setItem(
+      'displayName',
+      authResult['user']['displayName'].toString()
+    );
+    //console.log(localStorage['displayName']);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
   }
 

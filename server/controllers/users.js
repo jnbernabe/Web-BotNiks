@@ -155,24 +155,27 @@ module.exports.processLoginPage = async (req, res, next) => {
   //   });
   // })(req, res, next);
   const { email, password } = req.body;
-  console.log(email, password);
-  const user = await User.findOne({ email: email });
-  if (email == user.email) {
-    console.log(user);
+  //console.log(email, password, "server");
+  const user = await User.findOne({ email: email }).catch(
+    console.log("Waiting for Response")
+  );
+
+  if (!user) {
+    console.log("No User Found");
+    res.status(403);
+  } else {
+    //console.log(user);
     if (password == user.password) {
       // Sign token
       const token = jwt.sign({ email, password }, DB.Secret, {
         expiresIn: 1000000,
       });
       res.status(200);
-      return res.json(token);
+      return res.json({ success: true, token: token });
     } else {
       console.log("Wrong Password");
-      res.status(403);
+      res.status(404).send("Something broke!");
     }
-  } else {
-    console.log("No User Found");
-    res.status(403);
   }
 };
 

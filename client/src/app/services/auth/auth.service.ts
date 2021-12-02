@@ -69,11 +69,17 @@ export class AuthService {
         email: email,
         password: password,
       })
-      .subscribe((res) => {
-        console.log(res);
-        this.setLocalStorage(res);
-        this.router.navigateByUrl('/table');
-      });
+      .subscribe(
+        (res) => {
+          console.log(res);
+          this.setLocalStorage(res);
+          this.router.navigateByUrl('/table');
+        },
+        (err) => {
+          console.log('Bad response');
+          window.alert('No');
+        }
+      );
   }
 
   setLocalStorage(authResult: any) {

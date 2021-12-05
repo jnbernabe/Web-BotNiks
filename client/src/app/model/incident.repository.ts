@@ -11,18 +11,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class IncidentRepository {
-  private incidents: Incident[] = [
-    // new Incident(
-    //   '10',
-    //   'Medium',
-    //   'New',
-    //   undefined,
-    //   undefined,
-    //   'Short Description 10',
-    //   'Narrative 10',
-    //   undefined
-    // ),
-  ];
+  private incidents: Incident[] = [];
   private priorities: String[] = [];
 
   constructor(private dataSource: RestDataSource) {

@@ -79,44 +79,37 @@ app.use(
 // initialize flash
 app.use(flash());
 
-app.use("/api", indexRouter);
-app.use("/api/user", userRouter);
-app.use("/api/incident", incidentRouter);
-app.use("/api/customer", CustomerRouter);
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../../public/index.html"));
-});
-
 // // initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
 
-// passport user configuration
-
 // implement a User Authentication Strategy
 passport.use(User.createStrategy());
-
-let local = passport.use(
-  new localStrategy(function (email, password, done) {
-    console.log(email);
-    User.findOne({ email: email }, function (err, user) {
-      if (err) {
-        return done(err);
-      }
-      if (!user) {
-        return done(null, false, { message: "Incorrect Email." });
-      }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: "Incorrect password." });
-      }
-      return done(null, user);
-    });
-  })
-);
 
 // // serialize and deserialize the User info
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+passport.use(
+  new localStrategy(
+    { usernameField: "email", passwordField: "password" },
+    function (email, password, done) {
+      //console.log(email);
+      User.findOne({ email: email }, function (err, user) {
+        if (err) {
+          return done(err);
+        }
+        if (!user) {
+          return done(null, false, { message: "Incorrect Email." });
+        }
+        if (!password == user.password) {
+          return done(null, false, { message: "Incorrect password." });
+        }
+        return done(null, user);
+      });
+    }
+  )
+);
 
 let jwtOptions = {};
 jwtOptions.jwtFromRequest = ExtractJWT.fromAuthHeaderAsBearerToken();
@@ -136,6 +129,14 @@ let strategy = new JWTStrategy(jwtOptions, (jwt_payload, done) => {
 });
 
 passport.use(strategy);
+
+app.use("/api", indexRouter);
+app.use("/api/user", userRouter);
+app.use("/api/incident", incidentRouter);
+app.use("/api/customer", CustomerRouter);
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../../public/index.html"));
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

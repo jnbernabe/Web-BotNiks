@@ -4,6 +4,7 @@ User Repository
 */
 
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { RestDataSource } from './rest.datasource';
 
 import { User } from './user.model';
@@ -18,17 +19,28 @@ export class UserRepository {
     });
   }
 
+  getUsers(): User[] {
+    return this.users;
+  }
+
   getUser(id: string): User {
     return this.users.find((i) => i.userID === id)!;
   }
 
-  saveUser(savedUser: User): void {
-    this.dataSource.updateUser(savedUser).subscribe((user) => {
-      this.users.splice(
-        this.users.findIndex((u) => u.userID === savedUser.userID),
-        1,
-        savedUser
-      );
+  saveUser(savedUser: User): Observable<User> {
+    return this.dataSource.updateUser(savedUser);
+  }
+
+  waitForData(): Promise<User[]> {
+    return new Promise((resolve, reject) => {
+      if (this.users.length == 0) {
+        this.dataSource.getUsers().subscribe((data) => {
+          this.users = data;
+          resolve(this.users);
+        });
+      } else {
+        resolve(this.users);
+      }
     });
   }
 }

@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class HeaderComponent implements OnInit {
   displayName: string | null = this.getDisplayName();
+  userId: string | null = this.getUserId();
 
   constructor(private auth: AuthService) {}
 
@@ -31,6 +32,12 @@ export class HeaderComponent implements OnInit {
     this.displayName = localStorage['displayName'];
     //console.log(localStorage);
     return this.displayName;
+  }
+
+  getUserId(): string | null {
+    //console.log(localStorage);
+    this.userId = localStorage['userID'];
+    return this.userId;
   }
 
   // isLoggedOut():void{}

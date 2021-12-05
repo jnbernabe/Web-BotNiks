@@ -79,18 +79,16 @@ export class RestDataSource {
   }
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.baseUrl + 'users');
+    return this.http.get<User[]>(this.baseUrl + 'user');
   }
 
   getUser(): Observable<User> {
-    return this.http.get<User>(this.baseUrl + 'users/:id');
+    return this.http.get<User>(this.baseUrl + 'user/:id');
   }
 
   updateUser(user: User): Observable<User> {
-    //const obj = JSON.stringify(incident);
-    //console.log(incident);
     return this.http.post<User>(
-      `${this.baseUrl}users/edit/${user.userID}`,
+      `${this.baseUrl}user/edit/${user.userID}`,
       user,
       this.httpOptions
     );

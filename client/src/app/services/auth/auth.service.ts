@@ -95,6 +95,7 @@ export class AuthService {
       'displayName',
       authResult['user']['displayName'].toString()
     );
+    localStorage.setItem('userID', authResult['user']['userID'].toString());
     //console.log(localStorage['displayName']);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
   }

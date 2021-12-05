@@ -17,10 +17,6 @@ export class IncidentRepository {
   constructor(private dataSource: RestDataSource) {
     dataSource.getIncidents().subscribe((data) => {
       this.incidents = data;
-      // this.priorities = data
-      //   .map((i) => i.Priority!)
-      //   .filter((c, index, array) => array.indexOf(c) === index)
-      //   .sort();
     });
   }
 

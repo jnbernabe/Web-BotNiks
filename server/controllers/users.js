@@ -22,7 +22,7 @@ module.exports.displayUser = (req, res, next) => {
     if (err) {
       return console.error(err);
     } else {
-      res.json(userList);
+      res.send(userList);
     }
   });
 };
@@ -77,7 +77,7 @@ module.exports.displayEditPage = (req, res, next) => {
 module.exports.processEditPage = (req, res, next) => {
   let id = req.params.id;
 
-  let updatedUser = User({
+  let updatedUser = {
     username: req.body.username,
     email: req.body.email,
     displayName: req.body.displayName,
@@ -87,9 +87,9 @@ module.exports.processEditPage = (req, res, next) => {
     userType: req.body.userType,
     created: req.body.created,
     update: req.body.update,
-  });
+  };
 
-  User.updateOne({ userID: { $eg: id } }, updatedUser, (err) => {
+  User.updateOne({ userID: { $eq: id } }, updatedUser, (err) => {
     if (err) {
       console.log(err);
       res.end(err);

@@ -7,82 +7,98 @@
 
   <form
     action=""
-    class="form-group col-lg-12 mx-auto bg-gradient p-5 rounded"
+    class="form-group col-lg-12 mx-auto bg-gradient rounded backdrop"
     [formGroup]="userForm"
     (ngSubmit)="onSubmit()"
   >
-    <div class="input-group mb-3" NgModel="edituser">
-      <span class="input-group-text">UserName</span>
-      <input
-        value=""
-        type="text"
-        class="form-control"
-        placeholder="UserName"
-        aria-label="username"
-        formControlName="username"
-        required
-      />
+    <div class="row justify-content-evenly">
+      <div class="col-md">
+        <div class="input-group mb-3" NgModel="edituser">
+          <span class="input-group-text">UserName</span>
+          <input
+            value=""
+            type="text"
+            class="form-control"
+            placeholder="UserName"
+            aria-label="username"
+            formControlName="username"
+            required
+          />
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="input-group mb-3">
+          <span class="input-group-text">Password</span>
+          <input
+            type="password"
+            class="form-control"
+            id="Password"
+            formControlName="Password"
+            placeholder="Password"
+            required
+          />
+        </div>
+      </div>
     </div>
-
-    <div class="input-group mb-3">
-      <span class="input-group-text">Password</span>
-      <input
-        type="password"
-        class="form-control"
-        id="Password"
-        formControlName="Password"
-        placeholder="Password"
-        required
-      />
+    <div class="row justify-content-evenly">
+      <div class="col-md">
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">First Name</span>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="firstName"
+            placeholder="First Name"
+            aria-label="First Name"
+            aria-describedby="basic-addon1"
+            required
+          />
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon2">Last Name</span>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="lastName"
+            placeholder="Last Name"
+            aria-label="Last Name"
+            aria-describedby="basic-addon2"
+            required
+          />
+        </div>
+      </div>
     </div>
-    <div class="input-group mb-3">
-      <span class="input-group-text" id="basic-addon1">First Name</span>
-      <input
-        type="text"
-        class="form-control"
-        formControlName="firstName"
-        placeholder="First Name"
-        aria-label="First Name"
-        aria-describedby="basic-addon1"
-        required
-      />
-    </div>
-    <div class="input-group mb-3">
-      <span class="input-group-text" id="basic-addon2">Last Name</span>
-      <input
-        type="text"
-        class="form-control"
-        formControlName="lastName"
-        placeholder="Last Name"
-        aria-label="Last Name"
-        aria-describedby="basic-addon2"
-        required
-      />
-    </div>
-
-    <div class="input-group mb-3">
-      <span class="input-group-text" id="basic-addon2">Email</span>
-      <input
-        type="email"
-        class="form-control"
-        formControlName="email"
-        placeholder="Email"
-        aria-label="Email"
-        aria-describedby="basic-addon2"
-        required
-      />
-    </div>
-    <div class="input-group mb-3">
-      <span class="input-group-text" id="basic-addon3">Display Name</span>
-      <input
-        type="text"
-        class="form-control"
-        id="displayName"
-        formControlName="displayName"
-        placeholder="Display Name"
-        aria-describedby="basic-addon3"
-        required
-      />
+    <div class="row justify-content-evenly">
+      <div class="col-md">
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon2">Email</span>
+          <input
+            type="email"
+            class="form-control"
+            formControlName="email"
+            placeholder="Email"
+            aria-label="Email"
+            aria-describedby="basic-addon2"
+            required
+          />
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon3">Display Name</span>
+          <input
+            type="text"
+            class="form-control"
+            id="displayName"
+            formControlName="displayName"
+            placeholder="Display Name"
+            aria-describedby="basic-addon3"
+            required
+          />
+        </div>
+      </div>
     </div>
 
     <div class="input-group mb-3">
@@ -96,8 +112,11 @@
         required
       />
     </div>
-
-    <div class="container mx-auto">
+    <div
+      class="btn-group d-flex justify-content-end"
+      role="group"
+      aria-label="Basic mixed styles example"
+    >
       <button
         [disabled]="!userForm.valid"
         class="button btn btn-primary m-3"
@@ -106,7 +125,10 @@
         Submit
       </button>
 
-      <button class="btn btn-primary m-3" type="reset">Clear</button>
+      <button class="btn btn-warning m-3" type="reset">Clear</button>
+      <button class="btn btn-danger m-3" type="button" routerLink="/">
+        Cancel
+      </button>
     </div>
   </form>
 

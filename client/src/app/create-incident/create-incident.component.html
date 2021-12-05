@@ -2,105 +2,159 @@
     Created by: Han Bi
     Form for creating an incident
 -->
-<form
-  [formGroup]="incidentForm"
-  (ngSubmit)="createIncident(); incidentForm.reset()"
->
-  <div class="form-group">
-    <label for="recordNumber">Ticket Number:</label>
-    <input
-      type="text"
-      formControlName="incidentNumber"
-      class="form-control"
-      id="recordNumber"
-      value="{{ incidentId }}"
-      placeholder="{{ incidentId }}"
-      readonly
-    />
-
-    <label for="incidentPriority">Priority</label>
-    <select
-      formControlName="incidentPriority"
-      class="form-control"
-      id="incidentPriority"
-      required
-    >
-      <option *ngFor="let prioSelect of priorities()" value="{{ prioSelect }}">
-        {{ prioSelect }}
-      </option>
-    </select>
-
-    <label for="incidentStatus">Status</label>
-    <select
-      formControlName="incidentStatus"
-      class="form-control"
-      id="incidentStatus"
-    >
-      <option
-        *ngFor="let statusSelect of statuses()"
-        value="{{ statusSelect }}"
-      >
-        {{ statusSelect }}
-      </option>
-    </select>
-
-    <label for="customerName">Customer Name</label>
-    <input
-      formControlName="customerName"
-      type="text"
-      class="form-control"
-      id="customerName"
-      name="customerName"
-      placeholder="Customer Name"
-      required
-    />
-
-    <label for="incidentDescription">Description</label>
-    <textarea
-      formControlName="incidentDescription"
-      class="form-control"
-      id="incidentDescription"
-      name="incidentDescription"
-      rows="3"
-      required
-    ></textarea>
-
-    <div *ngIf="editMode; else elseBlock">
-      <label for="incidentNarrative">Incident Narrative</label>
-      <textarea
-        formControlName="incidentNarrative"
-        class="form-control"
-        id="incidentNarrative"
-        name="incidentNarrative"
-        rows="4"
-      >
-      </textarea>
+<div class="container-fluid">
+  <div class="container-fluid">
+    <div class="jumbotron">
+      <h2 class="display-10 mx-auto text-center">Incident Details</h2>
     </div>
-
-    <ng-template #elseBlock>
-      <label for="incidentNarrative">Incident Narrative</label>
-      <textarea
-        formControlName="incidentNarrative"
-        class="form-control"
-        id="incidentNarrative"
-        name="incidentNarrative"
-        rows="4"
-        readonly
-      >
-      </textarea>
-    </ng-template>
-
-    <button
-      type="submit"
-      class="btn btn-primary"
-      [disabled]="!incidentForm.valid"
-    >
-      Create Incident
-    </button>
-    <br />
-    <br />
-    <button type="button" (click)="this.initForm()">Reset</button>
-
-    <button type="button" routerLink="/">Cancel</button>
   </div>
-</form>
+  <form
+    class="container bg-secondary rounded p-4"
+    [formGroup]="incidentForm"
+    (ngSubmit)="createIncident(); incidentForm.reset()"
+  >
+    <div class="form-group">
+      <div class="row-cols-auto row d-md-flex justify-content-center">
+        <div class="col">
+          <div class="input-group mb-3">
+            <span class="input-group-text" for="recordNumber"
+              >Ticket Number</span
+            >
+            <input
+              type="text"
+              formControlName="incidentNumber"
+              class="form-control"
+              id="recordNumber"
+              value="{{ incidentId }}"
+              placeholder="{{ incidentId }}"
+              readonly
+            />
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="input-group mb-3">
+            <span class="input-group-text" for="incidentPriority"
+              >Priority</span
+            >
+            <select
+              formControlName="incidentPriority"
+              class="form-control"
+              id="incidentPriority"
+              required
+            >
+              <option
+                *ngFor="let prioSelect of priorities()"
+                value="{{ prioSelect }}"
+              >
+                {{ prioSelect }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col">
+          <div class="input-group mb-3">
+            <span class="input-group-text" for="incidentStatus">Status</span>
+            <select
+              formControlName="incidentStatus"
+              class="form-control"
+              id="incidentStatus"
+            >
+              <option
+                *ngFor="let statusSelect of statuses()"
+                value="{{ statusSelect }}"
+              >
+                {{ statusSelect }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col">
+          <div class="input-group mb-3">
+            <span class="input-group-text" for="customerName"
+              >Customer Name</span
+            >
+            <input
+              formControlName="customerName"
+              type="text"
+              class="form-control"
+              id="customerName"
+              name="customerName"
+              placeholder="Customer Name"
+              required
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="input-group mb-3">
+        <span class="input-group-text" for="incidentDescription"
+          >Description</span
+        >
+        <textarea
+          formControlName="incidentDescription"
+          class="form-control"
+          id="incidentDescription"
+          name="incidentDescription"
+          rows="3"
+          required
+        ></textarea>
+      </div>
+      <div *ngIf="editMode; else elseBlock">
+        <div class="input-group">
+          <span class="input-group-text" for="incidentNarrative"
+            >Incident Narrative</span
+          >
+          <textarea
+            formControlName="incidentNarrative"
+            class="form-control"
+            id="incidentNarrative"
+            name="incidentNarrative"
+            rows="4"
+            aria-label="With textarea"
+          >
+          </textarea>
+        </div>
+      </div>
+
+      <ng-template #elseBlock>
+        <div class="input-group">
+          <span class="input-group-text" for="incidentNarrative"
+            >Incident Narrative</span
+          >
+          <textarea
+            formControlName="incidentNarrative"
+            class="form-control"
+            id="incidentNarrative"
+            name="incidentNarrative"
+            rows="4"
+            readonly
+          >
+          </textarea>
+        </div>
+      </ng-template>
+    </div>
+    <br />
+    <div
+      class="btn-group d-flex justify-content-end"
+      role="group"
+      aria-label="Basic mixed styles example"
+    >
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!incidentForm.valid"
+      >
+        Create Incident
+      </button>
+
+      <button class="btn btn-warning" type="button" (click)="this.initForm()">
+        Reset
+      </button>
+
+      <button class="btn btn-danger" type="button" routerLink="/">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

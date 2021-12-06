@@ -1,28 +1,54 @@
 <div class="container-fluid">
-  <br><br>
-<div class="backdrop">
-<form>
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Email address</label>
-    <input
-      type="email"
-      class="form-control"
-      id="exampleInputEmail1"
-      aria-describedby="emailHelp"
-    />
-    <div id="emailHelp" class="form-text">
-      We'll never share your email with anyone else.
+  <div class="container-fluid">
+    <div class="backdrop">
+    <div class="jumbotron">
+      <h2 class="display-10 mx-auto text-center">Log In</h2>
     </div>
   </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" />
+
+  <div class="container mt-5 backdrop">
+    <form class="container" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="container">
+        <div class="input-group mb-3">
+          <span class="input-group-text">Email address</span>
+          <input
+            type="email"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+            formControlName="email"
+            placeholder="You@Email.com"
+          />
+        </div>
+
+        <div id="emailHelp" class="form-text">
+          We'll never share your email with anyone else.
+        </div>
+      </div>
+      <div class="container">
+        <div class="input-group mb-3">
+          <span class="input-group-text" for="exampleInputPassword1"
+            >Password</span
+          >
+          <input
+            type="password"
+            class="form-control"
+            id="exampleInputPassword1"
+            formControlName="password"
+            placeholder="123456789"
+          />
+        </div>
+      </div>
+      <div class="container">
+        <a href="/register">Not registered?</a>
+      </div>
+      <div class="container">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button class="btn btn-danger m-3" type="button" routerLink="/">
+          Cancel
+        </button>
+      </div>
+    </form>
   </div>
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-</div>
 </div>

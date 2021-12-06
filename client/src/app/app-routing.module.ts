@@ -6,6 +6,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { TableComponent } from './partials/table/table.component';
 import { CreateIncidentComponent } from './create-incident/create-incident.component';
 import { AuthGuard } from './guards/auth.guard';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, data: { title: 'Home' } },
@@ -39,8 +40,15 @@ const routes: Routes = [
     data: { title: 'Create Incident' },
     canActivate: [AuthGuard],
   },
+  {
+    path: 'edit-user/:id',
+    component: EditUserComponent,
+    data: { title: 'Edit Profile' },
+    canActivate: [AuthGuard],
+  },
 
   { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', redirectTo: '/home', pathMatch: 'full' },
 ];
 
 @NgModule({

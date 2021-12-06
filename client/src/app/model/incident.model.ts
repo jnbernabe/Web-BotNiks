@@ -1,3 +1,8 @@
+/*
+Created by: Han
+Incident Model
+
+ */
 export class Incident {
   constructor(
     public incidentID: string,

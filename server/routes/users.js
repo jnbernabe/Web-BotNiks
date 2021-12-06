@@ -41,14 +41,14 @@ router.post(
 /* GET Route for displaying the Edit page - UPDATE Operation */
 router.get(
   "/edit/:id",
-  passport.authenticate("jwt", { session: false }),
+  //passport.authenticate("jwt", { session: false }),
   userController.displayEditPage
 );
 
 /* POST Route for processing the Edit page - UPDATE Operation */
 router.post(
   "/edit/:id",
-  passport.authenticate("jwt", { session: false }),
+  //passport.authenticate("jwt", { session: false }),
   userController.processEditPage
 );
 

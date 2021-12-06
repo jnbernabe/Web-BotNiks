@@ -1,20 +1,19 @@
 .jumbotron {
-  
   background-color: blanchedalmond;
 }
 
-body 
-{
+body {
   padding-bottom: 70px;
   background-color: #e0e0e4;
 }
 
-.form-container{
+.form-container {
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px 0px #000;
 }
 
+<<<<<<< HEAD
 main
 {
   max-width: 70%;
@@ -24,26 +23,26 @@ main
 
 .align
 {
+=======
+.align {
+>>>>>>> ce278a19c368c06b188d10e68bf6102562460ae0
   text-align: center;
 }
 
-.backdrop
-{
+.backdrop {
   background-color: aliceblue;
   padding: 2em;
-  max-width: 50%;
+
   margin: auto;
 }
 
-.form_backdrop
-{
+.form_backdrop {
   background-color: aliceblue;
   padding: 2em;
   max-width: 60%;
   margin: auto;
 }
 
-.center
-{
+.center {
   margin: auto;
 }

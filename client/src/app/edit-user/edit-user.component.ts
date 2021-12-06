@@ -13,7 +13,6 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription, tap } from 'rxjs';
 import { RegisterPostService } from 'src/app/config/register.post.service';
-import { EmitAndSemanticDiagnosticsBuilderProgram } from 'typescript';
 import { User } from '../model/user.model';
 import { UserRepository } from '../model/user.repository';
 import { AuthService } from '../services/auth/auth.service';
@@ -37,7 +36,8 @@ export class EditUserComponent implements OnInit {
     private data: UserRepository,
     private route: ActivatedRoute,
     private newUser: RegisterPostService,
-    private auth: AuthService
+    private auth: AuthService,
+    private router: Router
   ) {}
 
   routeSub!: Subscription;
@@ -117,6 +117,7 @@ export class EditUserComponent implements OnInit {
     }
 
     this.createUser();
+    this.router.navigateByUrl('/');
 
     // this.userForm.reset();
   }

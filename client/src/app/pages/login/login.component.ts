@@ -1,9 +1,3 @@
-/*
-Created by: Jamaal
-Login Screen
-Last Edited: November 28, 2021
-
- */
 import { Router } from '@angular/router';
 import { AuthService } from '../../../app/services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -37,7 +31,7 @@ export class LoginComponent extends BasePageComponent implements OnInit {
   onSubmit() {
     const email = this.loginForm.value.email.toString();
     const password = this.loginForm.value.password.toString();
-    //console.log(email, password);
+
     this.auth.login(email, password);
   }
 }

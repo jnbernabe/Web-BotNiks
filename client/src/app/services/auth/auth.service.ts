@@ -1,9 +1,3 @@
-/*
-Created by: Hetu & Jamaal
-Auth Service
-Last Edited: November 28, 2021
-
- */
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
@@ -35,8 +29,7 @@ export class AuthService {
   };
 
   constructor(private router: Router, private http: HttpClient) {
-    this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/api/`;
-    //this.baseUrl = `https://web-botniks-incident.herokuapp.com/api/`;
+    this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
   }
 
   setToken(token: string): void {
@@ -60,27 +53,17 @@ export class AuthService {
   logout() {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
-    localStorage.removeItem('displayName');
     this.router.navigate(['home']);
   }
 
   login(email: any, password: any) {
     return this.http
-      .post<User>(this.baseUrl + 'user/login', {
-        email: email,
-        password: password,
-      })
-      .subscribe(
-        (res) => {
-          //console.log(res);
-          this.setLocalStorage(res);
-          this.router.navigateByUrl('/table');
-        },
-        (err) => {
-          console.log('Bad response');
-          window.alert(err);
-        }
-      );
+      .post<User>(this.baseUrl + 'user/login', { email, password })
+      .subscribe((res) => {
+        console.log(res);
+        this.setLocalStorage(res);
+        this.router.navigateByUrl('table');
+      });
   }
 
   setLocalStorage(authResult: any) {
@@ -89,14 +72,7 @@ export class AuthService {
     const expiresAt = moment().add(authResult.expiresIn, 'second');
 
     // Stores our JWT token and its expiry date in localStorage
-    localStorage.setItem('id_token', authResult['token']);
-    //console.log(authResult['user']['displayName']);
-    localStorage.setItem(
-      'displayName',
-      authResult['user']['displayName'].toString()
-    );
-    localStorage.setItem('userID', authResult['user']['userID'].toString());
-    //console.log(localStorage['displayName']);
+    localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
   }
 

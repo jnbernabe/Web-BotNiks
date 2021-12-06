@@ -27,8 +27,7 @@ export class HttpServiceService {
 
   constructor(private http: HttpClient) {
     {
-      this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/api/`;
-      //this.baseUrl = `https://web-botniks-incident.herokuapp.com/api/`;
+      this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
     }
   }
 
@@ -36,21 +35,21 @@ export class HttpServiceService {
     return this.http.get<Customer[]>(this.baseUrl + 'customer');
   }
 
-  // get(incidentID: string) {
-  //   const getOptions = {
-  //     params: {
-  //       incidentID,
-  //     },
-  //   };
-  //   return this.http
-  //     .get<JSON>('http://localhost:3000/create-incident/', getOptions)
-  //     .pipe(
-  //       map((response) => {
-  //         console.log(response);
-  //         return response;
-  //       })
-  //     );
-  // }
+  get(incidentID: string) {
+    const getOptions = {
+      params: {
+        incidentID,
+      },
+    };
+    return this.http
+      .get<JSON>('http://localhost:3000/create-incident/', getOptions)
+      .pipe(
+        map((response) => {
+          console.log(response);
+          return response;
+        })
+      );
+  }
 
   // private url =
   //   'https://my-json-server.typicode.com/JSGund/XHR-Fetch-Request-JavaScript/posts';

@@ -1,8 +1,3 @@
-/*
-Created by: Han
-Status options
-
- */
 export enum Status {
   New = 1,
   InProgress = 2,

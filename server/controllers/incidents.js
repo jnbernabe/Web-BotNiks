@@ -1,6 +1,3 @@
-//Jamaal Bernabe
-//11/11/2021
-
 let express = require("express");
 let router = express.Router();
 let mongoose = require("mongoose");

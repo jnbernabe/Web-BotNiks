@@ -1,12 +1,8 @@
-/*
-Created by: Jamaal / Han
-Restdatasource to communicate with server side
-
- */
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Incident } from './incident.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { TestIncident } from './test-incident.model';
 import { map } from 'rxjs/operators';
 import { User } from './user.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -35,8 +31,7 @@ export class RestDataSource {
   }*/
 
   constructor(private http: HttpClient) {
-    this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/api/`;
-    //this.baseUrl = `https://web-botniks-incident.herokuapp.com/api/`;
+    this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
   }
 
   getIncidents(): Observable<Incident[]> {
@@ -74,22 +69,6 @@ export class RestDataSource {
 
     return this.http.get<Incident>(
       `${this.baseUrl}incident/delete/${id}`,
-      this.httpOptions
-    );
-  }
-
-  getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.baseUrl + 'user');
-  }
-
-  getUser(): Observable<User> {
-    return this.http.get<User>(this.baseUrl + 'user/:id');
-  }
-
-  updateUser(user: User): Observable<User> {
-    return this.http.post<User>(
-      `${this.baseUrl}user/edit/${user.userID}`,
-      user,
       this.httpOptions
     );
   }

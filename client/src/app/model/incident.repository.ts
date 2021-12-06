@@ -1,22 +1,33 @@
-/*
-Created by: Han
-Incident Repository
-
- */
 import { Injectable } from '@angular/core';
 import { RestDataSource } from './rest.datasource';
 import { Incident } from './incident.model';
+import { TestIncident } from './test-incident.model';
 import { StaticDataSource } from './static.datasource';
 import { Observable } from 'rxjs';
 
 @Injectable()
 export class IncidentRepository {
-  private incidents: Incident[] = [];
+  private incidents: Incident[] = [
+    // new Incident(
+    //   '10',
+    //   'Medium',
+    //   'New',
+    //   undefined,
+    //   undefined,
+    //   'Short Description 10',
+    //   'Narrative 10',
+    //   undefined
+    // ),
+  ];
   private priorities: String[] = [];
 
   constructor(private dataSource: RestDataSource) {
     dataSource.getIncidents().subscribe((data) => {
       this.incidents = data;
+      // this.priorities = data
+      //   .map((i) => i.Priority!)
+      //   .filter((c, index, array) => array.indexOf(c) === index)
+      //   .sort();
     });
   }
 

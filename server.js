@@ -1,57 +1,29 @@
-//Jamaal Bernabe
-//11/11/2021
-
 const http = require("http");
 var debug = require("debug");
 var app = require("./server/config/app");
 
-// const host = "localhost";
-// const port = 3000;
+const host = "localhost";
+const port = 3000;
 
-var port = normalizePort(process.env.PORT || "3000");
 app.set("port", port);
-
-//app.listen(process.env.PORT || "3000");
-var server = http.createServer(app);
-
-server.listen(port);
-server.on("error", onError);
-server.on("listening", onListening);
-
-function normalizePort(val) {
-  var port = parseInt(val, 10);
-
-  if (isNaN(port)) {
-    // named pipe
-    return val;
-  }
-
-  if (port >= 0) {
-    // port number
-    return port;
-  }
-
-  return false;
-}
-
-// app.set("port", port);
 app.all("/", function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   next();
 });
-// app.get("/", function (req, res, next) {
-//   // Handle the get for this route
-// });
-// app.post("/", function (req, res, next) {
-//   // Handle the post for this route
-// });
+app.get("/", function (req, res, next) {
+  // Handle the get for this route
+});
+app.post("/", function (req, res, next) {
+  // Handle the post for this route
+});
 
-// server.listen(port, host, () => {
-//   console.log(`Server is running on http://${host}:${port}`);
-// });
-// server.on("error", onError);
-// server.on("listening", onListening);
+var server = http.createServer(app);
+server.listen(port, host, () => {
+  console.log(`Server is running on http://${host}:${port}`);
+});
+server.on("error", onError);
+server.on("listening", onListening);
 
 // const requestListener = function (req, res) {
 //   res.setHeader("Content-Type", "application/json");

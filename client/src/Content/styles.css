@@ -13,7 +13,7 @@ body {
   box-shadow: 0px 0px 10px 0px #000;
 }
 
-<<<<<<< HEAD
+
 main
 {
   max-width: 70%;
@@ -21,11 +21,8 @@ main
   padding-bottom: 2%;
 }
 
-.align
-{
-=======
 .align {
->>>>>>> ce278a19c368c06b188d10e68bf6102562460ae0
+
   text-align: center;
 }
 

@@ -1,3 +1,5 @@
+//Created by: Hetu
+//Guard component for authorization
 import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,

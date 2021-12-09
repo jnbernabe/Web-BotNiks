@@ -1,5 +1,5 @@
 /*
-Created by: Jamaal 
+Created by: Jamaal
 Login Screen
 Last Edited: November 28, 2021
 
@@ -34,6 +34,7 @@ export class LoginComponent extends BasePageComponent implements OnInit {
 
   override ngOnInit(): void {}
 
+<<<<<<< HEAD
   
     onSubmit() {
       const email = this.loginForm.value.email.toString();
@@ -41,5 +42,12 @@ export class LoginComponent extends BasePageComponent implements OnInit {
   
       this.auth.login(email, password);
     }
+=======
+  onSubmit() {
+    const email = this.loginForm.value.email.toString();
+    const password = this.loginForm.value.password.toString();
+    //console.log(email, password);
+    this.auth.login(email, password);
+>>>>>>> f3ad7267938cfef2ada78778e386ffbeb49db604
   }
  

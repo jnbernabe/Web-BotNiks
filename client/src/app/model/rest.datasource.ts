@@ -35,8 +35,8 @@ export class RestDataSource {
   }*/
 
   constructor(private http: HttpClient) {
-    //this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
-    this.baseUrl = `https://web-botniks-incident.herokuapp.com/`;
+    this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/api/`;
+    //this.baseUrl = `https://web-botniks-incident.herokuapp.com/api/`;
   }
 
   getIncidents(): Observable<Incident[]> {
@@ -74,6 +74,22 @@ export class RestDataSource {
 
     return this.http.get<Incident>(
       `${this.baseUrl}incident/delete/${id}`,
+      this.httpOptions
+    );
+  }
+
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.baseUrl + 'user');
+  }
+
+  getUser(): Observable<User> {
+    return this.http.get<User>(this.baseUrl + 'user/:id');
+  }
+
+  updateUser(user: User): Observable<User> {
+    return this.http.post<User>(
+      `${this.baseUrl}user/edit/${user.userID}`,
+      user,
       this.httpOptions
     );
   }

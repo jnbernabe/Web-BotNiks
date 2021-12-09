@@ -1,6 +1,7 @@
 /*
 Created by: Han
 Version number for incident
+Depreceated
  */
 import { Injectable } from '@angular/core';
 

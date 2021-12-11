@@ -72,6 +72,7 @@ export class CreateIncidentComponent implements OnInit {
       d.getHours().toString() +
       d.getMinutes().toString() +
       d.getSeconds().toString();
+
     return dateNumber;
   }
   //creates an incident using values provided in the form

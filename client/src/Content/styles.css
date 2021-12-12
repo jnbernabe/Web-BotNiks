@@ -27,7 +27,7 @@ main
 }
 
 .backdrop {
-  background-color: aliceblue;
+  background-color: rgb(218, 237, 253);
   padding: 2em;
 
   margin: auto;

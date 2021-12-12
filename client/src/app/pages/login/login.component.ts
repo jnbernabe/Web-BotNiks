@@ -40,35 +40,21 @@ export class LoginComponent extends BasePageComponent implements OnInit {
 
   override ngOnInit(): void {}
   onSubmit() {
-<<<<<<< HEAD
     const email = this.loginForm.value.email.toString();
     const password = this.loginForm.value.password.toString();
     //console.log(email, password);
     this.auth.login(email, password);
-   
-
   }
 
-  submitValidator(): boolean{
-    if(
-    this.loginForm.controls['email'].invalid && this.loginForm.hasError('required','email') ){
-      return true;
-    }else if(
-      this.loginForm.controls['password'].invalid && this.loginForm.hasError('required','password') )
-   {
-      return true;
-    }
-    else{
-=======
-    if (this.loginForm.valid) {
+   /* if (this.loginForm.valid) {
       const email = this.loginForm.value.email.toString();
       const password = this.loginForm.value.password.toString();
       //console.log(email, password);
       this.auth.login(email, password);
-    }
-  }
+    }*/
+  
 
-  submitValidator(): Boolean {
+    submitValidator(): Boolean {
     if (
       this.loginForm.controls['email'].invalid &&
       this.loginForm.hasError('required', 'email')
@@ -80,8 +66,9 @@ export class LoginComponent extends BasePageComponent implements OnInit {
     ) {
       return true;
     } else {
->>>>>>> 22253b596e13deed9d161d6fabd008bff263949c
+
       return false;
     }
   }
 }
+

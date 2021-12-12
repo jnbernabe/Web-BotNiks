@@ -11,24 +11,24 @@ export class ToastComponent implements OnInit {
 
   ngOnInit() {}
 
-  showStandard() {
-    this.toastService.show('Message', 'I am a standard toast');
-  }
-
   isTemplate(toast: { textOrTpl: any }) {
     return toast.textOrTpl instanceof TemplateRef;
   }
-  showSuccess() {
-    this.toastService.show('I am a success toast', {
-      classname: 'bg-success text-light',
-      delay: 10000,
-    });
+  showStandard() {
+    this.toastService.show('I am a standard toast');
   }
 
-  showDanger() {
-    this.toastService.show('I am an error toast', {
-      classname: 'bg-danger text-light',
-      delay: 15000,
-    });
-  }
+  // showSuccess() {
+  //   this.toastService.show('I am a success toast', {
+  //     classname: 'bg-success text-light',
+  //     delay: 10000,
+  //   });
+  // }
+
+  // showDanger() {
+  //   this.toastService.show('Error', {
+  //     classname: 'bg-danger text-light',
+  //     delay: 15000,
+  //   });
+  //}
 }

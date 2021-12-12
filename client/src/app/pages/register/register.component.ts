@@ -1,5 +1,5 @@
 /*
-Created by: Jaamaal 
+Created by: Jaamaal
 Register Screen
 Last Edited: November 28, 2021
 
@@ -18,6 +18,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { RegisterPostService } from 'src/app/config/register.post.service';
 import { AuthService } from '../../services/auth/auth.service';
+import { AppToastService } from 'src/app/partials/toast/app-toast.service';
 
 @Component({
   selector: 'app-register',
@@ -33,7 +34,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private registerForm: FormBuilder,
     private newUser: RegisterPostService,
-    private auth: AuthService
+    private auth: AuthService,
+    private toast: AppToastService
   ) {}
 
   ngOnInit() {
@@ -83,8 +85,11 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (!this.userForm.valid) {
-      window.alert('Form in not complete');
+    if (this.userForm.invalid) {
+
+      this.toast.showDanger('Form in not complete');
+    } else {
+      this.toast.showSuccess('User Successfully created!');
     }
 
     this.createUser();

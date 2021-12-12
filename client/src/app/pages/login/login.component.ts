@@ -42,7 +42,7 @@ export class LoginComponent extends BasePageComponent implements OnInit {
       //console.log(email, password);
       this.auth.login(email, password);
     } else {
-      this.toast.show('Error', 'Login Error');
+      this.toast.showDanger('Invalid Form Entry');
     }
   }
 }

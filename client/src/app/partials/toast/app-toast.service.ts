@@ -8,6 +8,13 @@ export class AppToastService {
 
   constructor() {}
 
+  showanother(header: string, body: string) {
+    this.toasts.push({ header, body });
+  }
+  remove(toast: any) {
+    this.toasts = this.toasts.filter((t) => t != toast);
+  }
+
   isTemplate(toast: { textOrTpl: any }) {
     return toast.textOrTpl instanceof TemplateRef;
   }
@@ -16,7 +23,16 @@ export class AppToastService {
     this.toasts.push({ textOrTpl, ...options });
   }
 
-  remove(toast: any) {
-    this.toasts = this.toasts.filter((t) => t !== toast);
+  showSuccess(text: string) {
+    this.show(text, {
+      classname: 'bg-success text-light',
+      delay: 5000,
+    });
+  }
+  showDanger(text: string) {
+    this.show(text, {
+      classname: 'bg-danger text-light',
+      delay: 5000,
+    });
   }
 }

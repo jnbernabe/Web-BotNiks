@@ -26,12 +26,15 @@
               formControlName="username"
               required
             />
-            <span
-              class="text-danger"
-              *ngIf="userForm.controls['username'].touched"
-            >
-              Username is Required
-            </span>
+          </div>
+          <div
+            class="container alert alert-danger"
+            *ngIf="
+              userForm.controls['username'].invalid &&
+              userForm.controls['username'].touched
+            "
+          >
+            <span class="text-danger"> Username is Required </span>
           </div>
         </div>
         <div class="col-md">
@@ -46,12 +49,15 @@
               placeholder="Password"
               required
             />
-            <span
-              class="text-danger"
-              *ngIf="userForm.controls['Password'].touched"
-            >
-              Password is Required
-            </span>
+          </div>
+          <div
+            class="container alert alert-danger"
+            *ngIf="
+              userForm.controls['Password'].invalid &&
+              userForm.controls['Password'].touched
+            "
+          >
+            <span class="text-danger"> Password is Required </span>
           </div>
         </div>
       </div>
@@ -69,12 +75,15 @@
               aria-describedby="basic-addon1"
               required
             />
-            <span
-              class="text-danger"
-              *ngIf="userForm.controls['firstName'].touched"
-            >
-              First Name is Required
-            </span>
+          </div>
+          <div
+            class="container alert alert-danger"
+            *ngIf="
+              userForm.controls['firstName'].invalid &&
+              userForm.controls['firstName'].touched
+            "
+          >
+            <span class="text-danger"> First Name is Required </span>
           </div>
         </div>
         <div class="col-md">
@@ -89,12 +98,15 @@
               aria-describedby="basic-addon2"
               required
             />
-            <span
-              class="text-danger"
-              *ngIf="userForm.controls['lastName'].touched"
-            >
-              LastName is Required
-            </span>
+          </div>
+          <div
+            class="container alert alert-danger"
+            *ngIf="
+              userForm.controls['lastName'].invalid &&
+              userForm.controls['lastName'].touched
+            "
+          >
+            <span class="text-danger"> LastName is Required </span>
           </div>
         </div>
       </div>
@@ -113,9 +125,15 @@
               [email]="true"
               required
             />
-            <span class="text-danger" *ngIf="userForm.controls['email'].dirty">
-              Email Id is Required
-            </span>
+          </div>
+          <div
+            class="container alert alert-danger"
+            *ngIf="
+              userForm.controls['email'].invalid &&
+              userForm.controls['email'].touched
+            "
+          >
+            <span class="text-danger"> Email Id is Required </span>
           </div>
         </div>
         <div class="col-md">
@@ -130,12 +148,15 @@
               aria-describedby="basic-addon3"
               required
             />
-            <span
-              class="text-danger"
-              *ngIf="userForm.controls['displayName'].dirty"
-            >
-              Display Name is Required
-            </span>
+          </div>
+          <div
+            class="container alert alert-danger"
+            *ngIf="
+              userForm.controls['displayName'].invalid &&
+              userForm.controls['displayName'].touched
+            "
+          >
+            <span class="text-danger"> Display Name is Required </span>
           </div>
         </div>
       </div>
@@ -150,9 +171,15 @@
           placeholder="Client Helper / Investigator"
           required
         />
-        <span class="text-danger" *ngIf="userForm.controls['userType'].dirty">
-          User Type is Required
-        </span>
+      </div>
+      <div
+        class="container alert alert-danger"
+        *ngIf="
+          userForm.controls['userType'].invalid &&
+          userForm.controls['userType'].touched
+        "
+      >
+        <span class="text-danger"> User Type is Required </span>
       </div>
       <div
         class="btn-group d-flex justify-content-end"

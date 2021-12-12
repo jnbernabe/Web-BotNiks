@@ -13,12 +13,21 @@ body {
   box-shadow: 0px 0px 10px 0px #000;
 }
 
+
+main
+{
+  max-width: 70%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
 .align {
+
   text-align: center;
 }
 
 .backdrop {
-  background-color: aliceblue;
+  background-color: rgb(218, 237, 253);
   padding: 2em;
 
   margin: auto;

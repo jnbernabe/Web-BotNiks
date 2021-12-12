@@ -11,6 +11,7 @@ let mongoose = require("mongoose");
 let passport = require("passport");
 let jwt = require("jsonwebtoken");
 let DB = require("../config/db");
+let passportLocalMongoose = require("passport-local-mongoose");
 
 // create a reference to the model
 let Model = require("../model/users");
@@ -21,7 +22,7 @@ module.exports.displayUser = (req, res, next) => {
     if (err) {
       return console.error(err);
     } else {
-      res.json(userList);
+      res.send(userList);
     }
   });
 };
@@ -76,7 +77,7 @@ module.exports.displayEditPage = (req, res, next) => {
 module.exports.processEditPage = (req, res, next) => {
   let id = req.params.id;
 
-  let updatedUser = User({
+  let updatedUser = {
     username: req.body.username,
     email: req.body.email,
     displayName: req.body.displayName,
@@ -86,9 +87,9 @@ module.exports.processEditPage = (req, res, next) => {
     userType: req.body.userType,
     created: req.body.created,
     update: req.body.update,
-  });
+  };
 
-  User.updateOne({ userID: { $eg: id } }, updatedUser, (err) => {
+  User.updateOne({ userID: { $eq: id } }, updatedUser, (err) => {
     if (err) {
       console.log(err);
       res.end(err);
@@ -122,58 +123,44 @@ module.exports.performDelete = (req, res, next) => {
 };
 
 module.exports.processLoginPage = async (req, res, next) => {
-  // passport.authenticate("local", (err, user, info) => {
-  //   // server err?
-  //   if (err) {
-  //     console.log(err);
-  //     return next(err);
-  //   }
-  //   // is there a user login error?
-  //   if (!user) {
-  //     console.log("empty user");
-  //     return;
-  //   }
-  //   req.login(user, (err) => {
-  //     // server error?
-  //     if (err) {
-  //       return next(err);
-  //     }
-
-  //     const payload = {
-  //       email: user.email,
-  //       displayName: user.displayName,
-  //       userID: user.userID,
-  //     };
-
-  //     const authToken = jwt.sign(payload, DB.Secret, {
-  //       expiresIn: 604800, // 1 week
-  //     });
-  //     console.log(authToken);
-  //     return res.json(authToken);
-
-  //     //return res.redirect('/book-list');
-  //   });
-  // })(req, res, next);
-  const { email, password } = req.body;
-  console.log(email, password);
-  const user = await User.findOne({ email: email });
-  if (email == user.email) {
-    console.log(user);
-    if (password == user.password) {
-      // Sign token
-      const token = jwt.sign({ email, password }, DB.Secret, {
-        expiresIn: 1000000,
-      });
-      res.status(200);
-      return res.json(token);
-    } else {
-      console.log("Wrong Password");
-      res.status(403);
+  passport.authenticate("local", (err, user, info) => {
+    // server err?
+    if (err) {
+      console.log(err);
+      return next(err);
     }
-  } else {
-    console.log("No User Found");
-    res.status(403);
-  }
+    // is there a user login error?
+    if (!user) {
+      return res.json({ err: "loginMessage", message: "Login Error" });
+    }
+    req.login(user, (err) => {
+      // server error?
+      if (err) {
+        return next(err);
+      }
+
+      const payload = {
+        email: user.email,
+        displayName: user.displayName,
+        userID: user.userID,
+      };
+
+      const authToken = jwt.sign(payload, DB.Secret, {
+        expiresIn: 604800, // 1 week
+      });
+      //console.log(authToken);
+      return res.json({
+        success: true,
+        message: "User Logged in Successfully!",
+        user: {
+          email: user.email,
+          displayName: user.displayName,
+          userID: user.userID,
+        },
+        token: authToken,
+      });
+    });
+  })(req, res, next);
 };
 
 module.exports.processRegisterPage = async (req, res, next) => {
@@ -188,27 +175,6 @@ module.exports.processRegisterPage = async (req, res, next) => {
     userID: req.body.userID,
     userType: req.body.userType,
   });
-  // User.register(newUser, req.body.password, (err) => {
-  //   if (err) {
-  //     console.log("Error: Inserting New User");
-  //     if (err.name == "UserExistsError") {
-  //       req.flash(
-  //         "registerMessage",
-  //         "Registration Error: User Already Exists!"
-  //       );
-  //       console.log("Error: User Already Exists!");
-  //     }
-  //     return res.render("auth/register", {
-  //       title: "Register",
-  //       messages: req.flash("registerMessage"),
-  //       username: req.user ? req.user.username : "",
-  //     });
-  //   } else {
-  //     return passport.authenticate("local")(req, res, () => {
-  //       res.redirect("/");
-  //     });
-  //   }
-  // });
 
   let user = await User.findOne({ email: req.body.email });
   if (user) {

@@ -9,13 +9,13 @@ export class User {
   public Number?: string;
 
   constructor(
-    public username: string,
-    public email: string,
-    public displayName: string,
-    public firstName: string,
-    public lastName: string,
-    public userType: String,
-    public password: String
+    public username?: string,
+    public email?: string,
+    public displayName?: string,
+    public firstName?: string,
+    public lastName?: string,
+    public userType?: String,
+    public password?: String
   ) {
     this.userID = Guid.create().toString();
   }

@@ -1,3 +1,5 @@
+//Created by: Hetu
+//Guard component for authorization
 import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
@@ -13,8 +15,10 @@ import { CreateIncidentComponent } from '../create-incident/create-incident.comp
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private auth: AuthService, private router: Router) {}
-  canActivate(): boolean {
+
+  constructor(private auth: AuthService, private router:Router){}
+  canActivate():  boolean {  
+   
     if (this.auth.isLoggedIn()) {
       return true;
     } else {

@@ -13,6 +13,7 @@ import { RegisterPostService } from '../../config/register.post.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import * as moment from 'moment';
+import { AppToastService } from 'src/app/partials/toast/app-toast.service';
 
 const PROTOCOL = 'http';
 const PORT = 3000;
@@ -49,8 +50,6 @@ export class AuthService {
 
   isLoggedIn() {
     return localStorage['id_token'];
-    //localStorage.getItem('token');
-    //return this.getToken() !== null;
   }
 
   isLoggedOut() {
@@ -60,20 +59,35 @@ export class AuthService {
   logout() {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
-    this.router.navigate(['home']);
+    localStorage.removeItem('displayName');
+
+    this.router.navigateByUrl('/home');
   }
 
   login(email: any, password: any) {
     return this.http
-      .post<User>(this.baseUrl + 'user/login', {
+      .post<any>(this.baseUrl + 'user/login', {
         email: email,
         password: password,
       })
-      .subscribe((res) => {
-        console.log(res);
-        this.setLocalStorage(res);
-        this.router.navigateByUrl('/table');
-      });
+      .subscribe(
+        (res) => {
+          //console.log(res);
+          //window.alert('Login Successfully');
+          if (res.success == true) {
+            this.setLocalStorage(res);
+            this.router.navigateByUrl('/table');
+            this.toast.showSuccess('Login Successful!');
+          } else {
+            this.toast.showDanger('Login Failed!');
+          }
+        },
+        (err) => {
+          console.log('Bad response');
+          this.toast.showDanger(err.message);
+          // window.alert(err);
+        }
+      );
   }
 
   setLocalStorage(authResult: any) {
@@ -82,7 +96,14 @@ export class AuthService {
     const expiresAt = moment().add(authResult.expiresIn, 'second');
 
     // Stores our JWT token and its expiry date in localStorage
-    localStorage.setItem('id_token', authResult.idToken);
+    localStorage.setItem('id_token', authResult['token']);
+    //console.log(authResult['user']['displayName']);
+    localStorage.setItem(
+      'displayName',
+      authResult['user']['displayName'].toString()
+    );
+    localStorage.setItem('userID', authResult['user']['userID'].toString());
+    //console.log(localStorage['displayName']);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
   }
 

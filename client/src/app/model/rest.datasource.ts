@@ -78,6 +78,22 @@ export class RestDataSource {
     );
   }
 
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.baseUrl + 'user');
+  }
+
+  getUser(): Observable<User> {
+    return this.http.get<User>(this.baseUrl + 'user/:id');
+  }
+
+  updateUser(user: User): Observable<User> {
+    return this.http.post<User>(
+      `${this.baseUrl}user/edit/${user.userID}`,
+      user,
+      this.httpOptions
+    );
+  }
+
   /* authenticate(user: User): Observable<any> {
   deleteIncident(id: string): Observable<Incident>
   {

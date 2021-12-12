@@ -72,6 +72,7 @@ export class CreateIncidentComponent implements OnInit {
       d.getHours().toString() +
       d.getMinutes().toString() +
       d.getSeconds().toString();
+
     return dateNumber;
   }
   //creates an incident using values provided in the form
@@ -103,6 +104,7 @@ export class CreateIncidentComponent implements OnInit {
         //reset form;
       });
     }
+    this.router.navigateByUrl('/table');
   }
 
   //populates form if object exists
@@ -147,7 +149,8 @@ export class CreateIncidentComponent implements OnInit {
     public data: IncidentRepository,
     public route: ActivatedRoute,
     public incidentservice: IncidentService,
-    public testclass: StaticDataSource
+    public testclass: StaticDataSource,
+    private router: Router
   ) {}
 
   ngOnInit(): void {

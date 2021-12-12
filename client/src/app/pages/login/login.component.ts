@@ -23,12 +23,6 @@ export class LoginComponent extends BasePageComponent implements OnInit {
     password: new FormControl('', Validators.required),
   });
 
-  //console.log(console.error());
-
-  /* loginForm = new FormGroup({
-    email: new FormControl('',Validators.required),
-    password: new FormControl('',Validators.required),
-  });*/
   constructor(
     route: ActivatedRoute,
     private auth: AuthService,
@@ -70,5 +64,21 @@ export class LoginComponent extends BasePageComponent implements OnInit {
       return false;
     }
   }
+
+  // submitValidator(): Boolean {
+  //   if (
+  //     this.loginForm.controls['email'].invalid &&
+  //     this.loginForm.hasError('required', 'email')
+  //   ) {
+  //     return true;
+  //   } else if (
+  //     this.loginForm.controls['password'].invalid &&
+  //     this.loginForm.hasError('required', 'password')
+  //   ) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 }
 

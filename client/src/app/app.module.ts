@@ -29,6 +29,8 @@ import { AuthGuard } from './guards/auth.guard';
 import { AdminMainComponent } from './admin/admin-main/admin-main.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { UserRepository } from './model/user.repository';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastComponent } from './partials/toast/toast.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import { UserRepository } from './model/user.repository';
     BasePageComponent,
     AdminMainComponent,
     EditUserComponent,
+    ToastComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +55,7 @@ import { UserRepository } from './model/user.repository';
     ModelModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgbModule,
   ],
   providers: [
     IncidentNumberGenerator,

@@ -131,8 +131,7 @@ module.exports.processLoginPage = async (req, res, next) => {
     }
     // is there a user login error?
     if (!user) {
-      req.flash("loginMessage", "Authentication Error");
-      return res.redirect("/login");
+      return res.json({ err: "loginMessage", message: "Login Error" });
     }
     req.login(user, (err) => {
       // server error?
@@ -152,7 +151,7 @@ module.exports.processLoginPage = async (req, res, next) => {
       //console.log(authToken);
       return res.json({
         success: true,
-        msg: "User Logged in Successfully!",
+        message: "User Logged in Successfully!",
         user: {
           email: user.email,
           displayName: user.displayName,

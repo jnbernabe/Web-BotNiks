@@ -13,6 +13,7 @@ import { RegisterPostService } from '../../config/register.post.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import * as moment from 'moment';
+import { AppToastService } from 'src/app/partials/toast/app-toast.service';
 
 const PROTOCOL = 'http';
 const PORT = 3000;
@@ -34,7 +35,11 @@ export class AuthService {
     }),
   };
 
-  constructor(private router: Router, private http: HttpClient) {
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    public toast: AppToastService
+  ) {
     this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/api/`;
     //this.baseUrl = `https://web-botniks-incident.herokuapp.com/api/`;
   }
@@ -74,8 +79,10 @@ export class AuthService {
           window.alert('Login Successfully');
           this.setLocalStorage(res);
           this.router.navigateByUrl('/table');
+          this.toast.show('Success', 'Successful Login');
         },
         (err) => {
+          this.toast.show('Error', err.message);
           console.log('Bad response');
           // window.alert(err);
         }

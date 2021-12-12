@@ -11,13 +11,30 @@
         <div class="input-group mb-3">
           <span class="input-group-text">Email address</span>
           <input
-            type="email" required
+            type="email"
+            required
             class="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             formControlName="email"
             placeholder="You@Email.com"
+<<<<<<< HEAD
           >
+=======
+            required
+          />
+        </div>
+        <div
+          class="container col-4 ms-0 alert alert-danger"
+          *ngIf="
+            (this.loginForm.controls['email'].invalid &&
+              this.loginForm.controls['email'].touched) ||
+            this.loginForm.controls['email'].dirty
+          "
+        >
+          <span class="text-danger"> Email Id is Required </span>
+        </div>
+>>>>>>> 22253b596e13deed9d161d6fabd008bff263949c
 
   <div class="text-danger" *ngIf="loginForm.controls['email'].touched">
     Email Id is required.
@@ -35,10 +52,24 @@
             id="exampleInputPassword1"
             formControlName="password"
             placeholder="123456789"
+            required
           />
+<<<<<<< HEAD
           <span class="text-danger" 
           *ngIf="loginForm.controls['password'].touched">
           Password is Required </span>
+=======
+        </div>
+        <div
+          class="container col-4 ms-0 alert alert-danger"
+          *ngIf="
+            (this.loginForm.controls['password'].invalid &&
+              this.loginForm.controls['password'].touched) ||
+            this.loginForm.controls['password'].dirty
+          "
+        >
+          <span class="text-danger"> Password is Required </span>
+>>>>>>> 22253b596e13deed9d161d6fabd008bff263949c
         </div>
       </div>
       <div class="container">

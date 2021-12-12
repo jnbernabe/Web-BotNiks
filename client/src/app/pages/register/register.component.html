@@ -14,6 +14,9 @@
           <span class="input-group-text">UserName</span>
           <input value="" type="text" class="form-control" placeholder="UserName" aria-label="username"
             formControlName="username" required />
+            <span class="text-danger" 
+            *ngIf="userForm.controls['username'].touched">
+            Username is Required </span>
         </div>
       </div>
       <div class="col-md">
@@ -21,6 +24,9 @@
           <span class="input-group-text">Password</span>
           <input type="password" class="form-control" id="Password" formControlName="Password" placeholder="Password"
             required />
+            <span class="text-danger" 
+            *ngIf="userForm.controls['Password'].touched">
+            Password is Required </span>
         </div>
       </div>
       </div>
@@ -30,6 +36,10 @@
           <span class="input-group-text" id="basic-addon1">First Name</span>
           <input type="text" class="form-control" formControlName="firstName" placeholder="First Name"
             aria-label="First Name" aria-describedby="basic-addon1" required />
+            <span class="text-danger" 
+            *ngIf="userForm.controls['firstName'].touched">
+            First Name is Required </span>
+
         </div>
       </div>
       <div class="col-md">
@@ -37,6 +47,9 @@
           <span class="input-group-text" id="basic-addon2">Last Name</span>
           <input type="text" class="form-control" formControlName="lastName" placeholder="Last Name"
             aria-label="Last Name" aria-describedby="basic-addon2" required />
+            <span class="text-danger" 
+            *ngIf="userForm.controls['lastName'].touched">
+            LastName is Required </span>
         </div>
       </div>
     </div>
@@ -45,9 +58,9 @@
         <div class="input-group mb-3">
           <span class="input-group-text" id="basic-addon2">Email</span>
           <input type="email" class="form-control" formControlName="email" placeholder="Email" aria-label="Email"
-            aria-describedby="basic-addon2" required />
+            aria-describedby="basic-addon2" ngModel [email]="true" required />
             <span class="text-danger" 
-          *ngIf="userForm.controls['email'].dirty && userForm.hasError('required','email') ">
+          *ngIf="userForm.controls['email'].dirty">
            Email Id is Required </span>
         </div>
       </div>
@@ -56,6 +69,9 @@
           <span class="input-group-text" id="basic-addon3">Display Name</span>
           <input type="text" class="form-control" id="displayName" formControlName="displayName"
             placeholder="Display Name" aria-describedby="basic-addon3" required />
+            <span class="text-danger" 
+          *ngIf="userForm.controls['displayName'].dirty">
+          Display Name is Required </span>
         </div>
       </div>
     </div>
@@ -64,6 +80,9 @@
       <span class="input-group-text">User Type</span>
       <input type="text" class="form-control" id="userType" formControlName="userType"
         placeholder="Client Helper / Investigator" required />
+        <span class="text-danger" 
+          *ngIf="userForm.controls['userType'].dirty">
+          User Type is Required </span>
     </div>
     <div class="btn-group d-flex justify-content-end" role="group" aria-label="Basic mixed styles example">
       <button [disabled]="!userForm.valid" class="button btn btn-primary m-3" type="submit">

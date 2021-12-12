@@ -71,12 +71,13 @@ export class AuthService {
       .subscribe(
         (res) => {
           //console.log(res);
+          window.alert('Login Successfully');
           this.setLocalStorage(res);
           this.router.navigateByUrl('/table');
         },
         (err) => {
           console.log('Bad response');
-         // window.alert(err);
+          // window.alert(err);
         }
       );
   }

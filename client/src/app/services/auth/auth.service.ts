@@ -64,13 +64,14 @@ export class AuthService {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
     localStorage.removeItem('displayName');
-    this.toast.show('Success', 'Successfully Logged out');
+
     this.router.navigate(['home']);
+    this.toast.show('Success', 'Successfully Logged out');
   }
 
   login(email: any, password: any) {
     return this.http
-      .post<User>(this.baseUrl + 'user/login', {
+      .post<any>(this.baseUrl + 'user/login', {
         email: email,
         password: password,
       })
@@ -78,13 +79,17 @@ export class AuthService {
         (res) => {
           //console.log(res);
           //window.alert('Login Successfully');
-          this.setLocalStorage(res);
-          this.router.navigateByUrl('/table');
-          this.toast.show('Success', 'Successful Login');
+          if (res.success == true) {
+            this.setLocalStorage(res);
+            this.router.navigateByUrl('/table');
+            this.toast.show('Success', 'Successful Login');
+          } else {
+            this.toast.show('Error', 'Login Failed');
+          }
         },
         (err) => {
           console.log('Bad response');
-          this.toast.show('Error', 'Login Error');
+          this.toast.show('Error', err.message);
           // window.alert(err);
         }
       );

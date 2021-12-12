@@ -19,14 +19,13 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginComponent extends BasePageComponent implements OnInit {
   loginForm = new FormGroup({
-    email: new FormControl('',Validators.required),
-    password: new FormControl('',Validators.required),
+    email: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
   });
 
- //console.log(console.error());
-  
+  //console.log(console.error());
 
- /* loginForm = new FormGroup({
+  /* loginForm = new FormGroup({
     email: new FormControl('',Validators.required),
     password: new FormControl('',Validators.required),
   });*/
@@ -41,21 +40,27 @@ export class LoginComponent extends BasePageComponent implements OnInit {
 
   override ngOnInit(): void {}
   onSubmit() {
-    const email = this.loginForm.value.email.toString();
-    const password = this.loginForm.value.password.toString();
-    //console.log(email, password);
-    this.auth.login(email, password);
-
-
+    if (this.loginForm.valid) {
+      const email = this.loginForm.value.email.toString();
+      const password = this.loginForm.value.password.toString();
+      //console.log(email, password);
+      this.auth.login(email, password);
+    }
   }
 
-  submitValidator(): boolean{
-    if(
-    this.loginForm.controls['email'].dirty && this.loginForm.hasError('required','email') || 
-    this.loginForm.controls['password'].dirty && this.loginForm.hasError('required','password') )
-    
-    {return true;}
-
+  submitValidator(): Boolean {
+    if (
+      this.loginForm.controls['email'].invalid &&
+      this.loginForm.hasError('required', 'email')
+    ) {
+      return true;
+    } else if (
+      this.loginForm.controls['password'].invalid &&
+      this.loginForm.hasError('required', 'password')
+    ) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
- 

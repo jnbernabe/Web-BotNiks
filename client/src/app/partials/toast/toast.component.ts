@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { AppToastService } from './app-toast.service';
 
 @Component({
@@ -12,20 +12,20 @@ export class ToastComponent implements OnInit {
   ngOnInit() {}
 
   showStandard() {
-    this.toastService.show('Message', 'I am a standard toast');
+    this.toastService.show('I am a standard toast');
   }
 
-  // showSuccess() {
-  //   this.toastService.show('I am a success toast', {
-  //     classname: 'bg-success text-light',
-  //     delay: 10000,
-  //   });
-  // }
+  showSuccess() {
+    this.toastService.show('I am a success toast', {
+      classname: 'bg-success text-light',
+      delay: 10000,
+    });
+  }
 
-  // showDanger(dangerTpl) {
-  //   this.toastService.show(dangerTpl, {
-  //     classname: 'bg-danger text-light',
-  //     delay: 15000,
-  //   });
-  // }
+  showDanger(dangerTpl: string | TemplateRef<any>) {
+    this.toastService.show(dangerTpl, {
+      classname: 'bg-danger text-light',
+      delay: 15000,
+    });
+  }
 }

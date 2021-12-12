@@ -1,13 +1,13 @@
 <app-toast aria-live="polite" aria-atomic="true"> </app-toast>
 <div class="container-fluid">
-  <div class="container-fluid">
+  <div class="container">
     <div class="backdrop">
       <div class="jumbotron">
         <h2 class="display-10 mx-auto text-center">Log In</h2>
       </div>
     </div>
 
-    <div class="container mt-5 backdrop">
+    <div class="container backdrop">
       <form class="container" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="container">
           <div class="input-group mb-3">
@@ -25,9 +25,8 @@
           <div
             class="container col-4 ms-0 alert alert-danger"
             *ngIf="
-              (this.loginForm.controls['email'].invalid &&
-                this.loginForm.controls['email'].touched) ||
-              this.loginForm.controls['email'].dirty
+              this.loginForm.controls['email'].invalid &&
+              this.loginForm.controls['email'].touched
             "
           >
             <span class="text-danger"> Email Id is Required </span>
@@ -50,9 +49,8 @@
           <div
             class="container col-4 ms-0 alert alert-danger"
             *ngIf="
-              (this.loginForm.controls['password'].invalid &&
-                this.loginForm.controls['password'].touched) ||
-              this.loginForm.controls['password'].dirty
+              this.loginForm.controls['password'].invalid &&
+              this.loginForm.controls['password'].touched
             "
           >
             <span class="text-danger"> Password is Required </span>

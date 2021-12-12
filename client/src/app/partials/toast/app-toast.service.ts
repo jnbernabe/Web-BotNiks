@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, TemplateRef } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
@@ -8,10 +8,15 @@ export class AppToastService {
 
   constructor() {}
 
-  show(header: string, body: string) {
-    this.toasts.push({ header, body });
+  isTemplate(toast: { textOrTpl: any }) {
+    return toast.textOrTpl instanceof TemplateRef;
   }
+
+  show(textOrTpl: string | TemplateRef<any>, options: any = {}) {
+    this.toasts.push({ textOrTpl, ...options });
+  }
+
   remove(toast: any) {
-    this.toasts = this.toasts.filter((t) => t != toast);
+    this.toasts = this.toasts.filter((t) => t !== toast);
   }
 }

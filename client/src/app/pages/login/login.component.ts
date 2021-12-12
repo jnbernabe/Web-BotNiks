@@ -11,6 +11,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { BasePageComponent } from 'src/app/partials/basepage/basepage.component';
 import { HttpClient } from '@angular/common/http';
+import { AppToastService } from 'src/app/partials/toast/app-toast.service';
 
 @Component({
   selector: 'app-login',
@@ -27,58 +28,21 @@ export class LoginComponent extends BasePageComponent implements OnInit {
     route: ActivatedRoute,
     private auth: AuthService,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    public toast: AppToastService
   ) {
     super(route);
   }
 
   override ngOnInit(): void {}
   onSubmit() {
-    const email = this.loginForm.value.email.toString();
-    const password = this.loginForm.value.password.toString();
-    //console.log(email, password);
-    this.auth.login(email, password);
-  }
-
-   /* if (this.loginForm.valid) {
+    if (this.loginForm.valid) {
       const email = this.loginForm.value.email.toString();
       const password = this.loginForm.value.password.toString();
       //console.log(email, password);
       this.auth.login(email, password);
-    }*/
-  
-
-    submitValidator(): Boolean {
-    if (
-      this.loginForm.controls['email'].invalid &&
-      this.loginForm.hasError('required', 'email')
-    ) {
-      return true;
-    } else if (
-      this.loginForm.controls['password'].invalid &&
-      this.loginForm.hasError('required', 'password')
-    ) {
-      return true;
     } else {
-
-      return false;
+      this.toast.show('Error', 'Login Error');
     }
   }
-
-  // submitValidator(): Boolean {
-  //   if (
-  //     this.loginForm.controls['email'].invalid &&
-  //     this.loginForm.hasError('required', 'email')
-  //   ) {
-  //     return true;
-  //   } else if (
-  //     this.loginForm.controls['password'].invalid &&
-  //     this.loginForm.hasError('required', 'password')
-  //   ) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
 }
-

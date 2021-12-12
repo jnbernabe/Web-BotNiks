@@ -17,16 +17,12 @@
             aria-describedby="emailHelp"
             formControlName="email"
             placeholder="You@Email.com"
-          />
-          <span class="text-danger" 
-          *ngIf=submitValidator();>
-           Email Id is Required </span>
-          
-        </div>
+          >
 
-        <div id="emailHelp" class="form-text">
-          We'll never share your email with anyone else.
-        </div>
+  <div class="text-danger" *ngIf="loginForm.controls['email'].touched">
+    Email Id is required.
+  </div>
+      </div>
       </div>
       <div class="container">
         <div class="input-group mb-3">
@@ -41,7 +37,7 @@
             placeholder="123456789"
           />
           <span class="text-danger" 
-          *ngIf="">
+          *ngIf="loginForm.controls['password'].touched">
           Password is Required </span>
         </div>
       </div>

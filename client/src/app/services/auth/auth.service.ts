@@ -71,6 +71,7 @@ export class AuthService {
       .subscribe(
         (res) => {
           //console.log(res);
+          window.alert('Login Successfully');
           this.setLocalStorage(res);
           this.router.navigateByUrl('/table');
         },

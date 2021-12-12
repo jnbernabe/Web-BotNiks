@@ -12,13 +12,17 @@
         <div class="input-group mb-3">
           <span class="input-group-text">Email address</span>
           <input
-            type="email"
+            type="email" required
             class="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             formControlName="email"
             placeholder="You@Email.com"
           />
+          <span class="text-danger" 
+          *ngIf=submitValidator();>
+           Email Id is Required </span>
+          
         </div>
 
         <div id="emailHelp" class="form-text">
@@ -37,6 +41,9 @@
             formControlName="password"
             placeholder="123456789"
           />
+          <span class="text-danger" 
+          *ngIf="">
+          Password is Required </span>
         </div>
       </div>
       <div class="container">

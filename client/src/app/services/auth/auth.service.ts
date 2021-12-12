@@ -49,8 +49,6 @@ export class AuthService {
 
   isLoggedIn() {
     return localStorage['id_token'];
-    //localStorage.getItem('token');
-    //return this.getToken() !== null;
   }
 
   isLoggedOut() {
@@ -78,7 +76,7 @@ export class AuthService {
         },
         (err) => {
           console.log('Bad response');
-          window.alert(err);
+         // window.alert(err);
         }
       );
   }

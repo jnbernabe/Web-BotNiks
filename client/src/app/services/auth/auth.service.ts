@@ -64,8 +64,9 @@ export class AuthService {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
     localStorage.removeItem('displayName');
-
+    this.toast.showDanger('Logged Out');
     this.router.navigateByUrl('/home');
+    this.toast.showDanger('Logged Out');
   }
 
   login(email: any, password: any) {

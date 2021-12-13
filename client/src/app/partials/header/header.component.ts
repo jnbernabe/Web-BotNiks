@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
   logout(): void {
     this.toast.showSuccess('Successfully Logged out');
     this.auth.logout();
+    this.toast.showDanger('Logged Out');
   }
   isLoggedIn(): boolean {
     return localStorage['id_token'];

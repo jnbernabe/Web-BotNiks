@@ -131,8 +131,7 @@ module.exports.processLoginPage = async (req, res, next) => {
     }
     // is there a user login error?
     if (!user) {
-      req.flash("loginMessage", "Authentication Error");
-      return res.redirect("/login");
+      return res.json({ err: "loginMessage", message: "Login Error" });
     }
     req.login(user, (err) => {
       // server error?
@@ -152,7 +151,7 @@ module.exports.processLoginPage = async (req, res, next) => {
       //console.log(authToken);
       return res.json({
         success: true,
-        msg: "User Logged in Successfully!",
+        message: "User Logged in Successfully!",
         user: {
           email: user.email,
           displayName: user.displayName,
@@ -162,29 +161,6 @@ module.exports.processLoginPage = async (req, res, next) => {
       });
     });
   })(req, res, next);
-  // const { email, password } = req.body;
-  // //console.log(email, password, "server");
-  // const user = await User.findOne({ email: email }).catch(
-  //   console.log("Waiting for Response")
-  // );
-
-  // if (!user) {
-  //   console.log("No User Found");
-  //   res.status(403);
-  // } else {
-  //   //console.log(user);
-  //   if (password == user.password) {
-  //     // Sign token
-  //     const token = jwt.sign({ email, password }, DB.Secret, {
-  //       expiresIn: 1000000,
-  //     });
-  //     res.status(200);
-  //     return res.json({ success: true, token: token, user: user });
-  //   } else {
-  //     console.log("Wrong Password");
-  //     res.status(404).send("Something broke!");
-  //   }
-  // }
 };
 
 module.exports.processRegisterPage = async (req, res, next) => {
@@ -199,27 +175,6 @@ module.exports.processRegisterPage = async (req, res, next) => {
     userID: req.body.userID,
     userType: req.body.userType,
   });
-  // User.register(newUser, req.body.password, (err) => {
-  //   if (err) {
-  //     console.log("Error: Inserting New User");
-  //     if (err.name == "UserExistsError") {
-  //       req.flash(
-  //         "registerMessage",
-  //         "Registration Error: User Already Exists!"
-  //       );
-  //       console.log("Error: User Already Exists!");
-  //     }
-  //     return res.render("auth/register", {
-  //       title: "Register",
-  //       messages: req.flash("registerMessage"),
-  //       username: req.user ? req.user.username : "",
-  //     });
-  //   } else {
-  //     return passport.authenticate("local")(req, res, () => {
-  //       res.redirect("/");
-  //     });
-  //   }
-  // });
 
   let user = await User.findOne({ email: req.body.email });
   if (user) {

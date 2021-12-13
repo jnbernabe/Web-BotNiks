@@ -13,6 +13,7 @@ import { RegisterPostService } from '../../config/register.post.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import * as moment from 'moment';
+import { AppToastService } from 'src/app/partials/toast/app-toast.service';
 
 const PROTOCOL = 'http';
 const PORT = 3000;
@@ -34,7 +35,11 @@ export class AuthService {
     }),
   };
 
-  constructor(private router: Router, private http: HttpClient) {
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    public toast: AppToastService
+  ) {
     this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/api/`;
     //this.baseUrl = `https://web-botniks-incident.herokuapp.com/api/`;
   }
@@ -49,8 +54,6 @@ export class AuthService {
 
   isLoggedIn() {
     return localStorage['id_token'];
-    //localStorage.getItem('token');
-    //return this.getToken() !== null;
   }
 
   isLoggedOut() {
@@ -61,24 +64,32 @@ export class AuthService {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
     localStorage.removeItem('displayName');
-    this.router.navigate(['home']);
+
+    this.router.navigateByUrl('/home');
   }
 
   login(email: any, password: any) {
     return this.http
-      .post<User>(this.baseUrl + 'user/login', {
+      .post<any>(this.baseUrl + 'user/login', {
         email: email,
         password: password,
       })
       .subscribe(
         (res) => {
           //console.log(res);
-          this.setLocalStorage(res);
-          this.router.navigateByUrl('/table');
+          //window.alert('Login Successfully');
+          if (res.success == true) {
+            this.setLocalStorage(res);
+            this.router.navigateByUrl('/table');
+            this.toast.showSuccess('Login Successful!');
+          } else {
+            this.toast.showDanger('Login Failed!');
+          }
         },
         (err) => {
           console.log('Bad response');
-          window.alert(err);
+          this.toast.showDanger(err.message);
+          // window.alert(err);
         }
       );
   }

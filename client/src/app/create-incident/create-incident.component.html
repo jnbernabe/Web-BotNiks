@@ -34,12 +34,13 @@
           <div class="input-group mb-3">
             <span class="input-group-text" for="incidentStatus">Status</span>
             <select formControlName="incidentStatus" class="form-control" id="incidentStatus">
-
-              <div *ngIf="editMode; else newOption">
+              <div *ngIf="editMode; then thenBlock else newOption">
+              </div>
+              <ng-template #thenBlock>
                 <option *ngFor="let statusSelect of statuses()" value="{{ statusSelect }}">
                   {{ statusSelect }}
                 </option>
-              </div>
+              </ng-template>
               <ng-template #newOption>
                 <option value="New">New</option>
               </ng-template>
@@ -78,7 +79,6 @@
           </textarea>
         </div>
       </ng-template>
-
     </div>
     <br />
     <div class="btn-group d-flex justify-content-end" role="group" aria-label="Basic mixed styles example">
